@@ -151,6 +151,9 @@ async function initDatabase() {
     } catch (e) {
       console.log('Cloud startup check skipped:', e.message);
     }
+  }
+}
+
 // Helper to automatically reset and count roll numbers starting from 1 for each standard
 function renumberRollsPerStandard(students) {
   if (!Array.isArray(students)) return;
