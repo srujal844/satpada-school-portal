@@ -151,8 +151,32 @@ async function initDatabase() {
     } catch (e) {
       console.log('Cloud startup check skipped:', e.message);
     }
-  }
+// Helper to automatically reset and count roll numbers starting from 1 for each standard
+function renumberRollsPerStandard(students) {
+  if (!Array.isArray(students)) return;
+  const stdGroups = {};
+  students.forEach(s => {
+    const std = String(s.standard || '').trim();
+    if (!stdGroups[std]) stdGroups[std] = [];
+    stdGroups[std].push(s);
+  });
+
+  Object.keys(stdGroups).forEach(std => {
+    const group = stdGroups[std];
+    // Sort students by existing roll number or GR
+    group.sort((a, b) => {
+      const rA = (a.rollNo !== null && a.rollNo !== undefined && !isNaN(a.rollNo)) ? Number(a.rollNo) : 99999;
+      const rB = (b.rollNo !== null && b.rollNo !== undefined && !isNaN(b.rollNo)) ? Number(b.rollNo) : 99999;
+      if (rA !== rB) return rA - rB;
+      return String(a.grNumber || '').localeCompare(String(b.grNumber || ''));
+    });
+    // Assign roll numbers 1..N restarting for each standard
+    group.forEach((s, idx) => {
+      s.rollNo = idx + 1;
+    });
+  });
 }
+
 initDatabase();
 
 // Grade calculation helper
@@ -335,6 +359,11 @@ app.post('/api/admin/students', requireAdmin, (req, res) => {
     newStudent.percentage = totalMax > 0 ? Number(((totalObt / totalMax) * 100).toFixed(2)) : 0;
     newStudent.overallGrade = calculateGrade(newStudent.percentage);
     newStudent.resultStatus = newStudent.percentage >= 33 ? 'પાસ (Passed)' : 'નાપાસ (Failed)';
+  }
+
+  if (!newStudent.rollNo) {
+    const stdStudents = students.filter(s => String(s.standard).trim() === String(newStudent.standard).trim());
+    newStudent.rollNo = stdStudents.length + 1;
   }
 
   students.push(newStudent);
@@ -758,6 +787,9 @@ const handleExcelUpload = (req, res) => {
         message: 'Excel ફાઈલમાંથી કોઈ વિદ્યાર્થીનો રેકોર્ડ મળ્યો નથી. કૃપા કરીને ફાઈલમાં જી.આર. નંબર અને ધોરણ ચકાસો.'
       });
     }
+
+    // Automatically recount and restart roll numbers from 1 for each standard
+    renumberRollsPerStandard(students);
 
     saveStudentsDatabase(students);
     return res.json({
