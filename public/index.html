@@ -168,33 +168,33 @@
     <!-- SEARCH SECTION -->
     <div id="searchSection" class="transition-all duration-300">
 
-      <div class="max-w-xl mx-auto">
+      <div class="max-w-2xl mx-auto">
 
         <!-- Card -->
         <div class="bg-white rounded-3xl card-shadow border border-slate-100 overflow-hidden fade-in">
 
           <!-- Card Header Banner -->
-          <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 p-6 text-white relative overflow-hidden">
-            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-            <div class="flex items-center gap-3.5 relative z-10">
-              <div class="w-12 h-12 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl shadow-inner shrink-0">
+          <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 p-6 sm:p-7 text-white relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="flex items-center gap-4 relative z-10">
+              <div class="w-13 h-13 sm:w-14 sm:h-14 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-2xl shadow-inner shrink-0 p-3">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
               <div>
-                <h2 class="font-bold text-xl leading-tight font-gujarati">વિદ્યાર્થી પરિણામ શોધો</h2>
-                <p class="text-blue-100 text-xs mt-0.5 font-medium">Student Result Verification Portal</p>
+                <h2 class="font-bold text-xl sm:text-2xl leading-tight font-gujarati">વિદ્યાર્થી પરિણામ શોધો</h2>
+                <p class="text-blue-100 text-xs sm:text-sm mt-0.5 font-medium">Student Result Verification Portal</p>
               </div>
             </div>
           </div>
 
-          <!-- Form (Clean 1-by-1 stacked lines) -->
+          <!-- Form (Generous, comfortable spacing) -->
           <div class="p-6 sm:p-8">
-            <form id="resultSearchForm" class="space-y-5">
+            <form id="resultSearchForm" class="space-y-6">
 
-              <!-- 1. Standard (Line 1) -->
+              <!-- 1. Standard (Full width with proper spacing underneath) -->
               <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
-                  ૧. ધોરણ પસંદ કરો <span class="text-rose-500">*</span> <span class="text-[11px] text-slate-400 font-normal normal-case">(Select Standard)</span>
+                <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
+                  ૧. ધોરણ પસંદ કરો <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(Select Standard)</span>
                 </label>
                 <div class="relative">
                   <select id="inputStandard" required class="input-field appearance-none cursor-pointer">
@@ -213,39 +213,42 @@
                 </div>
               </div>
 
-              <!-- 2. GR Number (Line 2) -->
-              <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
-                  ૨. જી.આર. નંબર <span class="text-rose-500">*</span> <span class="text-[11px] text-slate-400 font-normal normal-case">(G.R. Number)</span>
-                </label>
-                <div class="relative">
-                  <input type="text" id="inputGrNumber" required placeholder="દા.ત. 5262, 5191, 5014..." value=""
-                    class="input-field">
-                  <i class="fa-solid fa-hashtag absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
+              <!-- 2. Roll No & 3. GR No (Spacious 2-column grid with generous gap) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- Roll Number (Optional) -->
+                <div>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
+                    ૨. રોલ નંબર <span class="text-xs text-emerald-600 font-medium">(વૈકલ્પિક / Optional)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="number" id="inputRollNo" placeholder="જો ખબર હોય તો (દા.ત. 1, 5...)" min="1" max="200" value=""
+                      class="input-field">
+                    <i class="fa-solid fa-id-badge absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
+                  </div>
+                </div>
+
+                <!-- GR Number (Required) -->
+                <div>
+                  <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
+                    ૩. જી.આર. નંબર <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(G.R. Number)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="text" id="inputGrNumber" required placeholder="દા.ત. 5262, 5191, 5014..." value=""
+                      class="input-field">
+                    <i class="fa-solid fa-hashtag absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
+                  </div>
                 </div>
               </div>
 
-              <!-- 3. Roll Number (Line 3 - Optional) -->
+              <!-- 4. Exam Type (Full width with proper spacing) -->
               <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
-                  ૩. રોલ નંબર <span class="text-[11px] text-emerald-600 font-semibold normal-case">(વૈકલ્પિક / Optional)</span>
-                </label>
-                <div class="relative">
-                  <input type="number" id="inputRollNo" placeholder="જો ખબર હોય તો (દા.ત. 1, 2, 5...)" min="1" max="200" value=""
-                    class="input-field">
-                  <i class="fa-solid fa-id-badge absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
-                </div>
-              </div>
-
-              <!-- 4. Exam Type (Line 4) -->
-              <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
-                  ૪. પરીક્ષા પ્રકાર <span class="text-[11px] text-slate-400 font-normal normal-case">(Exam Type)</span>
+                <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
+                  ૪. પરીક્ષા પ્રકાર <span class="text-xs text-slate-400 font-normal">(Exam Type)</span>
                 </label>
                 <div class="relative">
                   <select id="inputExamType" class="input-field appearance-none cursor-pointer">
                     <option value="Annual">દ્વિતીય સત્રાંત / વાર્ષિક પરીક્ષા (Annual Exam)</option>
-                    <option value="Term 1">પ્રથમ સત્રાંત પરીક્ષા (Term 1)</option>
+                    <option value="Term 1">પ્રથમ સત્રાંત પરીક્ષા (Term 1 / Semester 1)</option>
                     <option value="all">બધા પરિણામ (All Exams)</option>
                   </select>
                   <i class="fa-solid fa-file-lines absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
@@ -260,17 +263,19 @@
               </div>
 
               <!-- Submit Button -->
-              <button type="submit" id="submitSearchBtn" class="btn-primary w-full text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 font-gujarati text-base group">
-                <span id="btnText">પરિણામ જુઓ (Show Result)</span>
-                <i id="btnIcon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
-              </button>
+              <div class="pt-2">
+                <button type="submit" id="submitSearchBtn" class="btn-primary w-full text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 font-gujarati text-base group">
+                  <span id="btnText">પરિણામ જુઓ (Show Result)</span>
+                  <i id="btnIcon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                  <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
+                </button>
+              </div>
             </form>
 
             <!-- Privacy Note -->
-            <p class="text-center text-xs text-slate-500 mt-6 flex items-center justify-center gap-1.5 font-gujarati">
+            <p class="text-center text-xs text-slate-500 mt-6 pt-4 border-t border-slate-100 flex items-center justify-center gap-2 font-gujarati">
               <i class="fa-solid fa-shield-halved text-emerald-600 text-sm"></i>
-              ફક્ત સર્ચ કરેલ વિદ્યાર્થીનું જ પરિણામ દર્શાવાશે — ૧૦૦% ગોપનીય
+              ફક્ત સર્ચ કરેલ વિદ્યાર્થીનું જ પરિણામ દર્શાવાશે — ૧૦૦% સુરક્ષિત અને ગોપનીય
             </p>
           </div>
         </div>
