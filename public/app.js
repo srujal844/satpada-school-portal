@@ -27,33 +27,10 @@ async function fetchSchoolInfo() {
 }
 
 function updateSchoolUi(school) {
-  if (school.schoolNameGu) {
-    document.getElementById('headerSchoolNameGu').textContent = school.schoolNameGu;
-    document.getElementById('cardSchoolNameGu').textContent = school.schoolNameGu;
-  }
-  if (school.schoolNameEn) {
-    document.getElementById('headerSchoolNameEn').textContent = school.schoolNameEn;
-    document.getElementById('cardSchoolNameEn').textContent = school.schoolNameEn;
-  }
-  if (school.udiseCode) {
-    document.getElementById('headerUdise').textContent = school.udiseCode;
-    document.getElementById('cardUdise').textContent = school.udiseCode;
-  }
-  if (school.academicYear) {
-    document.getElementById('headerAcademicYear').textContent = school.academicYear;
-    document.getElementById('cardAcademicYear').textContent = school.academicYear;
-  }
-  if (school.notice) {
-    document.getElementById('schoolNotice').textContent = school.notice;
-  }
-  if (school.taluka || school.district || school.village) {
-    const loc = [school.village, school.taluka ? `તા. ${school.taluka}` : '', school.district ? `જી. ${school.district}` : ''].filter(Boolean).join(', ');
-    document.getElementById('cardSchoolAddress').textContent = `${loc} | U-DISE કોડ: ${school.udiseCode || ''}`;
-  }
-  if (school.principalName) {
-    document.getElementById('cardPrincipalSign').textContent = school.principalName;
-  }
+  const setEl = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+  setEl('cardAcademicYear', school.academicYear);
 }
+
 
 // 2. Setup Event Listeners
 function setupEventListeners() {
@@ -417,27 +394,26 @@ function handleAdminLogout() {
 }
 
 function switchAdminTab(tabName) {
-  const tabs = ['students', 'add', 'bulk', 'password'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}StudentBtn`) ||
-                document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}StudentsBtn`) ||
-                document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}UploadBtn`) ||
-                document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}Btn`);
-    const pane = document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}`) ||
-                 document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}Student`) ||
-                 document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}Students`) ||
-                 document.getElementById(`tab${t.charAt(0).toUpperCase() + t.slice(1)}Upload`);
+  const tabConfig = {
+    students:  { btn: 'tabStudentsBtn',    pane: 'tabStudents' },
+    add:       { btn: 'tabAddStudentBtn',   pane: 'tabAddStudent' },
+    bulk:      { btn: 'tabBulkUploadBtn',   pane: 'tabBulkUpload' },
+    password:  { btn: 'tabPasswordBtn',     pane: 'tabPassword' },
+  };
 
+  Object.entries(tabConfig).forEach(([t, cfg]) => {
+    const btn = document.getElementById(cfg.btn);
+    const pane = document.getElementById(cfg.pane);
     if (t === tabName) {
       if (btn) {
-        btn.classList.add('border-b-2', 'border-emerald-600', 'text-emerald-700', 'bg-white');
-        btn.classList.remove('text-slate-600');
+        btn.classList.add('border-b-2', 'border-blue-600', 'text-blue-700', 'bg-white');
+        btn.classList.remove('border-transparent', 'text-slate-500');
       }
       if (pane) pane.classList.remove('hidden');
     } else {
       if (btn) {
-        btn.classList.remove('border-b-2', 'border-emerald-600', 'text-emerald-700', 'bg-white');
-        btn.classList.add('text-slate-600');
+        btn.classList.remove('border-b-2', 'border-blue-600', 'text-blue-700', 'bg-white');
+        btn.classList.add('border-transparent', 'text-slate-500');
       }
       if (pane) pane.classList.add('hidden');
     }
