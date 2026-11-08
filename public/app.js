@@ -56,10 +56,11 @@ function setupEventListeners() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Print Marksheet
-  document.getElementById('printMarksheetBtn').addEventListener('click', () => {
-    window.print();
-  });
+  // Print Marksheet (if present)
+  const printBtn = document.getElementById('printMarksheetBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', () => { window.print(); });
+  }
 
   // Share WhatsApp
   document.getElementById('shareWhatsappBtn').addEventListener('click', shareOnWhatsApp);
