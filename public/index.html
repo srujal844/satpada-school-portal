@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>શાળા પરિણામ પોર્ટલ | Primary School Result Portal</title>
-  <!-- Tailwind CSS -->
+  <title>શ્રી સાતપડા પ્રાથમિક શાળા | Student Result Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts for Gujarati and English -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script>
@@ -20,497 +17,525 @@
           fontFamily: {
             gujarati: ['"Hind Vadodara"', 'sans-serif'],
             sans: ['"Inter"', '"Hind Vadodara"', 'sans-serif'],
-          },
-          colors: {
-            school: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              600: '#16a34a',
-              700: '#15803d',
-              800: '#166534',
-              900: '#14532d',
-            },
-            primaryBlue: {
-              600: '#1d4ed8',
-              700: '#1e40af',
-              800: '#1e3a8a',
-            }
           }
         }
       }
     }
   </script>
+  <style>
+    :root {
+      --brand: #1a56db;
+      --brand-dark: #1e40af;
+      --accent: #0ea5e9;
+      --gold: #d97706;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0c4a6e 100%);
+    }
+    .glass {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 10px 40px -10px rgba(0,0,0,0.12);
+    }
+    .input-field {
+      @apply w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-slate-400 text-sm;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1a56db, #0ea5e9);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(26, 86, 219, 0.35);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1e40af, #0284c7);
+      box-shadow: 0 6px 20px rgba(26, 86, 219, 0.45);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .stat-chip {
+      @apply flex flex-col items-center bg-white/10 border border-white/15 rounded-xl px-5 py-3 text-white min-w-[90px];
+    }
+    .badge { @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full; }
+
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; font-size: 11px; }
+      #printableReportCard {
+        border: 1.5pt solid #000 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 14pt !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        page-break-after: avoid;
+      }
+      @page { size: A4; margin: 8mm; }
+    }
+
+    /* Animations */
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    select { cursor: pointer; }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
-  <!-- TOP TICKER BAR -->
-  <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs sm:text-sm py-1.5 px-4 shadow-sm no-print">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-2 truncate">
-        <span class="bg-white/20 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide">સૂચના</span>
-        <span id="schoolNotice" class="truncate font-medium">વાર્ષિક પરીક્ષા પરિણામ ૨૦૨૫-૨૬ જાહેર થયેલ છે.</span>
+  <!-- TOP ADMIN BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 no-print">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          <div class="pulse-dot"></div>
+          <span class="text-slate-400">Portal Online</span>
+        </div>
+        <span class="text-slate-600">|</span>
+        <span>U-DISE: <strong class="text-slate-200">24140805901</strong></span>
+        <span class="text-slate-600 hidden sm:inline">|</span>
+        <span class="hidden sm:inline">શૈ. વર્ષ: <strong class="text-slate-200">2025–2026</strong></span>
       </div>
-      <div class="flex items-center space-x-3 shrink-0 text-xs">
-        <button id="adminLoginBtn" class="hover:text-amber-100 flex items-center gap-1 font-medium bg-black/15 px-2.5 py-0.5 rounded transition">
-          <i class="fa-solid fa-lock text-[10px]"></i> શિક્ષક / એડમિન લૉગિન
-        </button>
-      </div>
+      <button id="adminLoginBtn" class="flex items-center gap-1.5 text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 px-3 py-1 rounded-lg transition font-medium">
+        <i class="fa-solid fa-lock text-[10px]"></i> Admin Login
+      </button>
     </div>
   </div>
 
   <!-- SCHOOL HEADER -->
-  <header class="bg-white border-b border-slate-200 shadow-sm relative no-print">
-    <div class="max-w-6xl mx-auto px-4 py-4 sm:py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-4 text-center md:text-left">
-        <!-- School Emblem / Logo -->
-        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md ring-4 ring-emerald-50 shrink-0">
-          <i class="fa-solid fa-graduation-cap text-3xl sm:text-4xl"></i>
-        </div>
-        <div>
-          <div class="flex items-center justify-center md:justify-start gap-2">
-            <span class="inline-block px-2 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800 rounded">પ્રાથમિક શાળા પરિણામ પોર્ટલ</span>
-            <span class="text-xs text-slate-500 font-medium">U-DISE: <b id="headerUdise" class="text-slate-700">24140805901</b></span>
+  <header class="hero-bg text-white no-print">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+      <div class="flex flex-col md:flex-row items-center gap-6">
+
+        <!-- Emblem -->
+        <div class="relative shrink-0">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center shadow-xl ring-4 ring-white/5">
+            <i class="fa-solid fa-graduation-cap text-4xl sm:text-5xl text-blue-200"></i>
           </div>
-          <h1 id="headerSchoolNameGu" class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-0.5 font-gujarati">
+          <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-amber-400 rounded-full flex items-center justify-center shadow">
+            <i class="fa-solid fa-star text-white text-[10px]"></i>
+          </div>
+        </div>
+
+        <!-- School Info -->
+        <div class="text-center md:text-left flex-grow">
+          <div class="badge bg-blue-500/20 text-blue-200 border border-blue-400/20 mb-3">
+            <i class="fa-solid fa-landmark"></i> ગુજરાત સરકાર – પ્રાથમિક શિક્ષણ
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold font-gujarati tracking-tight leading-tight">
             શ્રી સાતપડા પ્રાથમિક શાળા
           </h1>
-          <p id="headerSchoolNameEn" class="text-xs sm:text-sm text-slate-500 font-medium">
-            SHREE SATPADA PRATHMIK SHALA
+          <p class="text-blue-200 text-sm sm:text-base font-medium tracking-widest mt-1 uppercase">
+            Shree Satpada Prathmik Shala
           </p>
+          <p class="text-slate-400 text-xs mt-2">સાતપડા, ગુજરાત</p>
         </div>
-      </div>
 
-      <!-- Quick School Details Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-        <div class="bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-          <i class="fa-solid fa-calendar-check text-emerald-600"></i>
-          <span>સત્ર: <b id="headerAcademicYear">2025-2026</b></span>
+        <!-- Stats -->
+        <div class="flex gap-3 shrink-0">
+          <div class="stat-chip">
+            <span class="text-2xl font-bold text-white">107</span>
+            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wide">Students</span>
+          </div>
+          <div class="stat-chip">
+            <span class="text-2xl font-bold text-white">3–8</span>
+            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wide">Standards</span>
+          </div>
         </div>
-        <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium">
-          <i class="fa-solid fa-shield-halved text-emerald-600"></i>
-          <span>સુરક્ષિત પરિણામ સિસ્ટમ</span>
-        </div>
+
       </div>
     </div>
+
+    <!-- Wave bottom -->
+    <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none" style="display:block;margin-bottom:-1px">
+      <path fill="#f8fafc" d="M0,20 C360,45 1080,-5 1440,20 L1440,40 L0,40 Z"/>
+    </svg>
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+  <!-- MAIN -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
 
-    <!-- SEARCH VIEW -->
+    <!-- SEARCH SECTION -->
     <div id="searchSection" class="transition-all duration-300">
-      
-      <!-- Banner / Welcome card -->
-      <div class="bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-800 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-lg relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
-          <i class="fa-solid fa-award text-9xl"></i>
-        </div>
-        <div class="max-w-2xl relative z-10">
-          <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
-            <i class="fa-solid fa-sparkles text-amber-300"></i> ડિજિટલ પ્રગતિ પત્રક ૨૦૨૫-૨૬
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold font-gujarati leading-snug">
-            વિદ્યાર્થીનું પરિણામ મેળવો
-          </h2>
-          <p class="text-emerald-100 text-sm mt-2 leading-relaxed">
-            વિદ્યાર્થીનું પરિણામ જોવા માટે તેમનું <b>ધોરણ</b>, <b>રોલ નંબર</b> અને <b>જી.આર. નંબર (G.R. No.)</b> દાખલ કરો. સુરક્ષા ખાતર ફક્ત આ જ બાળકની માહિતી દર્શાવવામાં આવશે.
-          </p>
-        </div>
-      </div>
 
-      <!-- Result Search Form Card -->
-      <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-8">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
-          <div class="flex items-center gap-2 text-emerald-700 font-bold text-lg font-gujarati">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <span>વિદ્યાર્થી શોધ (Search Student Result)</span>
-          </div>
-          <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">
-            3 સ્તરીય વેરિફિકેશન
-          </span>
-        </div>
+      <div class="max-w-lg mx-auto">
 
-        <form id="resultSearchForm" class="space-y-5">
-          <!-- Class / Standard -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
-              ૧. ધોરણ પસંદ કરો <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(Select Standard)</span>
-            </label>
-            <div class="relative">
-              <select id="inputStandard" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
-                <option value="" selected>-- ધોરણ પસંદ કરો --</option>
-                <option value="1">ધોરણ ૧ (Class 1)</option>
-                <option value="2">ધોરણ ૨ (Class 2)</option>
-                <option value="3">ધોરણ ૩ (Class 3)</option>
-                <option value="4">ધોરણ ૪ (Class 4)</option>
-                <option value="5">ધોરણ ૫ (Class 5)</option>
-                <option value="6">ધોરણ ૬ (Class 6)</option>
-                <option value="7">ધોરણ ૭ (Class 7)</option>
-                <option value="8">ધોરણ ૮ (Class 8)</option>
-              </select>
-              <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3.5 text-slate-400"></i>
-              <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
-            </div>
-          </div>
+        <!-- Card -->
+        <div class="bg-white rounded-2xl card-shadow border border-slate-100 overflow-hidden fade-in">
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Roll Number (Optional) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
-                ૨. રોલ નંબર <span class="text-xs text-emerald-600 font-normal">(વૈકલ્પિક / Optional)</span>
-              </label>
-              <div class="relative">
-                <input type="number" id="inputRollNo" placeholder="જો ખબર હોય તો (દા.ત. 5)" min="1" max="150" value="" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
-                <i class="fa-solid fa-id-badge absolute left-3.5 top-3.5 text-slate-400"></i>
+          <!-- Card Header -->
+          <div class="bg-gradient-to-r from-blue-600 to-sky-500 p-5 text-white">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-magnifying-glass text-lg"></i>
               </div>
-            </div>
-
-            <!-- GR Number (Required) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
-                ૩. જી.આર. નંબર <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(G.R. Number)</span>
-              </label>
-              <div class="relative">
-                <input type="text" id="inputGrNumber" required placeholder="દા.ત. 101, 102..." value="" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
-                <i class="fa-solid fa-hashtag absolute left-3.5 top-3.5 text-slate-400"></i>
+              <div>
+                <h2 class="font-bold text-lg leading-tight font-gujarati">વિદ્યાર્થી પરિણામ શોધો</h2>
+                <p class="text-blue-100 text-xs">Student Result Search</p>
               </div>
             </div>
           </div>
 
-          <!-- Exam Type -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
-              ૪. પરીક્ષા પ્રકાર <span class="text-xs text-slate-400 font-normal">(Exam Type)</span>
-            </label>
-            <div class="relative">
-              <select id="inputExamType" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
-                <option value="Annual">દ્વિતીય સત્રાંત / વાર્ષિક પરીક્ષા (Annual Exam)</option>
-                <option value="Term 1">પ્રથમ સત્રાંત પરીક્ષા (Term 1 / Semester 1)</option>
-                <option value="all">બધા પરિણામ (All Exams)</option>
-              </select>
-              <i class="fa-solid fa-file-lines absolute left-3.5 top-3.5 text-slate-400"></i>
-              <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
-            </div>
+          <!-- Form -->
+          <div class="p-6">
+            <form id="resultSearchForm" class="space-y-4">
+
+              <!-- Standard -->
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                  ધોરણ (Standard) <span class="text-rose-500">*</span>
+                </label>
+                <div class="relative">
+                  <select id="inputStandard" required class="input-field appearance-none cursor-pointer">
+                    <option value="">— ધોરણ પસંદ કરો —</option>
+                    <option value="1">ધોરણ ૧ &nbsp;(Class 1)</option>
+                    <option value="2">ધોરણ ૨ &nbsp;(Class 2)</option>
+                    <option value="3">ધોરણ ૩ &nbsp;(Class 3)</option>
+                    <option value="4">ધોરણ ૪ &nbsp;(Class 4)</option>
+                    <option value="5">ધોરણ ૫ &nbsp;(Class 5)</option>
+                    <option value="6">ધોરણ ૬ &nbsp;(Class 6)</option>
+                    <option value="7">ધોરણ ૭ &nbsp;(Class 7)</option>
+                    <option value="8">ધોરણ ૮ &nbsp;(Class 8)</option>
+                  </select>
+                  <i class="fa-solid fa-layer-group absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- GR + Roll -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                    જી.આર. નં. <span class="text-rose-500">*</span>
+                  </label>
+                  <div class="relative">
+                    <input type="text" id="inputGrNumber" required placeholder="e.g. 5262" value=""
+                      class="input-field">
+                    <i class="fa-solid fa-hashtag absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                    રોલ નં. <span class="text-slate-400 font-normal">(વૈકલ્પિક)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="number" id="inputRollNo" placeholder="e.g. 5" min="1" max="200" value=""
+                      class="input-field">
+                    <i class="fa-solid fa-id-badge absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Exam Type -->
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                  પરીક્ષા (Exam Type)
+                </label>
+                <div class="relative">
+                  <select id="inputExamType" class="input-field appearance-none cursor-pointer">
+                    <option value="Annual">વાર્ષિક પરીક્ષા (Annual Exam)</option>
+                    <option value="Term 1">પ્રથમ સત્રાંત (Term 1)</option>
+                    <option value="all">બધા પરિણામ (All)</option>
+                  </select>
+                  <i class="fa-solid fa-file-lines absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- Error -->
+              <div id="searchErrorAlert" class="hidden flex items-start gap-2.5 p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm">
+                <i class="fa-solid fa-circle-exclamation text-rose-500 mt-0.5 shrink-0"></i>
+                <span id="searchErrorMessage" class="font-gujarati leading-snug">Error</span>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" id="submitSearchBtn" class="btn-primary w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 font-gujarati text-base">
+                <span id="btnText">પરિણામ જુઓ</span>
+                <i id="btnIcon" class="fa-solid fa-arrow-right"></i>
+                <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
+              </button>
+            </form>
+
+            <!-- Privacy note -->
+            <p class="text-center text-xs text-slate-400 mt-5 flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-shield-halved text-green-500"></i>
+              ફક્ત સર્ચ કરેલ વિદ્યાર્થીનું જ પરિણામ દર્શાવાય છે — સંપૂર્ણ ગોપનીય
+            </p>
           </div>
+        </div>
 
-          <!-- Error Alert Container -->
-          <div id="searchErrorAlert" class="hidden p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3">
-            <i class="fa-solid fa-circle-exclamation text-rose-500 text-lg mt-0.5 shrink-0"></i>
-            <div id="searchErrorMessage" class="leading-relaxed font-gujarati">
-              કોઈ પરિણામ મળ્યું નથી.
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" id="submitSearchBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/25 transition duration-200 flex items-center justify-center gap-2 font-gujarati text-base group">
-            <span id="btnText">પરિણામ જુઓ (Show Result)</span>
-            <i id="btnIcon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-            <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
-          </button>
-        </form>
-
-        <!-- Privacy & Security Guarantee -->
-        <div class="mt-6 pt-5 border-t border-slate-100 flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed">
-          <i class="fa-solid fa-shield-halved text-emerald-600 text-sm mt-0.5 shrink-0"></i>
-          <p>
-            <b>ગોપનીયતા બાંયધરી:</b> આ સિસ્ટમમાં માત્ર અને માત્ર જે બાળકના સાચા ધોરણ, રોલ નંબર અને જી.આર. નંબર મળશે તેમનું જ પરિણામ દર્શાવાશે. શાળાના અન્ય કોઈપણ વિદ્યાર્થીની અંગત વિગત અહીંથી જોઈ શકાતી નથી.
-          </p>
+        <!-- Info pills -->
+        <div class="flex flex-wrap justify-center gap-2 mt-5 no-print">
+          <span class="badge bg-blue-50 text-blue-700 border border-blue-100"><i class="fa-solid fa-clock"></i> ૨૪/૭ ઉપલબ્ધ</span>
+          <span class="badge bg-green-50 text-green-700 border border-green-100"><i class="fa-solid fa-mobile-screen"></i> Mobile Friendly</span>
+          <span class="badge bg-amber-50 text-amber-700 border border-amber-100"><i class="fa-solid fa-print"></i> PDF / Print</span>
         </div>
       </div>
     </div>
 
-    <!-- RESULT REPORT CARD SECTION (Hidden initially) -->
+    <!-- RESULT SECTION -->
     <div id="resultSection" class="hidden">
-      
-      <!-- Top Action Toolbar (Back, Print, WhatsApp) -->
-      <div class="no-print max-w-4xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
-        <button id="backToSearchBtn" class="flex items-center gap-2 text-slate-600 hover:text-slate-900 font-semibold text-sm px-3 py-1.5 rounded-lg hover:bg-slate-100 transition">
-          <i class="fa-solid fa-arrow-left"></i>
-          <span>બીજા વિદ્યાર્થીનું પરિણામ શોધો (Search Another)</span>
-        </button>
 
+      <!-- Action Bar -->
+      <div class="no-print max-w-5xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200 card-shadow">
+        <button id="backToSearchBtn" class="flex items-center gap-2 text-slate-600 hover:text-blue-700 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-slate-50 transition">
+          <i class="fa-solid fa-arrow-left"></i> નવું પરિણામ શોધો
+        </button>
         <div class="flex items-center gap-2">
-          <!-- WhatsApp Share -->
-          <button id="shareWhatsappBtn" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs sm:text-sm px-4 py-2 rounded-lg shadow-sm transition">
-            <i class="fa-brands fa-whatsapp text-base"></i>
-            <span>વોટ્સએપ શેર</span>
+          <button id="shareWhatsappBtn" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow-sm transition">
+            <i class="fa-brands fa-whatsapp"></i> Share
           </button>
-          
-          <!-- Print / PDF -->
-          <button id="printMarksheetBtn" class="flex items-center gap-2 bg-primaryBlue-600 hover:bg-primaryBlue-700 text-white font-medium text-xs sm:text-sm px-4 py-2 rounded-lg shadow-sm transition">
-            <i class="fa-solid fa-print text-base"></i>
-            <span>પ્રિન્ટ / PDF ડાઉનલોડ</span>
+          <button id="printMarksheetBtn" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow-sm transition">
+            <i class="fa-solid fa-print"></i> Print / PDF
           </button>
         </div>
       </div>
 
-      <!-- PENDING / NOT YET UPLOADED RESULT CARD -->
-      <div id="resultPendingCard" class="hidden max-w-2xl mx-auto bg-white border-2 border-amber-300 rounded-2xl shadow-xl p-6 sm:p-8 text-center mb-6">
-        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-sm">
-          <i class="fa-solid fa-clock-rotate-left"></i>
+      <!-- PENDING CARD -->
+      <div id="resultPendingCard" class="hidden max-w-md mx-auto bg-white rounded-2xl card-shadow border border-amber-200 p-8 text-center fade-in">
+        <div class="w-16 h-16 bg-amber-50 border-2 border-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+          <i class="fa-solid fa-clock text-amber-500"></i>
         </div>
-        <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-          પરિણામ પેન્ડિંગ (Result Pending)
-        </span>
-        <h3 class="text-xl sm:text-2xl font-bold text-slate-800 font-gujarati mb-2">
-          આ વિદ્યાર્થીનું પરિણામ હજુ અપલોડ થયેલ નથી
+        <span class="badge bg-amber-100 text-amber-700 border border-amber-200 mb-3">Result Pending</span>
+        <h3 class="text-xl font-bold text-slate-800 font-gujarati mb-1">
+          પરિણામ હજુ અપલોડ થયેલ નથી
         </h3>
-        <p class="text-xs sm:text-sm text-slate-500 mb-6">
-          શાળા દ્વારા આ વિદ્યાર્થીનું પરિણામ હજુ પોર્ટલ પર અપલોડ કરવાનું બાકી છે.
+        <p class="text-sm text-slate-500 mb-6">
+          આ વિદ્યાર્થીના ગુણ શાળા દ્વારા હજુ અપલોડ કરવાના બાકી છે.
         </p>
-
-        <!-- Student Details Box -->
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left max-w-md mx-auto text-xs sm:text-sm space-y-2 mb-6">
-          <div class="flex justify-between border-b border-slate-200 pb-1.5">
-            <span class="text-slate-500 font-medium">વિદ્યાર્થીનું નામ:</span>
+        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-left space-y-2 text-sm mb-6">
+          <div class="flex justify-between">
+            <span class="text-slate-500">વિદ્યાર્થી</span>
             <b id="pendingStudentName" class="text-slate-900 font-gujarati"></b>
           </div>
-          <div class="flex justify-between border-b border-slate-200 pb-1.5">
-            <span class="text-slate-500 font-medium">ધોરણ (Standard):</span>
-            <b id="pendingStandard" class="text-emerald-800"></b>
+          <div class="flex justify-between border-t border-slate-100 pt-2">
+            <span class="text-slate-500">ધોરણ</span>
+            <b id="pendingStandard" class="text-blue-700"></b>
           </div>
-          <div class="flex justify-between border-b border-slate-200 pb-1.5">
-            <span class="text-slate-500 font-medium">જી.આર. નંબર (G.R. No):</span>
+          <div class="flex justify-between border-t border-slate-100 pt-2">
+            <span class="text-slate-500">જી.આર. નં.</span>
             <b id="pendingGrNumber" class="text-amber-700"></b>
           </div>
-          <div class="flex justify-between">
-            <span class="text-slate-500 font-medium">રોલ નંબર (Roll No):</span>
+          <div class="flex justify-between border-t border-slate-100 pt-2">
+            <span class="text-slate-500">રોલ નં.</span>
             <b id="pendingRollNo" class="text-slate-700"></b>
           </div>
         </div>
-
-        <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-2.5 max-w-md mx-auto mb-6">
-          <i class="fa-solid fa-circle-info"></i> શાળા દ્વારા ગુણ અપલોડ થયા બાદ અહીં સત્તાવાર પ્રગતિ પત્રક જોવા મળશે.
-        </p>
-
-        <button onclick="document.getElementById('backToSearchBtn').click()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow transition">
-          બીજા વિદ્યાર્થીનું પરિણામ શોધો
+        <button onclick="document.getElementById('backToSearchBtn').click()"
+          class="btn-primary w-full text-white font-semibold py-2.5 rounded-xl text-sm">
+          <i class="fa-solid fa-search mr-1"></i> નવું પરિણામ શોધો
         </button>
       </div>
 
-      <!-- OFFICIAL MARKSHEET CONTAINER -->
-      <div id="printableReportCard" class="max-w-4xl mx-auto bg-white border-2 border-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 text-slate-900 relative print:border-2 print:border-slate-900 print:shadow-none print:p-4 print:m-0 print:max-w-full">
-        
-        <!-- Decorative Border Corner Accents (screen only) -->
-        <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-slate-800 no-print"></div>
-        <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-slate-800 no-print"></div>
-        <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-slate-800 no-print"></div>
-        <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-slate-800 no-print"></div>
+      <!-- OFFICIAL MARKSHEET -->
+      <div id="printableReportCard" class="max-w-5xl mx-auto bg-white rounded-2xl card-shadow border border-slate-200 p-6 sm:p-8 text-slate-900 fade-in print:border print:border-slate-900 print:shadow-none print:p-4 print:m-0 print:max-w-full print:rounded-none">
 
-        <!-- School Official Header -->
-        <div class="border-b-2 border-slate-800 pb-4 mb-4 text-center relative print:pb-2 print:mb-2">
-          <div class="flex items-center justify-between">
-            <!-- Left Emblem -->
-            <div class="w-14 h-14 rounded-full border-2 border-slate-800 flex items-center justify-center p-1 shrink-0 print:w-12 print:h-12">
-              <i class="fa-solid fa-book-open-reader text-2xl text-emerald-700 print:text-xl"></i>
+        <!-- School Header -->
+        <div class="border-b-2 border-slate-800 pb-4 mb-5 print:pb-3 print:mb-3">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full border-2 border-slate-800 bg-slate-50 flex items-center justify-center shrink-0 print:w-12 print:h-12">
+              <i class="fa-solid fa-graduation-cap text-2xl text-blue-700 print:text-xl"></i>
             </div>
-            
-            <!-- School Titles -->
-            <div class="flex-grow px-2">
-              <span class="text-[11px] tracking-wider uppercase font-semibold text-slate-600 print:text-[9px]">શિક્ષણ વિભાગ - ગુજરાત સરકાર અનુદાનિત</span>
-              <h1 id="cardSchoolNameGu" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-gujarati tracking-tight print:text-xl">
+            <div class="flex-grow text-center">
+              <p class="text-[11px] tracking-widest uppercase text-slate-500 font-medium print:text-[9px]">ગુજરાત સરકાર – પ્રાથમિક શિક્ષણ વિભાગ</p>
+              <h1 class="text-2xl sm:text-3xl font-black text-slate-900 font-gujarati tracking-tight leading-tight print:text-2xl">
                 શ્રી સાતપડા પ્રાથમિક શાળા
               </h1>
-              <h2 id="cardSchoolNameEn" class="text-xs sm:text-sm font-semibold text-slate-700 uppercase tracking-wider print:text-xs">
-                SHREE SATPADA PRATHMIK SHALA
-              </h2>
-              <p id="cardSchoolAddress" class="text-xs text-slate-600 mt-0.5 print:text-[10px]">
-                U-DISE કોડ: <span id="cardUdise" class="font-bold">24140805901</span>
-              </p>
+              <p class="text-xs font-semibold tracking-widest text-slate-600 uppercase print:text-[10px]">SHREE SATPADA PRATHMIK SHALA</p>
+              <p class="text-xs text-slate-500 mt-0.5 print:text-[9px]">U-DISE: <strong>24140805901</strong> | સાતપડા, ગુજરાત</p>
             </div>
-
-            <!-- Right QR Code (Dynamically Generated) -->
-            <div class="w-14 h-14 border border-slate-300 rounded p-1 shrink-0 flex items-center justify-center bg-slate-50 print:w-12 print:h-12" title="વેરિફિકેશન QR કોડ">
-              <div id="reportQrCode" class="w-12 h-12"></div>
+            <div class="w-16 h-16 border border-slate-200 rounded-lg flex items-center justify-center bg-slate-50 shrink-0 print:w-12 print:h-12">
+              <div id="reportQrCode" class="w-14 h-14 print:w-11 print:h-11"></div>
             </div>
           </div>
 
-          <!-- Marksheet Badge Title -->
-          <div class="mt-2 print:mt-1">
-            <span class="inline-block bg-slate-900 text-white font-bold text-xs sm:text-sm px-5 py-0.5 rounded-full uppercase tracking-wider font-gujarati shadow-sm print:text-xs print:py-0.5">
-              પ્રાથમિક શાળા વિદ્યાર્થી વાર્ષિક પ્રગતિ પત્રક (PROGRESS REPORT)
+          <div class="text-center mt-4 print:mt-2">
+            <span class="inline-block bg-slate-900 text-white text-xs font-bold tracking-widest uppercase px-6 py-1.5 rounded-full print:text-[9px] print:px-4 print:py-1">
+              વિદ્યાર્થી વાર્ષિક પ્રગતિ પત્રક · ANNUAL PROGRESS REPORT
             </span>
-            <div class="text-[11px] font-semibold text-slate-700 mt-0.5 print:text-[10px]">
-              શૈક્ષણિક વર્ષ: <span id="cardAcademicYear" class="font-bold text-slate-900">2025-2026</span> | પરીક્ષા: <span id="cardExamType" class="font-bold text-slate-900">વાર્ષિક પરીક્ષા (Annual Exam)</span>
-            </div>
+            <p class="text-xs text-slate-600 mt-1.5 print:text-[9px]">
+              શૈ. વર્ષ: <strong id="cardAcademicYear">2025–2026</strong> &nbsp;|&nbsp; પ.: <strong id="cardExamType">વાર્ષિક પરીક્ષા</strong>
+            </p>
           </div>
         </div>
 
-        <!-- Student Information Grid -->
-        <div class="bg-slate-50 border border-slate-300 rounded-xl p-3 mb-4 print:p-2 print:mb-2 print:rounded-lg">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-2 gap-x-4 text-xs print:text-[10.5px]">
-            <div>
-              <span class="text-slate-500 block text-[10px]">વિદ્યાર્થીનું નામ (Name):</span>
-              <b id="cardStudentNameGu" class="font-gujarati text-slate-900 text-xs sm:text-sm block"></b>
-              <span id="cardStudentNameEn" class="text-[10px] text-slate-600 block"></span>
+        <!-- Student Info -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-5 print:p-2.5 print:mb-3 print:rounded-lg">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs print:text-[10px] print:gap-2">
+            <div class="sm:col-span-2">
+              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">વિદ્યાર્થીનું નામ / Student Name</span>
+              <strong id="cardStudentNameGu" class="font-gujarati text-slate-900 text-sm print:text-xs block"></strong>
+              <span id="cardStudentNameEn" class="text-slate-500 text-[10px] block"></span>
             </div>
             <div>
-              <span class="text-slate-500 block text-[10px]">પિતા/વાલીનું નામ (Father):</span>
-              <b id="cardFatherName" class="text-slate-900 block font-medium"></b>
-              <span class="text-slate-500 block text-[10px] mt-0.5">માતાનું નામ (Mother):</span>
-              <span id="cardMotherName" class="text-slate-800 text-[10px] font-medium"></span>
+              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">પિતાનું નામ / Father</span>
+              <strong id="cardFatherName" class="text-slate-900 font-gujarati block"></strong>
+              <span class="text-slate-500 text-[10px] mt-1 block">માતા / Mother</span>
+              <strong id="cardMotherName" class="text-slate-900 font-gujarati text-[10px] block"></strong>
             </div>
             <div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <span class="text-slate-500 block text-[10px]">ધોરણ (Standard):</span>
-                  <b id="cardStandard" class="text-sm text-emerald-800 font-bold"></b>
+                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">ધોરણ</span>
+                  <strong id="cardStandard" class="text-blue-700 text-sm font-black print:text-xs"></strong>
                 </div>
                 <div>
-                  <span class="text-slate-500 block text-[10px]">વર્ગ (Div):</span>
-                  <b id="cardDivision" class="text-sm text-slate-900 font-bold"></b>
+                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">વર્ગ</span>
+                  <strong id="cardDivision" class="text-slate-900 text-sm font-black print:text-xs"></strong>
                 </div>
               </div>
-              <div class="mt-1">
-                <span class="text-slate-500 block text-[10px]">જન્મ તારીખ (DOB):</span>
-                <b id="cardDob" class="text-slate-800 text-[10px]"></b>
+              <div class="grid grid-cols-2 gap-2 mt-2">
+                <div>
+                  <span class="text-slate-500 text-[10px] block">રોલ નં.</span>
+                  <strong id="cardRollNo" class="text-blue-700 font-black"></strong>
+                </div>
+                <div>
+                  <span class="text-slate-500 text-[10px] block">જી.આર. નં.</span>
+                  <strong id="cardGrNumber" class="text-amber-700 font-bold"></strong>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs print:text-[9.5px]">
             <div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <span class="text-slate-500 block text-[10px]">રોલ નં (Roll No):</span>
-                  <b id="cardRollNo" class="text-sm text-primaryBlue-700 font-bold"></b>
-                </div>
-                <div>
-                  <span class="text-slate-500 block text-[10px]">જી.આર. નં (G.R. No):</span>
-                  <b id="cardGrNumber" class="text-sm text-amber-700 font-bold"></b>
-                </div>
-              </div>
-              <div class="mt-1">
-                <span class="text-slate-500 block text-[10px]">હાજરી (Attendance):</span>
-                <span id="cardAttendance" class="text-slate-800 text-[10px] font-semibold"></span>
-              </div>
+              <span class="text-slate-500 text-[10px] block">જન્મ તારીખ / DOB</span>
+              <strong id="cardDob" class="text-slate-900"></strong>
+            </div>
+            <div>
+              <span class="text-slate-500 text-[10px] block">હાજરી / Attendance</span>
+              <strong id="cardAttendance" class="text-slate-900"></strong>
             </div>
           </div>
         </div>
 
-        <!-- Subject Marks Table -->
-        <div class="overflow-x-auto mb-6">
-          <table class="w-full border-collapse border border-slate-800 text-xs sm:text-sm">
+        <!-- Marks Table -->
+        <div class="mb-5 print:mb-3">
+          <table class="w-full border-collapse text-xs print:text-[10px]" style="border: 1.5px solid #1e293b;">
             <thead>
-              <tr class="bg-slate-100 text-slate-900 border-b-2 border-slate-800 text-center font-bold">
-                <th class="border border-slate-700 p-2 text-center w-12">ક્રમ</th>
-                <th class="border border-slate-700 p-2 text-left">વિષય (Subjects)</th>
-                <th class="border border-slate-700 p-2 w-24">કુલ ગુણ (Max)</th>
-                <th class="border border-slate-700 p-2 w-24">પાસ ગુણ (Min)</th>
-                <th class="border border-slate-700 p-2 w-28">મેળવેલ ગુણ (Obtained)</th>
-                <th class="border border-slate-700 p-2 w-20">ગ્રેડ (Grade)</th>
+              <tr class="bg-slate-900 text-white text-center">
+                <th class="p-2 print:p-1.5 text-center border border-slate-700 w-8">#</th>
+                <th class="p-2 print:p-1.5 text-left border border-slate-700">વિષય (Subject)</th>
+                <th class="p-2 print:p-1.5 border border-slate-700 w-20">કુલ ગુણ</th>
+                <th class="p-2 print:p-1.5 border border-slate-700 w-20">પાસ ગુણ</th>
+                <th class="p-2 print:p-1.5 border border-slate-700 w-24">મેળવેલ ગુણ</th>
+                <th class="p-2 print:p-1.5 border border-slate-700 w-16">ગ્રેડ</th>
               </tr>
             </thead>
-            <tbody id="cardSubjectsTbody">
-              <!-- Dynamically populated subjects -->
-            </tbody>
+            <tbody id="cardSubjectsTbody"></tbody>
             <tfoot>
-              <tr class="bg-slate-50 font-bold border-t-2 border-slate-800 text-center">
-                <td colspan="2" class="border border-slate-700 p-2 text-right pr-4 font-gujarati text-sm">
-                  કુલ પરિણામ (GRAND TOTAL):
+              <tr class="font-bold border-t-2 border-slate-800 bg-slate-50 text-center print:text-[10px]">
+                <td colspan="2" class="p-2 print:p-1.5 border border-slate-700 text-right font-gujarati text-sm print:text-xs">
+                  <strong>GRAND TOTAL</strong>
                 </td>
-                <td id="cardTotalMax" class="border border-slate-700 p-2 font-bold">600</td>
-                <td class="border border-slate-700 p-2 text-slate-500">200</td>
-                <td id="cardTotalObtained" class="border border-slate-700 p-2 font-extrabold text-emerald-800 text-base">524</td>
-                <td id="cardOverallGrade" class="border border-slate-700 p-2 font-extrabold text-white bg-emerald-700">A1</td>
+                <td id="cardTotalMax" class="p-2 print:p-1.5 border border-slate-700 font-black">—</td>
+                <td class="p-2 print:p-1.5 border border-slate-700 text-slate-500">—</td>
+                <td id="cardTotalObtained" class="p-2 print:p-1.5 border border-slate-700 font-black text-blue-800 text-base print:text-xs">—</td>
+                <td id="cardOverallGrade" class="p-2 print:p-1.5 border border-slate-700 font-black text-white bg-blue-700">—</td>
               </tr>
             </tfoot>
           </table>
         </div>
 
-        <!-- Performance Summary & Personality Traits -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 print:mb-2 print:gap-2">
-          <!-- Left: Score Summary Cards -->
-          <div class="border border-slate-300 rounded-xl p-3 bg-slate-50/50 flex flex-col justify-between print:p-2 print:rounded-lg">
-            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5 border-b border-slate-200 pb-1 print:text-[10px]">
-              <i class="fa-solid fa-chart-pie text-emerald-600"></i> ગુણાંક વિશ્લેષણ (Performance Metric)
+        <!-- Summary + Co-curricular -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 print:mb-3 print:gap-2">
+
+          <!-- Performance: 2 cols -->
+          <div class="md:col-span-2 border border-slate-200 rounded-xl p-3 bg-slate-50 print:p-2 print:rounded-lg">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2 flex items-center gap-1.5 print:text-[8px]">
+              <i class="fa-solid fa-chart-pie text-blue-500"></i> Performance
             </h4>
             <div class="grid grid-cols-3 gap-2 text-center print:gap-1">
-              <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm print:p-1">
-                <span class="text-[10px] text-slate-500 block">ટકાવારી (%)</span>
-                <span id="cardPercentage" class="text-base sm:text-lg font-black text-slate-900 print:text-sm">0%</span>
+              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
+                <span id="cardPercentage" class="text-xl font-black text-slate-900 print:text-sm block">—</span>
+                <span class="text-[9px] text-slate-500">ટકાવારી</span>
               </div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm print:p-1">
-                <span class="text-[10px] text-slate-500 block">પરિણામ (Status)</span>
-                <span id="cardStatus" class="text-xs sm:text-sm font-bold text-emerald-700 print:text-xs">પાસ</span>
+              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
+                <span id="cardStatus" class="text-sm font-black text-green-700 print:text-xs block">—</span>
+                <span class="text-[9px] text-slate-500">Status</span>
               </div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-sm print:p-1">
-                <span class="text-[10px] text-slate-500 block">વર્ગ ક્રમાંક</span>
-                <span id="cardRank" class="text-xs sm:text-sm font-bold text-slate-800 print:text-xs">-</span>
+              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
+                <span id="cardRank" class="text-sm font-black text-slate-700 print:text-xs block">—</span>
+                <span class="text-[9px] text-slate-500">ક્રમ</span>
               </div>
             </div>
-            <!-- Progress Bar -->
             <div class="mt-2 no-print">
-              <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-                <div id="cardProgressBar" class="bg-emerald-600 h-2 rounded-full" style="width: 0%"></div>
+              <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                <div id="cardProgressBar" class="h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 transition-all duration-700" style="width:0%"></div>
               </div>
             </div>
           </div>
 
-          <!-- Right: Personality and Co-curricular -->
-          <div class="border border-slate-300 rounded-xl p-3 bg-slate-50/50 print:p-2 print:rounded-lg">
-            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5 border-b border-slate-200 pb-1 print:text-[10px]">
-              <i class="fa-solid fa-star text-amber-500"></i> વ્યક્તિત્વ વિકાસ મૂલ્યાંકન (Co-Curricular)
+          <!-- Co-curricular: 3 cols -->
+          <div class="md:col-span-3 border border-slate-200 rounded-xl p-3 bg-slate-50 print:p-2 print:rounded-lg">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2 flex items-center gap-1.5 print:text-[8px]">
+              <i class="fa-solid fa-star text-amber-500"></i> Co-Curricular / વ્યક્તિત્વ
             </h4>
-            <div class="grid grid-cols-2 gap-1.5 text-xs print:text-[10px] print:gap-1">
-              <div class="flex justify-between p-1 bg-white rounded border border-slate-200">
-                <span class="text-slate-600">સ્વચ્છતા:</span>
-                <b id="cardCleanliness" class="text-slate-900">ઉત્તમ</b>
+            <div class="grid grid-cols-2 gap-1.5 text-xs print:text-[9px] print:gap-1">
+              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+                <span class="text-slate-500">સ્વચ્છતા</span>
+                <strong id="cardCleanliness" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1 bg-white rounded border border-slate-200">
-                <span class="text-slate-600">શિસ્ત:</span>
-                <b id="cardDiscipline" class="text-slate-900">ઉત્તમ</b>
+              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+                <span class="text-slate-500">શિસ્ત</span>
+                <strong id="cardDiscipline" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1 bg-white rounded border border-slate-200">
-                <span class="text-slate-600">જિજ્ઞાસા:</span>
-                <b id="cardCuriosity" class="text-slate-900">ખૂબ સારું</b>
+              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+                <span class="text-slate-500">જિજ્ઞાસા</span>
+                <strong id="cardCuriosity" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1 bg-white rounded border border-slate-200">
-                <span class="text-slate-600">રમતગમત:</span>
-                <b id="cardSports" class="text-slate-900">ઉત્તમ</b>
+              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+                <span class="text-slate-500">રમતગમત</span>
+                <strong id="cardSports" class="text-slate-800"></strong>
               </div>
             </div>
           </div>
+
         </div>
 
-        <!-- Teacher's Remarks -->
-        <div class="border border-slate-300 rounded-xl p-2.5 bg-white mb-3 print:mb-2 print:p-2 print:rounded-lg">
-          <div class="text-[11px] font-semibold text-slate-600 print:text-[9.5px]">વર્ગ શિક્ષકનો અભિપ્રાય (Class Teacher's Remark):</div>
-          <p id="cardTeacherRemarks" class="text-xs sm:text-sm font-gujarati text-slate-900 mt-0.5 italic font-medium print:text-[10.5px]">
-            સરસ પ્રગતિ. અભિનંદન!
+        <!-- Teacher Remarks -->
+        <div class="border border-slate-200 rounded-xl p-3 bg-white mb-4 print:mb-2.5 print:p-2 print:rounded-lg">
+          <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wide mb-1 print:text-[8px]">
+            <i class="fa-solid fa-comment-dots text-blue-400 mr-1"></i> Class Teacher's Remark / વર્ગ શિક્ષક અભિપ્રાય
           </p>
+          <p id="cardTeacherRemarks" class="text-sm font-gujarati text-slate-900 italic print:text-[10px]">—</p>
         </div>
 
-        <!-- Grading Scale Legend -->
-        <div class="text-[9.5px] text-slate-500 border-t border-slate-200 pt-1.5 mb-4 print:mb-2 print:text-[8.5px]">
-          <b class="text-slate-700">ગ્રેડિંગ સ્કેલ:</b> A1: 91-100% | A2: 81-90% | B1: 71-80% | B2: 61-70% | C1: 51-60% | C2: 41-50% | D: 33-40% | E: 32% થી ઓછા
+        <!-- Grading Scale -->
+        <div class="text-[9px] text-slate-500 border-t border-slate-200 pt-2 mb-5 print:mb-3 print:text-[7.5px]">
+          <strong class="text-slate-600">Grading Scale:</strong>
+          A1 ≥91% &nbsp;|&nbsp; A2 81–90% &nbsp;|&nbsp; B1 71–80% &nbsp;|&nbsp; B2 61–70% &nbsp;|&nbsp; C1 51–60% &nbsp;|&nbsp; C2 41–50% &nbsp;|&nbsp; D 33–40% &nbsp;|&nbsp; E &lt;33%
         </div>
 
-        <!-- Signatures & School Stamp -->
-        <div class="grid grid-cols-3 gap-3 text-center items-end pt-3 border-t-2 border-slate-800 print:pt-2">
+        <!-- Signatures -->
+        <div class="grid grid-cols-3 gap-4 text-center border-t-2 border-slate-800 pt-4 print:pt-3">
           <div>
-            <div class="h-8 flex items-center justify-center print:h-6">
-              <span class="text-xs text-slate-400 italic font-serif print:text-[10px]">Verified</span>
-            </div>
-            <div class="border-t border-slate-500 pt-0.5">
-              <b class="text-xs block text-slate-800 print:text-[10px]">વર્ગ શિક્ષકની સહી</b>
+            <div class="h-8 print:h-5"></div>
+            <div class="border-t border-slate-400 pt-1">
+              <strong class="text-xs block text-slate-800 print:text-[9px]">વર્ગ શિક્ષક</strong>
               <span class="text-[9px] text-slate-500">Class Teacher</span>
             </div>
           </div>
-
-          <!-- Official Stamp -->
           <div class="flex flex-col items-center">
-            <div class="w-16 h-16 rounded-full border-2 border-dashed border-emerald-700 text-emerald-800 flex flex-col items-center justify-center p-1 uppercase text-[7px] font-black leading-tight rotate-[-6deg] opacity-80 print:w-14 print:h-14">
-              <span>સાતપડા પ્રા. શાળા</span>
-              <i class="fa-solid fa-stamp text-[10px] my-0.5"></i>
-              <span>OFFICIAL SEAL</span>
+            <div class="w-16 h-16 rounded-full border-2 border-dashed border-blue-400 text-blue-700 flex flex-col items-center justify-center uppercase text-[7px] font-black leading-tight opacity-70 print:w-12 print:h-12">
+              <span>સાતપડા</span>
+              <span>SCHOOL</span>
+              <i class="fa-solid fa-stamp text-[9px] my-0.5"></i>
+              <span>SEAL</span>
             </div>
           </div>
-
           <div>
-            <div class="h-8 flex items-center justify-center print:h-6">
-              <span id="cardPrincipalSign" class="text-xs sm:text-sm font-serif italic text-slate-700 font-bold print:text-xs">Dr. R. K. Patel</span>
-            </div>
-            <div class="border-t border-slate-500 pt-0.5">
-              <b class="text-xs block text-slate-800 print:text-[10px]">આચાર્યશ્રીની સહી / સિક્કો</b>
-              <span class="text-[9px] text-slate-500">Principal Signature</span>
+            <div class="h-8 print:h-5"></div>
+            <div class="border-t border-slate-400 pt-1">
+              <strong class="text-xs block text-slate-800 print:text-[9px]">આચાર્ય</strong>
+              <span class="text-[9px] text-slate-500">Principal</span>
             </div>
           </div>
         </div>
@@ -520,232 +545,210 @@
 
   </main>
 
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-6 mt-12 no-print">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div class="text-center sm:text-left">
+          <p class="font-semibold text-slate-200">© 2026 · શ્રી સાતપડા પ્રાથમિક શાળા</p>
+          <p class="text-slate-600 mt-0.5">Shree Satpada Prathmik Shala &nbsp;·&nbsp; U-DISE: 24140805901</p>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <div class="pulse-dot"></div>
+          <span>Powered by Secure Digital Result Portal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- ADMIN MODAL -->
   <div id="adminModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden">
-      
-      <!-- Admin Modal Header -->
-      <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-user-shield text-emerald-400 text-lg"></i>
-          <div>
-            <h3 class="font-bold text-base">શાળા એડમિન પોર્ટલ (Admin / Teacher Dashboard)</h3>
-            <p class="text-xs text-slate-400">પરિણામ વ્યવસ્થાપન અને બલ્ક અપલોડ</p>
-          </div>
+
+      <!-- Modal Header -->
+      <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-user-shield text-blue-400 text-lg"></i>
+          <span class="font-bold text-sm">Admin Dashboard – શ્રી સાતપડા શાળા</span>
         </div>
-        <button id="closeAdminModalBtn" class="text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div class="flex items-center gap-3">
+          <span id="adminUserDisplay" class="hidden text-xs text-slate-300 bg-white/10 px-2 py-1 rounded-lg"></span>
+          <button id="adminLogoutBtn" class="hidden text-xs bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 px-3 py-1 rounded-lg transition">Logout</button>
+          <button id="closeAdminModalBtn" class="text-slate-400 hover:text-white w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Admin Login View (if not logged in) -->
-      <div id="adminLoginFormView" class="p-8 max-w-md mx-auto w-full my-auto">
+      <!-- Admin Login Form -->
+      <div id="adminLoginPanel" class="p-8 max-w-md mx-auto w-full">
         <div class="text-center mb-6">
-          <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
             <i class="fa-solid fa-lock"></i>
           </div>
-          <h4 class="text-xl font-bold text-slate-800">અશોકભાઈ (Ashokbhai) લૉગિન</h4>
-          <p class="text-xs text-slate-500 mt-1">માત્ર અધિકૃત એડમિન જ શાળા ડેટા બદલી શકે છે</p>
+          <h3 class="font-bold text-slate-800 text-lg">Admin Login</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Authorized personnel only</p>
         </div>
-
-        <form id="adminLoginForm" class="space-y-4">
+        <form id="adminLoginForm" class="space-y-3">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">યૂઝરનેમ (Username)</label>
-            <input type="text" id="adminUsername" value="" placeholder="તમારું યૂઝરનેમ દાખલ કરો" autocomplete="username" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Username</label>
+            <input type="text" id="adminUsername" required value="" placeholder="Enter username"
+              class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">પાસવર્ડ (Password)</label>
-            <input type="password" id="adminPassword" value="" placeholder="તમારો પાસવર્ડ દાખલ કરો" autocomplete="current-password" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
+            <input type="password" id="adminPassword" required value="" placeholder="Enter password"
+              class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
           </div>
-
-          <div id="adminLoginError" class="hidden text-rose-600 text-xs p-2 bg-rose-50 rounded-lg"></div>
-
-          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-sm shadow transition">
-            લૉગિન કરો (Login)
+          <div id="loginErrorMsg" class="hidden text-xs text-rose-600 bg-rose-50 border border-rose-200 p-2.5 rounded-lg"></div>
+          <button type="submit" class="btn-primary w-full text-white font-bold py-3 rounded-xl text-sm">
+            <i class="fa-solid fa-sign-in-alt mr-1.5"></i> Login
           </button>
         </form>
       </div>
 
-      <!-- Admin Dashboard View (if logged in) -->
-      <div id="adminDashboardView" class="hidden flex flex-col flex-grow overflow-hidden">
-        <!-- Dashboard Tabs -->
-        <div class="bg-slate-100 px-6 pt-3 border-b border-slate-200 flex items-center justify-between">
-          <div class="flex gap-2">
-            <button id="tabStudentsBtn" class="px-3 sm:px-4 py-2 font-semibold text-xs sm:text-sm border-b-2 border-emerald-600 text-emerald-700 bg-white rounded-t-lg">
-              વિદ્યાર્થી યાદી (<span id="totalStudentsCount">0</span>)
-            </button>
-            <button id="tabAddStudentBtn" class="px-3 sm:px-4 py-2 font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 rounded-t-lg">
-              + નવો વિદ્યાર્થી
-            </button>
-            <button id="tabBulkUploadBtn" class="px-3 sm:px-4 py-2 font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 rounded-t-lg">
-              Excel / CSV બલ્ક અપલોડ
-            </button>
-            <button id="tabPasswordBtn" class="px-3 sm:px-4 py-2 font-semibold text-xs sm:text-sm text-slate-600 hover:text-slate-900 rounded-t-lg">
-              🔑 પાસવર્ડ બદલો
-            </button>
-          </div>
-          <button id="adminLogoutBtn" class="text-xs text-rose-600 hover:text-rose-700 font-bold mb-1">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> લૉગઆઉટ
+      <!-- Admin Dashboard -->
+      <div id="adminDashboard" class="hidden flex-grow flex flex-col overflow-hidden">
+
+        <!-- Tabs -->
+        <div class="flex border-b border-slate-200 px-4 pt-2 bg-slate-50 shrink-0 gap-1">
+          <button id="tabStudentsBtn" class="admin-tab-btn active text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-blue-600 text-blue-700 bg-white">
+            <i class="fa-solid fa-users mr-1"></i> Students
+          </button>
+          <button id="tabAddStudentBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+            <i class="fa-solid fa-user-plus mr-1"></i> Add Student
+          </button>
+          <button id="tabBulkUploadBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+            <i class="fa-solid fa-file-excel mr-1"></i> Excel Upload
+          </button>
+          <button id="tabPasswordBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+            <i class="fa-solid fa-key mr-1"></i> Password
           </button>
         </div>
 
-        <!-- Tab 1: Students Table -->
-        <div id="tabStudents" class="flex-grow overflow-y-auto p-6 space-y-4">
+        <!-- Tab 1: Students List -->
+        <div id="tabStudents" class="flex-grow overflow-y-auto p-5 space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-3">
-            <input type="text" id="adminSearchInput" placeholder="નામ, રોલ નં અથવા GR નંબર દ્વારા શોધો..." class="px-3 py-2 border border-slate-300 rounded-lg text-xs w-64 focus:ring-2 focus:ring-emerald-500 outline-none">
-            <div class="flex items-center gap-2">
-              <button id="adminExportCsvBtn" class="bg-slate-800 hover:bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-sm transition">
-                <i class="fa-solid fa-file-excel text-emerald-400"></i> Excel માં ડાઉનલોડ (Export)
-              </button>
+            <div class="relative flex-grow max-w-xs">
+              <input type="text" id="adminSearchInput" placeholder="Search by name, GR, standard…"
+                class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
+              <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-sm"></i>
             </div>
+            <button id="adminExportCsvBtn" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-2 rounded-lg transition">
+              <i class="fa-solid fa-download"></i> Export CSV
+            </button>
           </div>
-
-          <div class="border border-slate-200 rounded-xl overflow-hidden">
-            <table class="w-full text-xs text-left">
-              <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                <tr>
-                  <th class="p-2.5">GR નં</th>
-                  <th class="p-2.5">ધોરણ</th>
-                  <th class="p-2.5">રોલ નં</th>
-                  <th class="p-2.5">વિદ્યાર્થીનું નામ</th>
-                  <th class="p-2.5">મેળવેલ ગુણ</th>
-                  <th class="p-2.5">ટકા (%)</th>
-                  <th class="p-2.5">ગ્રેડ</th>
-                  <th class="p-2.5 text-right">ક્રિયા</th>
-                </tr>
-              </thead>
-              <tbody id="adminStudentsTbody" class="divide-y divide-slate-100">
-                <!-- Rows loaded dynamically -->
-              </tbody>
-            </table>
-          </div>
+          <div id="adminStudentsList" class="space-y-2 text-xs"></div>
         </div>
 
-        <!-- Tab 2: Add Student Form -->
-        <div id="tabAddStudent" class="hidden flex-grow overflow-y-auto p-6">
-          <form id="addStudentForm" class="max-w-2xl mx-auto space-y-4 text-xs">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <!-- Tab 2: Add Student -->
+        <div id="tabAddStudent" class="hidden flex-grow overflow-y-auto p-5">
+          <h4 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-user-plus text-blue-600"></i> Add / Update Student Result
+          </h4>
+          <form id="addStudentForm" class="space-y-3 text-xs">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div>
-                <label class="block font-semibold mb-1">જી.આર. નંબર *</label>
-                <input type="text" id="addGrNumber" required class="w-full p-2 border rounded-lg">
-              </div>
-              <div>
-                <label class="block font-semibold mb-1">ધોરણ *</label>
-                <select id="addStandard" required class="w-full p-2 border rounded-lg">
-                  <option value="1">ધોરણ ૧</option>
-                  <option value="2">ધોરણ ૨</option>
-                  <option value="3">ધોરણ ૩</option>
-                  <option value="4" selected>ધોરણ ૪</option>
-                  <option value="5">ધોરણ ૫</option>
-                  <option value="6">ધોરણ ૬</option>
-                  <option value="7">ધોરણ ૭</option>
-                  <option value="8">ધોરણ ૮</option>
+                <label class="block font-semibold mb-1 text-slate-700">ધોરણ *</label>
+                <select id="addStandard" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                  <option value="">— Select —</option>
+                  <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                  <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                  <option value="7">7</option><option value="8">8</option>
                 </select>
               </div>
               <div>
-                <label class="block font-semibold mb-1">વર્ગ (Section)</label>
-                <input type="text" id="addDivision" value="A" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">જી.આર. નં. *</label>
+                <input type="text" id="addGrNumber" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1">રોલ નંબર (વૈકલ્પિક)</label>
-                <input type="number" id="addRollNo" placeholder="જો હોય તો" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">Division</label>
+                <input type="text" id="addDivision" value="A" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
-
+            <div>
+              <label class="block font-semibold mb-1 text-slate-700">રોલ નં. (Optional)</label>
+              <input type="number" id="addRollNo" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label class="block font-semibold mb-1">વિદ્યાર્થીનું નામ (English) *</label>
-                <input type="text" id="addStudentName" required placeholder="e.g. Aarav Patel" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">Student Name (English) *</label>
+                <input type="text" id="addStudentName" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1">વિદ્યાર્થીનું નામ (ગુજરાતી)</label>
-                <input type="text" id="addStudentNameGu" placeholder="દા.ત. આરવ પટેલ" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">નામ (ગુજરાતી)</label>
+                <input type="text" id="addStudentNameGu" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div>
-                <label class="block font-semibold mb-1">પિતાનું નામ</label>
-                <input type="text" id="addFatherName" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">Father Name</label>
+                <input type="text" id="addFatherName" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1">માતાનું નામ</label>
-                <input type="text" id="addMotherName" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">Mother Name</label>
+                <input type="text" id="addMotherName" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1">જન્મ તારીખ</label>
-                <input type="date" id="addDob" class="w-full p-2 border rounded-lg">
+                <label class="block font-semibold mb-1 text-slate-700">Date of Birth</label>
+                <input type="date" id="addDob" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
-
-            <!-- Subject Marks -->
+            <!-- Marks -->
             <div class="border-t border-slate-200 pt-3">
-              <h5 class="font-bold text-slate-800 mb-2">વિષયવાર ગુણ (Marks out of 100/50):</h5>
+              <h5 class="font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-pen text-blue-500"></i> Subject Marks
+              </h5>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div>
-                  <label class="block text-slate-600 mb-0.5">ગુજરાતી (100):</label>
-                  <input type="number" id="markGujarati" min="0" max="100" value="85" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">ગણિત (100):</label>
-                  <input type="number" id="markMath" min="0" max="100" value="90" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">પર્યાવરણ / વિજ્ઞાન (100):</label>
-                  <input type="number" id="markEvs" min="0" max="100" value="82" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">અંગ્રેજી (100):</label>
-                  <input type="number" id="markEnglish" min="0" max="100" value="80" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">હિન્દી (100):</label>
-                  <input type="number" id="markHindi" min="0" max="100" value="78" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">ચિત્રકામ (50):</label>
-                  <input type="number" id="markDrawing" min="0" max="50" value="45" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">શારીરિક શિક્ષણ (50):</label>
-                  <input type="number" id="markPe" min="0" max="50" value="48" class="w-full p-1.5 border rounded">
-                </div>
-                <div>
-                  <label class="block text-slate-600 mb-0.5">સંસ્કૃત (100 - ધોરણ ૬-૮):</label>
-                  <input type="number" id="markSanskrit" min="0" max="100" placeholder="જો લાગુ હોય તો" class="w-full p-1.5 border rounded">
-                </div>
+                <div><label class="block text-slate-600 mb-0.5">ગુજરાતી (100)</label>
+                  <input type="number" id="markGujarati" min="0" max="100" value="85" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">ગણિત (100)</label>
+                  <input type="number" id="markMath" min="0" max="100" value="90" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">વિજ્ઞાન (100)</label>
+                  <input type="number" id="markEvs" min="0" max="100" value="82" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">અંગ્રેજી (100)</label>
+                  <input type="number" id="markEnglish" min="0" max="100" value="80" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">હિન્દી (100)</label>
+                  <input type="number" id="markHindi" min="0" max="100" value="78" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">ચિત્ર (50)</label>
+                  <input type="number" id="markDrawing" min="0" max="50" value="45" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">P.E. (50)</label>
+                  <input type="number" id="markPe" min="0" max="50" value="48" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
+                <div><label class="block text-slate-600 mb-0.5">સંસ્કૃત (100, Std 6–8)</label>
+                  <input type="number" id="markSanskrit" min="0" max="100" placeholder="Optional" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
               </div>
             </div>
-
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-sm transition">
-              સાચવો (Save Student Result)
+            <button type="submit" class="btn-primary w-full text-white font-bold py-3 rounded-xl text-sm">
+              <i class="fa-solid fa-save mr-1.5"></i> Save Student Result
             </button>
           </form>
         </div>
 
-        <!-- Tab 3: Bulk Excel / CSV Upload -->
-        <div id="tabBulkUpload" class="hidden flex-grow overflow-y-auto p-6 space-y-5">
-          <div class="max-w-xl mx-auto bg-slate-50 border-2 border-dashed border-emerald-300 rounded-xl p-8 text-center">
-            <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-sm">
+        <!-- Tab 3: Excel Upload -->
+        <div id="tabBulkUpload" class="hidden flex-grow overflow-y-auto p-5 space-y-5">
+          <div class="max-w-lg mx-auto text-center bg-slate-50 border-2 border-dashed border-blue-200 rounded-2xl p-8">
+            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
               <i class="fa-solid fa-file-excel"></i>
             </div>
-            <h4 class="font-bold text-slate-800 text-base mb-1">Excel (.xlsx, .xls) અથવા CSV ફાઈલ અપલોડ કરો</h4>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-              અશોકભાઈ, તમે આખા વર્ગના બધા વિદ્યાર્થીઓનું પરિણામ Excel શીટ દ્વારા એક જ ક્લિકમાં અપડેટ કરી શકો છો. જો જૂનો વિદ્યાર્થી હશે તો તેનો ડેટા અપડેટ થશે, અને નવો વિદ્યાર્થી આપોઆપ ઉમેરાઈ જશે.
+            <h4 class="font-bold text-slate-800 text-sm mb-1">Excel / CSV Upload</h4>
+            <p class="text-xs text-slate-500 mb-5 leading-relaxed">
+              એક Excel ફાઈલ અપલોડ કરીને આખા ધોરણના બધા વિદ્યાર્થીઓના ગુણ એક સાથે અપડેટ કરો.
             </p>
-
             <form id="excelUploadForm" class="space-y-4">
-              <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" required class="block w-full text-xs text-slate-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 cursor-pointer bg-white border border-slate-200 rounded-xl">
-              
-              <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-                <a href="/api/admin/sample-excel" download class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
-                  <i class="fa-solid fa-file-arrow-down text-emerald-600"></i> સેમ્પલ Excel (.xlsx) ડાઉનલોડ
+              <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" required
+                class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer border border-slate-200 rounded-xl bg-white">
+              <div class="flex flex-wrap items-center justify-center gap-2">
+                <a href="/api/admin/sample-excel" download
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold bg-green-50 text-green-700 border border-green-200 hover:bg-green-100 px-3 py-2 rounded-lg transition">
+                  <i class="fa-solid fa-file-arrow-down"></i> Sample Excel
                 </a>
-                <a href="/api/admin/sample-csv" download class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium transition">
-                  <i class="fa-solid fa-download text-slate-500"></i> સેમ્પલ CSV
+                <a href="/api/admin/sample-csv" download
+                  class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 px-3 py-2 rounded-lg transition">
+                  <i class="fa-solid fa-download"></i> Sample CSV
                 </a>
-                <button type="submit" id="btnUploadExcel" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-1.5 rounded-lg text-xs shadow-md transition flex items-center gap-1.5">
-                  <i class="fa-solid fa-cloud-arrow-up"></i> અપલોડ અને અપડેટ કરો
+                <button type="submit" id="btnUploadExcel"
+                  class="btn-primary text-white text-xs font-bold px-5 py-2 rounded-lg flex items-center gap-1.5">
+                  <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Update
                 </button>
               </div>
             </form>
@@ -753,34 +756,30 @@
         </div>
 
         <!-- Tab 4: Change Password -->
-        <div id="tabPassword" class="hidden flex-grow overflow-y-auto p-6">
-          <div class="max-w-md mx-auto bg-slate-50 border border-slate-200 rounded-xl p-6">
+        <div id="tabPassword" class="hidden flex-grow overflow-y-auto p-5">
+          <div class="max-w-sm mx-auto bg-slate-50 border border-slate-200 rounded-xl p-5">
             <div class="text-center mb-5">
-              <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+              <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mx-auto mb-2 text-lg">
                 <i class="fa-solid fa-key"></i>
               </div>
-              <h4 class="font-bold text-slate-800 text-sm">એડમિન પાસવર્ડ બદલો</h4>
-              <p class="text-xs text-slate-500">શાળાની સુરક્ષા માટે પાસવર્ડ નિયમિત બદલવો હિતાવહ છે</p>
+              <h4 class="font-bold text-slate-800 text-sm">Change Password</h4>
             </div>
-
             <form id="changePasswordForm" class="space-y-3 text-xs">
               <div>
-                <label class="block font-semibold mb-1 text-slate-700">હાલનો પાસવર્ડ (Current Password)</label>
-                <input type="password" id="currentPassInput" required class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                <label class="block font-semibold mb-1 text-slate-700">Current Password</label>
+                <input type="password" id="currentPassInput" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1 text-slate-700">નવો પાસવર્ડ (New Password)</label>
-                <input type="password" id="newPassInput" required minlength="6" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                <label class="block font-semibold mb-1 text-slate-700">New Password</label>
+                <input type="password" id="newPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
-                <label class="block font-semibold mb-1 text-slate-700">નવો પાસવર્ડ ફરી દાખલ કરો (Confirm Password)</label>
-                <input type="password" id="confirmPassInput" required minlength="6" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                <label class="block font-semibold mb-1 text-slate-700">Confirm Password</label>
+                <input type="password" id="confirmPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
-
-              <div id="passwordChangeAlert" class="hidden text-xs p-2 rounded"></div>
-
+              <div id="passwordChangeAlert" class="hidden text-xs p-2.5 rounded-lg"></div>
               <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-2.5 rounded-lg text-xs transition">
-                પાસવર્ડ અપડેટ કરો
+                Update Password
               </button>
             </form>
           </div>
@@ -790,23 +789,8 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500 no-print">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>
-        <p class="font-medium text-slate-700">© 2026 શ્રી સાતપડા પ્રાથમિક શાળા (SHREE SATPADA PRATHMIK SHALA)</p>
-        <p class="text-[11px] text-slate-400">સર્વ અધિકાર સુરક્ષિત | Digital Smart Result Portal System</p>
-      </div>
-      <div class="flex items-center gap-4 text-slate-500">
-        <span class="flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-600"></i> +91 98765 43210</span>
-        <span class="flex items-center gap-1"><i class="fa-solid fa-envelope text-emerald-600"></i> info@saraswatiprimary.edu.in</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- QR Code Library from CDN -->
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- Main Application Logic -->
   <script src="app.js"></script>
 </body>
 </html>
