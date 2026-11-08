@@ -30,35 +30,30 @@
       --gold: #d97706;
     }
     .hero-bg {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0c4a6e 100%);
-    }
-    .glass {
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: radial-gradient(circle at 20% 20%, #1e3a8a 0%, #0f172a 70%, #030712 100%);
     }
     .card-shadow {
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 10px 40px -10px rgba(0,0,0,0.12);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 20px 50px -10px rgba(15, 23, 42, 0.12);
     }
     .input-field {
-      @apply w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder-slate-400 text-sm;
+      @apply w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white outline-none transition-all placeholder-slate-400 text-sm shadow-sm;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #1a56db, #0ea5e9);
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(26, 86, 219, 0.35);
+      background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #0284c7 100%);
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #1e40af, #0284c7);
-      box-shadow: 0 6px 20px rgba(26, 86, 219, 0.45);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #0369a1 100%);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45);
+      transform: translateY(-2px);
     }
     .btn-primary:active { transform: translateY(0); }
 
     .stat-chip {
-      @apply flex flex-col items-center bg-white/10 border border-white/15 rounded-xl px-5 py-3 text-white min-w-[90px];
+      @apply flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl px-5 py-3 text-white min-w-[95px] shadow-sm;
     }
-    .badge { @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full; }
+    .badge { @apply inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full; }
 
     /* Print styles */
     @media print {
@@ -82,6 +77,7 @@
 
     .pulse-dot {
       width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
       animation: pulse 2s infinite;
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -92,62 +88,68 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
   <!-- TOP ADMIN BAR -->
-  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 no-print">
+  <div class="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-white/5 no-print">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
         <div class="flex items-center gap-1.5">
           <div class="pulse-dot"></div>
-          <span class="text-slate-400">Portal Online</span>
+          <span class="text-slate-300 font-medium">સત્તાવાર પોર્ટલ લાઈવ</span>
         </div>
-        <span class="text-slate-600">|</span>
-        <span>U-DISE: <strong class="text-slate-200">24140805901</strong></span>
-        <span class="text-slate-600 hidden sm:inline">|</span>
-        <span class="hidden sm:inline">શૈ. વર્ષ: <strong class="text-slate-200">2025–2026</strong></span>
+        <span class="text-slate-700">|</span>
+        <span>U-DISE: <strong class="text-white">24140805901</strong></span>
+        <span class="text-slate-700 hidden sm:inline">|</span>
+        <span class="hidden sm:inline">શૈક્ષણિક વર્ષ: <strong class="text-white">2025–2026</strong></span>
       </div>
       <button id="adminLoginBtn" class="flex items-center gap-1.5 text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 border border-white/10 px-3 py-1 rounded-lg transition font-medium">
-        <i class="fa-solid fa-lock text-[10px]"></i> Admin Login
+        <i class="fa-solid fa-lock text-[10px]"></i> શાળા લૉગિન (Admin)
       </button>
     </div>
   </div>
 
   <!-- SCHOOL HEADER -->
-  <header class="hero-bg text-white no-print">
-    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+  <header class="hero-bg text-white relative overflow-hidden no-print">
+    <!-- Ambient glow circles -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-24 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 relative z-10">
       <div class="flex flex-col md:flex-row items-center gap-6">
 
         <!-- Emblem -->
         <div class="relative shrink-0">
-          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center shadow-xl ring-4 ring-white/5">
-            <i class="fa-solid fa-graduation-cap text-4xl sm:text-5xl text-blue-200"></i>
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 flex items-center justify-center shadow-2xl ring-4 ring-white/10 backdrop-blur-md">
+            <i class="fa-solid fa-graduation-cap text-4xl sm:text-5xl text-blue-200 drop-shadow"></i>
           </div>
-          <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-amber-400 rounded-full flex items-center justify-center shadow">
-            <i class="fa-solid fa-star text-white text-[10px]"></i>
+          <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-amber-400 rounded-full flex items-center justify-center shadow-md ring-2 ring-slate-900">
+            <i class="fa-solid fa-check text-slate-900 text-[10px] font-black"></i>
           </div>
         </div>
 
         <!-- School Info -->
         <div class="text-center md:text-left flex-grow">
           <div class="badge bg-blue-500/20 text-blue-200 border border-blue-400/20 mb-3">
-            <i class="fa-solid fa-landmark"></i> ગુજરાત સરકાર – પ્રાથમિક શિક્ષણ
+            <i class="fa-solid fa-landmark"></i> ગુજરાત સરકાર · શિક્ષણ વિભાગ અનુદાનિત
           </div>
-          <h1 class="text-3xl sm:text-4xl font-bold font-gujarati tracking-tight leading-tight">
+          <h1 class="text-3xl sm:text-4xl font-extrabold font-gujarati tracking-tight leading-tight">
             શ્રી સાતપડા પ્રાથમિક શાળા
           </h1>
-          <p class="text-blue-200 text-sm sm:text-base font-medium tracking-widest mt-1 uppercase">
-            Shree Satpada Prathmik Shala
+          <p class="text-blue-200 text-sm sm:text-base font-semibold tracking-wider mt-1 uppercase">
+            SHREE SATPADA PRATHMIK SHALA
           </p>
-          <p class="text-slate-400 text-xs mt-2">સાતપડા, ગુજરાત</p>
+          <p class="text-slate-400 text-xs mt-1.5 font-medium flex items-center justify-center md:justify-start gap-1.5">
+            <i class="fa-solid fa-location-dot text-rose-400"></i> સાતપડા, ગુજરાત
+          </p>
         </div>
 
         <!-- Stats -->
         <div class="flex gap-3 shrink-0">
           <div class="stat-chip">
-            <span class="text-2xl font-bold text-white">107</span>
-            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wide">Students</span>
+            <span class="text-2xl font-black text-white">107</span>
+            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wider font-semibold">વિદ્યાર્થીઓ</span>
           </div>
           <div class="stat-chip">
-            <span class="text-2xl font-bold text-white">3–8</span>
-            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wide">Standards</span>
+            <span class="text-2xl font-black text-white">3–8</span>
+            <span class="text-[10px] text-blue-200 mt-0.5 uppercase tracking-wider font-semibold">ધોરણ</span>
           </div>
         </div>
 
@@ -166,32 +168,33 @@
     <!-- SEARCH SECTION -->
     <div id="searchSection" class="transition-all duration-300">
 
-      <div class="max-w-lg mx-auto">
+      <div class="max-w-xl mx-auto">
 
         <!-- Card -->
-        <div class="bg-white rounded-2xl card-shadow border border-slate-100 overflow-hidden fade-in">
+        <div class="bg-white rounded-3xl card-shadow border border-slate-100 overflow-hidden fade-in">
 
-          <!-- Card Header -->
-          <div class="bg-gradient-to-r from-blue-600 to-sky-500 p-5 text-white">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          <!-- Card Header Banner -->
+          <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 p-6 text-white relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div class="flex items-center gap-3.5 relative z-10">
+              <div class="w-12 h-12 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-xl shadow-inner shrink-0">
+                <i class="fa-solid fa-magnifying-glass"></i>
               </div>
               <div>
-                <h2 class="font-bold text-lg leading-tight font-gujarati">વિદ્યાર્થી પરિણામ શોધો</h2>
-                <p class="text-blue-100 text-xs">Student Result Search</p>
+                <h2 class="font-bold text-xl leading-tight font-gujarati">વિદ્યાર્થી પરિણામ શોધો</h2>
+                <p class="text-blue-100 text-xs mt-0.5 font-medium">Student Result Verification Portal</p>
               </div>
             </div>
           </div>
 
-          <!-- Form -->
-          <div class="p-6">
-            <form id="resultSearchForm" class="space-y-4">
+          <!-- Form (Clean 1-by-1 stacked lines) -->
+          <div class="p-6 sm:p-8">
+            <form id="resultSearchForm" class="space-y-5">
 
-              <!-- Standard -->
+              <!-- 1. Standard (Line 1) -->
               <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
-                  ધોરણ (Standard) <span class="text-rose-500">*</span>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
+                  ૧. ધોરણ પસંદ કરો <span class="text-rose-500">*</span> <span class="text-[11px] text-slate-400 font-normal normal-case">(Select Standard)</span>
                 </label>
                 <div class="relative">
                   <select id="inputStandard" required class="input-field appearance-none cursor-pointer">
@@ -205,78 +208,84 @@
                     <option value="7">ધોરણ ૭ &nbsp;(Class 7)</option>
                     <option value="8">ધોરણ ૮ &nbsp;(Class 8)</option>
                   </select>
-                  <i class="fa-solid fa-layer-group absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  <i class="fa-solid fa-layer-group absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
                   <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
                 </div>
               </div>
 
-              <!-- GR + Roll -->
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
-                    જી.આર. નં. <span class="text-rose-500">*</span>
-                  </label>
-                  <div class="relative">
-                    <input type="text" id="inputGrNumber" required placeholder="e.g. 5262" value=""
-                      class="input-field">
-                    <i class="fa-solid fa-hashtag absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
-                    રોલ નં. <span class="text-slate-400 font-normal">(વૈકલ્પિક)</span>
-                  </label>
-                  <div class="relative">
-                    <input type="number" id="inputRollNo" placeholder="e.g. 5" min="1" max="200" value=""
-                      class="input-field">
-                    <i class="fa-solid fa-id-badge absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
-                  </div>
+              <!-- 2. GR Number (Line 2) -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
+                  ૨. જી.આર. નંબર <span class="text-rose-500">*</span> <span class="text-[11px] text-slate-400 font-normal normal-case">(G.R. Number)</span>
+                </label>
+                <div class="relative">
+                  <input type="text" id="inputGrNumber" required placeholder="દા.ત. 5262, 5191, 5014..." value=""
+                    class="input-field">
+                  <i class="fa-solid fa-hashtag absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
                 </div>
               </div>
 
-              <!-- Exam Type -->
+              <!-- 3. Roll Number (Line 3 - Optional) -->
               <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
-                  પરીક્ષા (Exam Type)
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
+                  ૩. રોલ નંબર <span class="text-[11px] text-emerald-600 font-semibold normal-case">(વૈકલ્પિક / Optional)</span>
+                </label>
+                <div class="relative">
+                  <input type="number" id="inputRollNo" placeholder="જો ખબર હોય તો (દા.ત. 1, 2, 5...)" min="1" max="200" value=""
+                    class="input-field">
+                  <i class="fa-solid fa-id-badge absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- 4. Exam Type (Line 4) -->
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 font-gujarati">
+                  ૪. પરીક્ષા પ્રકાર <span class="text-[11px] text-slate-400 font-normal normal-case">(Exam Type)</span>
                 </label>
                 <div class="relative">
                   <select id="inputExamType" class="input-field appearance-none cursor-pointer">
-                    <option value="Annual">વાર્ષિક પરીક્ષા (Annual Exam)</option>
-                    <option value="Term 1">પ્રથમ સત્રાંત (Term 1)</option>
-                    <option value="all">બધા પરિણામ (All)</option>
+                    <option value="Annual">દ્વિતીય સત્રાંત / વાર્ષિક પરીક્ષા (Annual Exam)</option>
+                    <option value="Term 1">પ્રથમ સત્રાંત પરીક્ષા (Term 1)</option>
+                    <option value="all">બધા પરિણામ (All Exams)</option>
                   </select>
-                  <i class="fa-solid fa-file-lines absolute left-3.5 top-4 text-slate-400 text-sm pointer-events-none"></i>
+                  <i class="fa-solid fa-file-lines absolute left-3.5 top-4 text-blue-600 text-sm pointer-events-none"></i>
                   <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
                 </div>
               </div>
 
-              <!-- Error -->
-              <div id="searchErrorAlert" class="hidden flex items-start gap-2.5 p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm">
-                <i class="fa-solid fa-circle-exclamation text-rose-500 mt-0.5 shrink-0"></i>
-                <span id="searchErrorMessage" class="font-gujarati leading-snug">Error</span>
+              <!-- Error Alert -->
+              <div id="searchErrorAlert" class="hidden flex items-start gap-3 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-sm">
+                <i class="fa-solid fa-circle-exclamation text-rose-500 mt-0.5 shrink-0 text-base"></i>
+                <span id="searchErrorMessage" class="font-gujarati leading-relaxed">Error</span>
               </div>
 
-              <!-- Submit -->
-              <button type="submit" id="submitSearchBtn" class="btn-primary w-full text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 font-gujarati text-base">
-                <span id="btnText">પરિણામ જુઓ</span>
-                <i id="btnIcon" class="fa-solid fa-arrow-right"></i>
+              <!-- Submit Button -->
+              <button type="submit" id="submitSearchBtn" class="btn-primary w-full text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 font-gujarati text-base group">
+                <span id="btnText">પરિણામ જુઓ (Show Result)</span>
+                <i id="btnIcon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
               </button>
             </form>
 
-            <!-- Privacy note -->
-            <p class="text-center text-xs text-slate-400 mt-5 flex items-center justify-center gap-1.5">
-              <i class="fa-solid fa-shield-halved text-green-500"></i>
-              ફક્ત સર્ચ કરેલ વિદ્યાર્થીનું જ પરિણામ દર્શાવાય છે — સંપૂર્ણ ગોપનીય
+            <!-- Privacy Note -->
+            <p class="text-center text-xs text-slate-500 mt-6 flex items-center justify-center gap-1.5 font-gujarati">
+              <i class="fa-solid fa-shield-halved text-emerald-600 text-sm"></i>
+              ફક્ત સર્ચ કરેલ વિદ્યાર્થીનું જ પરિણામ દર્શાવાશે — ૧૦૦% ગોપનીય
             </p>
           </div>
         </div>
 
-        <!-- Info pills -->
-        <div class="flex flex-wrap justify-center gap-2 mt-5 no-print">
-          <span class="badge bg-blue-50 text-blue-700 border border-blue-100"><i class="fa-solid fa-clock"></i> ૨૪/૭ ઉપલબ્ધ</span>
-          <span class="badge bg-green-50 text-green-700 border border-green-100"><i class="fa-solid fa-mobile-screen"></i> Mobile Friendly</span>
-          <span class="badge bg-amber-50 text-amber-700 border border-amber-100"><i class="fa-solid fa-print"></i> PDF / Print</span>
+        <!-- Info Badges -->
+        <div class="flex flex-wrap justify-center gap-2.5 mt-6 no-print">
+          <span class="badge bg-blue-50 text-blue-700 border border-blue-100">
+            <i class="fa-solid fa-bolt text-blue-600"></i> ઝડપી પરિણામ
+          </span>
+          <span class="badge bg-emerald-50 text-emerald-700 border border-emerald-100">
+            <i class="fa-solid fa-clock text-emerald-600"></i> ૨૪/૭ ઓનલાઈન
+          </span>
+          <span class="badge bg-slate-100 text-slate-700 border border-slate-200">
+            <i class="fa-solid fa-mobile-screen text-slate-600"></i> મોબાઈલ ફ્રેન્ડલી
+          </span>
         </div>
       </div>
     </div>
@@ -284,214 +293,214 @@
     <!-- RESULT SECTION -->
     <div id="resultSection" class="hidden">
 
-      <!-- Action Bar -->
-      <div class="no-print max-w-5xl mx-auto mb-5 flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200 card-shadow">
-        <button id="backToSearchBtn" class="flex items-center gap-2 text-slate-600 hover:text-blue-700 font-semibold text-sm px-3 py-2 rounded-lg hover:bg-slate-50 transition">
-          <i class="fa-solid fa-arrow-left"></i> નવું પરિણામ શોધો
+      <!-- Action Bar (Clean: Back & WhatsApp Share only, PDF removed) -->
+      <div class="no-print max-w-5xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 card-shadow">
+        <button id="backToSearchBtn" class="flex items-center gap-2 text-slate-700 hover:text-blue-700 font-semibold text-sm px-4 py-2 rounded-xl hover:bg-slate-50 transition">
+          <i class="fa-solid fa-arrow-left"></i> બીજા વિદ્યાર્થીનું પરિણામ શોધો
         </button>
         <div class="flex items-center gap-2">
-          <button id="shareWhatsappBtn" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow-sm transition">
-            <i class="fa-brands fa-whatsapp"></i> Share
-          </button>
-          <button id="printMarksheetBtn" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow-sm transition">
-            <i class="fa-solid fa-print"></i> Print / PDF
+          <button id="shareWhatsappBtn" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-sm transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>વોટ્સએપ શેર (Share)</span>
           </button>
         </div>
       </div>
 
       <!-- PENDING CARD -->
-      <div id="resultPendingCard" class="hidden max-w-md mx-auto bg-white rounded-2xl card-shadow border border-amber-200 p-8 text-center fade-in">
-        <div class="w-16 h-16 bg-amber-50 border-2 border-amber-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
-          <i class="fa-solid fa-clock text-amber-500"></i>
+      <div id="resultPendingCard" class="hidden max-w-lg mx-auto bg-white rounded-3xl card-shadow border border-amber-200 p-8 text-center fade-in">
+        <div class="w-16 h-16 bg-amber-50 border-2 border-amber-200 rounded-3xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-sm">
+          <i class="fa-solid fa-clock-rotate-left text-amber-500"></i>
         </div>
-        <span class="badge bg-amber-100 text-amber-700 border border-amber-200 mb-3">Result Pending</span>
-        <h3 class="text-xl font-bold text-slate-800 font-gujarati mb-1">
-          પરિણામ હજુ અપલોડ થયેલ નથી
+        <span class="badge bg-amber-100 text-amber-800 border border-amber-200 mb-3 font-semibold">
+          પરિણામ પેન્ડિંગ · Result Pending
+        </span>
+        <h3 class="text-2xl font-bold text-slate-800 font-gujarati mb-2">
+          આ વિદ્યાર્થીનું પરિણામ હજુ અપલોડ થયેલ નથી
         </h3>
-        <p class="text-sm text-slate-500 mb-6">
-          આ વિદ્યાર્થીના ગુણ શાળા દ્વારા હજુ અપલોડ કરવાના બાકી છે.
+        <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+          શાળા દ્વારા આ વિદ્યાર્થીના ગુણ હજુ પોર્ટલ પર અપલોડ કરવાના બાકી છે.
         </p>
-        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 text-left space-y-2 text-sm mb-6">
-          <div class="flex justify-between">
-            <span class="text-slate-500">વિદ્યાર્થી</span>
-            <b id="pendingStudentName" class="text-slate-900 font-gujarati"></b>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left space-y-2.5 text-sm mb-6">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-500 font-medium">વિદ્યાર્થીનું નામ:</span>
+            <b id="pendingStudentName" class="text-slate-900 font-gujarati text-base"></b>
           </div>
-          <div class="flex justify-between border-t border-slate-100 pt-2">
-            <span class="text-slate-500">ધોરણ</span>
-            <b id="pendingStandard" class="text-blue-700"></b>
+          <div class="flex justify-between items-center border-t border-slate-200 pt-2.5">
+            <span class="text-slate-500 font-medium">ધોરણ (Class):</span>
+            <b id="pendingStandard" class="text-blue-700 font-bold"></b>
           </div>
-          <div class="flex justify-between border-t border-slate-100 pt-2">
-            <span class="text-slate-500">જી.આર. નં.</span>
-            <b id="pendingGrNumber" class="text-amber-700"></b>
+          <div class="flex justify-between items-center border-t border-slate-200 pt-2.5">
+            <span class="text-slate-500 font-medium">જી.આર. નં. (G.R. No):</span>
+            <b id="pendingGrNumber" class="text-amber-700 font-bold"></b>
           </div>
-          <div class="flex justify-between border-t border-slate-100 pt-2">
-            <span class="text-slate-500">રોલ નં.</span>
-            <b id="pendingRollNo" class="text-slate-700"></b>
+          <div class="flex justify-between items-center border-t border-slate-200 pt-2.5">
+            <span class="text-slate-500 font-medium">રોલ નં. (Roll No):</span>
+            <b id="pendingRollNo" class="text-slate-700 font-bold"></b>
           </div>
         </div>
         <button onclick="document.getElementById('backToSearchBtn').click()"
-          class="btn-primary w-full text-white font-semibold py-2.5 rounded-xl text-sm">
-          <i class="fa-solid fa-search mr-1"></i> નવું પરિણામ શોધો
+          class="btn-primary w-full text-white font-semibold py-3 rounded-2xl text-sm">
+          <i class="fa-solid fa-magnifying-glass mr-1.5"></i> નવું પરિણામ શોધો
         </button>
       </div>
 
-      <!-- OFFICIAL MARKSHEET -->
-      <div id="printableReportCard" class="max-w-5xl mx-auto bg-white rounded-2xl card-shadow border border-slate-200 p-6 sm:p-8 text-slate-900 fade-in print:border print:border-slate-900 print:shadow-none print:p-4 print:m-0 print:max-w-full print:rounded-none">
+      <!-- OFFICIAL MARKSHEET CONTAINER -->
+      <div id="printableReportCard" class="max-w-5xl mx-auto bg-white rounded-3xl card-shadow border border-slate-200 p-6 sm:p-10 text-slate-900 fade-in print:border print:border-slate-900 print:shadow-none print:p-4 print:m-0 print:max-w-full print:rounded-none">
 
-        <!-- School Header -->
-        <div class="border-b-2 border-slate-800 pb-4 mb-5 print:pb-3 print:mb-3">
+        <!-- School Header Banner -->
+        <div class="border-b-2 border-slate-800 pb-5 mb-5 print:pb-3 print:mb-3">
           <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-full border-2 border-slate-800 bg-slate-50 flex items-center justify-center shrink-0 print:w-12 print:h-12">
-              <i class="fa-solid fa-graduation-cap text-2xl text-blue-700 print:text-xl"></i>
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 border-slate-800 bg-slate-50 flex items-center justify-center shrink-0 print:w-12 print:h-12">
+              <i class="fa-solid fa-graduation-cap text-3xl sm:text-4xl text-blue-700 print:text-xl"></i>
             </div>
             <div class="flex-grow text-center">
-              <p class="text-[11px] tracking-widest uppercase text-slate-500 font-medium print:text-[9px]">ગુજરાત સરકાર – પ્રાથમિક શિક્ષણ વિભાગ</p>
+              <p class="text-[11px] tracking-widest uppercase text-slate-500 font-semibold print:text-[9px]">શિક્ષણ વિભાગ · ગુજરાત સરકાર અનુદાનિત</p>
               <h1 class="text-2xl sm:text-3xl font-black text-slate-900 font-gujarati tracking-tight leading-tight print:text-2xl">
                 શ્રી સાતપડા પ્રાથમિક શાળા
               </h1>
-              <p class="text-xs font-semibold tracking-widest text-slate-600 uppercase print:text-[10px]">SHREE SATPADA PRATHMIK SHALA</p>
+              <p class="text-xs font-bold tracking-widest text-slate-600 uppercase print:text-[10px]">SHREE SATPADA PRATHMIK SHALA</p>
               <p class="text-xs text-slate-500 mt-0.5 print:text-[9px]">U-DISE: <strong>24140805901</strong> | સાતપડા, ગુજરાત</p>
             </div>
-            <div class="w-16 h-16 border border-slate-200 rounded-lg flex items-center justify-center bg-slate-50 shrink-0 print:w-12 print:h-12">
-              <div id="reportQrCode" class="w-14 h-14 print:w-11 print:h-11"></div>
+            <div class="w-16 h-16 sm:w-20 sm:h-20 border border-slate-200 rounded-xl flex items-center justify-center bg-slate-50 shrink-0 print:w-12 print:h-12 shadow-sm">
+              <div id="reportQrCode" class="w-14 h-14 sm:w-16 sm:h-16 print:w-11 print:h-11"></div>
             </div>
           </div>
 
           <div class="text-center mt-4 print:mt-2">
-            <span class="inline-block bg-slate-900 text-white text-xs font-bold tracking-widest uppercase px-6 py-1.5 rounded-full print:text-[9px] print:px-4 print:py-1">
+            <span class="inline-block bg-slate-900 text-white text-xs sm:text-sm font-bold tracking-widest uppercase px-6 py-1.5 rounded-full print:text-[9px] print:px-4 print:py-1 shadow-sm">
               વિદ્યાર્થી વાર્ષિક પ્રગતિ પત્રક · ANNUAL PROGRESS REPORT
             </span>
-            <p class="text-xs text-slate-600 mt-1.5 print:text-[9px]">
-              શૈ. વર્ષ: <strong id="cardAcademicYear">2025–2026</strong> &nbsp;|&nbsp; પ.: <strong id="cardExamType">વાર્ષિક પરીક્ષા</strong>
+            <p class="text-xs text-slate-600 mt-1.5 font-medium print:text-[9px]">
+              શૈક્ષણિક વર્ષ: <strong id="cardAcademicYear">2025–2026</strong> &nbsp;|&nbsp; પરીક્ષા: <strong id="cardExamType">વાર્ષિક પરીક્ષા</strong>
             </p>
           </div>
         </div>
 
-        <!-- Student Info -->
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-5 print:p-2.5 print:mb-3 print:rounded-lg">
+        <!-- Student Information Grid -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 print:p-2.5 print:mb-3 print:rounded-lg">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs print:text-[10px] print:gap-2">
             <div class="sm:col-span-2">
-              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">વિદ્યાર્થીનું નામ / Student Name</span>
-              <strong id="cardStudentNameGu" class="font-gujarati text-slate-900 text-sm print:text-xs block"></strong>
+              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5 font-semibold">વિદ્યાર્થીનું નામ / Student Name</span>
+              <strong id="cardStudentNameGu" class="font-gujarati text-slate-900 text-sm sm:text-base print:text-xs block"></strong>
               <span id="cardStudentNameEn" class="text-slate-500 text-[10px] block"></span>
             </div>
             <div>
-              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">પિતાનું નામ / Father</span>
+              <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5 font-semibold">પિતાનું નામ / Father</span>
               <strong id="cardFatherName" class="text-slate-900 font-gujarati block"></strong>
-              <span class="text-slate-500 text-[10px] mt-1 block">માતા / Mother</span>
+              <span class="text-slate-500 text-[10px] mt-1 block font-semibold">માતા / Mother</span>
               <strong id="cardMotherName" class="text-slate-900 font-gujarati text-[10px] block"></strong>
             </div>
             <div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">ધોરણ</span>
+                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5 font-semibold">ધોરણ</span>
                   <strong id="cardStandard" class="text-blue-700 text-sm font-black print:text-xs"></strong>
                 </div>
                 <div>
-                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5">વર્ગ</span>
+                  <span class="text-slate-500 text-[10px] uppercase tracking-wide block mb-0.5 font-semibold">વર્ગ</span>
                   <strong id="cardDivision" class="text-slate-900 text-sm font-black print:text-xs"></strong>
                 </div>
               </div>
               <div class="grid grid-cols-2 gap-2 mt-2">
                 <div>
-                  <span class="text-slate-500 text-[10px] block">રોલ નં.</span>
+                  <span class="text-slate-500 text-[10px] block font-semibold">રોલ નં.</span>
                   <strong id="cardRollNo" class="text-blue-700 font-black"></strong>
                 </div>
                 <div>
-                  <span class="text-slate-500 text-[10px] block">જી.આર. નં.</span>
+                  <span class="text-slate-500 text-[10px] block font-semibold">જી.આર. નં.</span>
                   <strong id="cardGrNumber" class="text-amber-700 font-bold"></strong>
                 </div>
               </div>
             </div>
           </div>
-          <div class="mt-2 pt-2 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs print:text-[9.5px]">
+          <div class="mt-2.5 pt-2.5 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs print:text-[9.5px]">
             <div>
-              <span class="text-slate-500 text-[10px] block">જન્મ તારીખ / DOB</span>
+              <span class="text-slate-500 text-[10px] block font-semibold">જન્મ તારીખ / DOB</span>
               <strong id="cardDob" class="text-slate-900"></strong>
             </div>
             <div>
-              <span class="text-slate-500 text-[10px] block">હાજરી / Attendance</span>
+              <span class="text-slate-500 text-[10px] block font-semibold">હાજરી / Attendance</span>
               <strong id="cardAttendance" class="text-slate-900"></strong>
             </div>
           </div>
         </div>
 
-        <!-- Marks Table -->
+        <!-- Subject Marks Table -->
         <div class="mb-5 print:mb-3">
           <table class="w-full border-collapse text-xs print:text-[10px]" style="border: 1.5px solid #1e293b;">
             <thead>
               <tr class="bg-slate-900 text-white text-center">
-                <th class="p-2 print:p-1.5 text-center border border-slate-700 w-8">#</th>
-                <th class="p-2 print:p-1.5 text-left border border-slate-700">વિષય (Subject)</th>
-                <th class="p-2 print:p-1.5 border border-slate-700 w-20">કુલ ગુણ</th>
-                <th class="p-2 print:p-1.5 border border-slate-700 w-20">પાસ ગુણ</th>
-                <th class="p-2 print:p-1.5 border border-slate-700 w-24">મેળવેલ ગુણ</th>
-                <th class="p-2 print:p-1.5 border border-slate-700 w-16">ગ્રેડ</th>
+                <th class="p-2.5 print:p-1.5 text-center border border-slate-700 w-10">#</th>
+                <th class="p-2.5 print:p-1.5 text-left border border-slate-700">વિષય (Subject)</th>
+                <th class="p-2.5 print:p-1.5 border border-slate-700 w-24">કુલ ગુણ</th>
+                <th class="p-2.5 print:p-1.5 border border-slate-700 w-24">પાસ ગુણ</th>
+                <th class="p-2.5 print:p-1.5 border border-slate-700 w-28">મેળવેલ ગુણ</th>
+                <th class="p-2.5 print:p-1.5 border border-slate-700 w-20">ગ્રેડ</th>
               </tr>
             </thead>
             <tbody id="cardSubjectsTbody"></tbody>
             <tfoot>
               <tr class="font-bold border-t-2 border-slate-800 bg-slate-50 text-center print:text-[10px]">
-                <td colspan="2" class="p-2 print:p-1.5 border border-slate-700 text-right font-gujarati text-sm print:text-xs">
-                  <strong>GRAND TOTAL</strong>
+                <td colspan="2" class="p-2.5 print:p-1.5 border border-slate-700 text-right font-gujarati text-sm print:text-xs">
+                  <strong>GRAND TOTAL:</strong>
                 </td>
-                <td id="cardTotalMax" class="p-2 print:p-1.5 border border-slate-700 font-black">—</td>
-                <td class="p-2 print:p-1.5 border border-slate-700 text-slate-500">—</td>
-                <td id="cardTotalObtained" class="p-2 print:p-1.5 border border-slate-700 font-black text-blue-800 text-base print:text-xs">—</td>
-                <td id="cardOverallGrade" class="p-2 print:p-1.5 border border-slate-700 font-black text-white bg-blue-700">—</td>
+                <td id="cardTotalMax" class="p-2.5 print:p-1.5 border border-slate-700 font-black">—</td>
+                <td class="p-2.5 print:p-1.5 border border-slate-700 text-slate-500">—</td>
+                <td id="cardTotalObtained" class="p-2.5 print:p-1.5 border border-slate-700 font-black text-blue-800 text-base print:text-xs">—</td>
+                <td id="cardOverallGrade" class="p-2.5 print:p-1.5 border border-slate-700 font-black text-white bg-blue-700">—</td>
               </tr>
             </tfoot>
           </table>
         </div>
 
-        <!-- Summary + Co-curricular -->
+        <!-- Summary & Personality Traits -->
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 print:mb-3 print:gap-2">
 
           <!-- Performance: 2 cols -->
-          <div class="md:col-span-2 border border-slate-200 rounded-xl p-3 bg-slate-50 print:p-2 print:rounded-lg">
-            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2 flex items-center gap-1.5 print:text-[8px]">
-              <i class="fa-solid fa-chart-pie text-blue-500"></i> Performance
+          <div class="md:col-span-2 border border-slate-200 rounded-2xl p-3.5 bg-slate-50 print:p-2 print:rounded-lg">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2.5 flex items-center gap-1.5 print:text-[8px]">
+              <i class="fa-solid fa-chart-pie text-blue-600"></i> Performance
             </h4>
             <div class="grid grid-cols-3 gap-2 text-center print:gap-1">
-              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
+              <div class="bg-white rounded-xl border border-slate-200 p-2.5 print:p-1 shadow-sm">
                 <span id="cardPercentage" class="text-xl font-black text-slate-900 print:text-sm block">—</span>
-                <span class="text-[9px] text-slate-500">ટકાવારી</span>
+                <span class="text-[9px] text-slate-500 font-semibold">ટકાવારી</span>
               </div>
-              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
-                <span id="cardStatus" class="text-sm font-black text-green-700 print:text-xs block">—</span>
-                <span class="text-[9px] text-slate-500">Status</span>
+              <div class="bg-white rounded-xl border border-slate-200 p-2.5 print:p-1 shadow-sm">
+                <span id="cardStatus" class="text-sm font-black text-emerald-700 print:text-xs block">—</span>
+                <span class="text-[9px] text-slate-500 font-semibold">Status</span>
               </div>
-              <div class="bg-white rounded-lg border border-slate-200 p-2 print:p-1">
+              <div class="bg-white rounded-xl border border-slate-200 p-2.5 print:p-1 shadow-sm">
                 <span id="cardRank" class="text-sm font-black text-slate-700 print:text-xs block">—</span>
-                <span class="text-[9px] text-slate-500">ક્રમ</span>
+                <span class="text-[9px] text-slate-500 font-semibold">ક્રમ</span>
               </div>
             </div>
-            <div class="mt-2 no-print">
+            <div class="mt-2.5 no-print">
               <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-                <div id="cardProgressBar" class="h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 transition-all duration-700" style="width:0%"></div>
+                <div id="cardProgressBar" class="h-1.5 rounded-full bg-gradient-to-r from-blue-600 to-sky-400 transition-all duration-700" style="width:0%"></div>
               </div>
             </div>
           </div>
 
           <!-- Co-curricular: 3 cols -->
-          <div class="md:col-span-3 border border-slate-200 rounded-xl p-3 bg-slate-50 print:p-2 print:rounded-lg">
-            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2 flex items-center gap-1.5 print:text-[8px]">
-              <i class="fa-solid fa-star text-amber-500"></i> Co-Curricular / વ્યક્તિત્વ
+          <div class="md:col-span-3 border border-slate-200 rounded-2xl p-3.5 bg-slate-50 print:p-2 print:rounded-lg">
+            <h4 class="text-[10px] uppercase tracking-widest font-bold text-slate-500 border-b border-slate-200 pb-1.5 mb-2.5 flex items-center gap-1.5 print:text-[8px]">
+              <i class="fa-solid fa-star text-amber-500"></i> Co-Curricular / વ્યક્તિત્વ વિકાસ
             </h4>
-            <div class="grid grid-cols-2 gap-1.5 text-xs print:text-[9px] print:gap-1">
-              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+            <div class="grid grid-cols-2 gap-2 text-xs print:text-[9px] print:gap-1">
+              <div class="flex justify-between p-2 bg-white rounded-xl border border-slate-200 print:p-1 shadow-sm">
                 <span class="text-slate-500">સ્વચ્છતા</span>
                 <strong id="cardCleanliness" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+              <div class="flex justify-between p-2 bg-white rounded-xl border border-slate-200 print:p-1 shadow-sm">
                 <span class="text-slate-500">શિસ્ત</span>
                 <strong id="cardDiscipline" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+              <div class="flex justify-between p-2 bg-white rounded-xl border border-slate-200 print:p-1 shadow-sm">
                 <span class="text-slate-500">જિજ્ઞાસા</span>
                 <strong id="cardCuriosity" class="text-slate-800"></strong>
               </div>
-              <div class="flex justify-between p-1.5 bg-white rounded-lg border border-slate-200 print:p-1">
+              <div class="flex justify-between p-2 bg-white rounded-xl border border-slate-200 print:p-1 shadow-sm">
                 <span class="text-slate-500">રમતગમત</span>
                 <strong id="cardSports" class="text-slate-800"></strong>
               </div>
@@ -501,20 +510,20 @@
         </div>
 
         <!-- Teacher Remarks -->
-        <div class="border border-slate-200 rounded-xl p-3 bg-white mb-4 print:mb-2.5 print:p-2 print:rounded-lg">
-          <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-wide mb-1 print:text-[8px]">
-            <i class="fa-solid fa-comment-dots text-blue-400 mr-1"></i> Class Teacher's Remark / વર્ગ શિક્ષક અભિપ્રાય
+        <div class="border border-slate-200 rounded-2xl p-3.5 bg-white mb-4 print:mb-2.5 print:p-2 print:rounded-lg shadow-sm">
+          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1 print:text-[8px]">
+            <i class="fa-solid fa-comment-dots text-blue-500 mr-1"></i> Class Teacher's Remark / વર્ગ શિક્ષક અભિપ્રાય
           </p>
           <p id="cardTeacherRemarks" class="text-sm font-gujarati text-slate-900 italic print:text-[10px]">—</p>
         </div>
 
-        <!-- Grading Scale -->
-        <div class="text-[9px] text-slate-500 border-t border-slate-200 pt-2 mb-5 print:mb-3 print:text-[7.5px]">
-          <strong class="text-slate-600">Grading Scale:</strong>
+        <!-- Grading Scale Legend -->
+        <div class="text-[9px] text-slate-500 border-t border-slate-200 pt-2.5 mb-5 print:mb-3 print:text-[7.5px]">
+          <strong class="text-slate-700">Grading Scale:</strong>
           A1 ≥91% &nbsp;|&nbsp; A2 81–90% &nbsp;|&nbsp; B1 71–80% &nbsp;|&nbsp; B2 61–70% &nbsp;|&nbsp; C1 51–60% &nbsp;|&nbsp; C2 41–50% &nbsp;|&nbsp; D 33–40% &nbsp;|&nbsp; E &lt;33%
         </div>
 
-        <!-- Signatures -->
+        <!-- Signatures & Stamp -->
         <div class="grid grid-cols-3 gap-4 text-center border-t-2 border-slate-800 pt-4 print:pt-3">
           <div>
             <div class="h-8 print:h-5"></div>
@@ -524,7 +533,7 @@
             </div>
           </div>
           <div class="flex flex-col items-center">
-            <div class="w-16 h-16 rounded-full border-2 border-dashed border-blue-400 text-blue-700 flex flex-col items-center justify-center uppercase text-[7px] font-black leading-tight opacity-70 print:w-12 print:h-12">
+            <div class="w-16 h-16 rounded-full border-2 border-dashed border-blue-500 text-blue-700 flex flex-col items-center justify-center uppercase text-[7px] font-black leading-tight opacity-75 print:w-12 print:h-12">
               <span>સાતપડા</span>
               <span>SCHOOL</span>
               <i class="fa-solid fa-stamp text-[9px] my-0.5"></i>
@@ -546,16 +555,16 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 py-6 mt-12 no-print">
+  <footer class="bg-slate-950 text-slate-400 py-6 mt-12 border-t border-white/5 no-print">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <div class="text-center sm:text-left">
           <p class="font-semibold text-slate-200">© 2026 · શ્રી સાતપડા પ્રાથમિક શાળા</p>
-          <p class="text-slate-600 mt-0.5">Shree Satpada Prathmik Shala &nbsp;·&nbsp; U-DISE: 24140805901</p>
+          <p class="text-slate-500 mt-0.5">Shree Satpada Prathmik Shala &nbsp;·&nbsp; U-DISE: 24140805901 &nbsp;·&nbsp; સાતપડા</p>
         </div>
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-2 text-slate-400 font-medium">
           <div class="pulse-dot"></div>
-          <span>Powered by Secure Digital Result Portal</span>
+          <span>Digital Smart School Portal</span>
         </div>
       </div>
     </div>
@@ -563,7 +572,7 @@
 
   <!-- ADMIN MODAL -->
   <div id="adminModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden">
 
       <!-- Modal Header -->
       <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between shrink-0">
@@ -572,9 +581,9 @@
           <span class="font-bold text-sm">Admin Dashboard – શ્રી સાતપડા શાળા</span>
         </div>
         <div class="flex items-center gap-3">
-          <span id="adminUserDisplay" class="hidden text-xs text-slate-300 bg-white/10 px-2 py-1 rounded-lg"></span>
-          <button id="adminLogoutBtn" class="hidden text-xs bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 px-3 py-1 rounded-lg transition">Logout</button>
-          <button id="closeAdminModalBtn" class="text-slate-400 hover:text-white w-7 h-7 rounded-lg hover:bg-white/10 flex items-center justify-center transition">
+          <span id="adminUserDisplay" class="hidden text-xs text-slate-300 bg-white/10 px-2.5 py-1 rounded-lg"></span>
+          <button id="adminLogoutBtn" class="hidden text-xs bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 px-3 py-1 rounded-lg transition font-medium">Logout</button>
+          <button id="closeAdminModalBtn" class="text-slate-400 hover:text-white w-8 h-8 rounded-xl hover:bg-white/10 flex items-center justify-center transition">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -583,26 +592,26 @@
       <!-- Admin Login Form -->
       <div id="adminLoginPanel" class="p-8 max-w-md mx-auto w-full">
         <div class="text-center mb-6">
-          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
+          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-sm">
             <i class="fa-solid fa-lock"></i>
           </div>
           <h3 class="font-bold text-slate-800 text-lg">Admin Login</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Authorized personnel only</p>
+          <p class="text-xs text-slate-500 mt-0.5">Authorized school personnel only</p>
         </div>
-        <form id="adminLoginForm" class="space-y-3">
+        <form id="adminLoginForm" class="space-y-4">
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Username</label>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Username</label>
             <input type="text" id="adminUsername" required value="" placeholder="Enter username"
               class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Password</label>
             <input type="password" id="adminPassword" required value="" placeholder="Enter password"
               class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
           </div>
           <div id="loginErrorMsg" class="hidden text-xs text-rose-600 bg-rose-50 border border-rose-200 p-2.5 rounded-lg"></div>
-          <button type="submit" class="btn-primary w-full text-white font-bold py-3 rounded-xl text-sm">
-            <i class="fa-solid fa-sign-in-alt mr-1.5"></i> Login
+          <button type="submit" class="btn-primary w-full text-white font-bold py-3.5 rounded-xl text-sm">
+            <i class="fa-solid fa-arrow-right-to-bracket mr-1.5"></i> Login to Dashboard
           </button>
         </form>
       </div>
@@ -612,16 +621,16 @@
 
         <!-- Tabs -->
         <div class="flex border-b border-slate-200 px-4 pt-2 bg-slate-50 shrink-0 gap-1">
-          <button id="tabStudentsBtn" class="admin-tab-btn active text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-blue-600 text-blue-700 bg-white">
+          <button id="tabStudentsBtn" class="admin-tab-btn active text-xs font-semibold px-4 py-2.5 rounded-t-xl border-b-2 border-blue-600 text-blue-700 bg-white">
             <i class="fa-solid fa-users mr-1"></i> Students
           </button>
-          <button id="tabAddStudentBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+          <button id="tabAddStudentBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-xl border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
             <i class="fa-solid fa-user-plus mr-1"></i> Add Student
           </button>
-          <button id="tabBulkUploadBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+          <button id="tabBulkUploadBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-xl border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
             <i class="fa-solid fa-file-excel mr-1"></i> Excel Upload
           </button>
-          <button id="tabPasswordBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
+          <button id="tabPasswordBtn" class="admin-tab-btn text-xs font-semibold px-4 py-2.5 rounded-t-xl border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition">
             <i class="fa-solid fa-key mr-1"></i> Password
           </button>
         </div>
@@ -634,7 +643,7 @@
                 class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
               <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-sm"></i>
             </div>
-            <button id="adminExportCsvBtn" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-2 rounded-lg transition">
+            <button id="adminExportCsvBtn" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition">
               <i class="fa-solid fa-download"></i> Export CSV
             </button>
           </div>
@@ -646,11 +655,11 @@
           <h4 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2">
             <i class="fa-solid fa-user-plus text-blue-600"></i> Add / Update Student Result
           </h4>
-          <form id="addStudentForm" class="space-y-3 text-xs">
+          <form id="addStudentForm" class="space-y-3.5 text-xs">
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">ધોરણ *</label>
-                <select id="addStandard" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <select id="addStandard" required class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
                   <option value="">— Select —</option>
                   <option value="1">1</option><option value="2">2</option><option value="3">3</option>
                   <option value="4">4</option><option value="5">5</option><option value="6">6</option>
@@ -659,39 +668,39 @@
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">જી.આર. નં. *</label>
-                <input type="text" id="addGrNumber" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addGrNumber" required class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Division</label>
-                <input type="text" id="addDivision" value="A" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addDivision" value="A" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
             <div>
-              <label class="block font-semibold mb-1 text-slate-700">રોલ નં. (Optional)</label>
-              <input type="number" id="addRollNo" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+              <label class="block font-semibold mb-1 text-slate-700">રોલ નં. (Optional - auto-assigned if empty)</label>
+              <input type="number" id="addRollNo" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Student Name (English) *</label>
-                <input type="text" id="addStudentName" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addStudentName" required class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">નામ (ગુજરાતી)</label>
-                <input type="text" id="addStudentNameGu" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addStudentNameGu" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Father Name</label>
-                <input type="text" id="addFatherName" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addFatherName" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Mother Name</label>
-                <input type="text" id="addMotherName" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="addMotherName" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Date of Birth</label>
-                <input type="date" id="addDob" class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="date" id="addDob" class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
             </div>
             <!-- Marks -->
@@ -718,7 +727,7 @@
                   <input type="number" id="markSanskrit" min="0" max="100" placeholder="Optional" class="w-full p-2 border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></div>
               </div>
             </div>
-            <button type="submit" class="btn-primary w-full text-white font-bold py-3 rounded-xl text-sm">
+            <button type="submit" class="btn-primary w-full text-white font-bold py-3.5 rounded-2xl text-sm">
               <i class="fa-solid fa-save mr-1.5"></i> Save Student Result
             </button>
           </form>
@@ -726,8 +735,8 @@
 
         <!-- Tab 3: Excel Upload -->
         <div id="tabBulkUpload" class="hidden flex-grow overflow-y-auto p-5 space-y-5">
-          <div class="max-w-lg mx-auto text-center bg-slate-50 border-2 border-dashed border-blue-200 rounded-2xl p-8">
-            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
+          <div class="max-w-lg mx-auto text-center bg-slate-50 border-2 border-dashed border-blue-200 rounded-3xl p-8">
+            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-sm">
               <i class="fa-solid fa-file-excel"></i>
             </div>
             <h4 class="font-bold text-slate-800 text-sm mb-1">Excel / CSV Upload</h4>
@@ -736,18 +745,18 @@
             </p>
             <form id="excelUploadForm" class="space-y-4">
               <input type="file" id="excelFileInput" accept=".xlsx,.xls,.csv" required
-                class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer border border-slate-200 rounded-xl bg-white">
+                class="block w-full text-xs text-slate-600 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer border border-slate-200 rounded-2xl bg-white shadow-sm">
               <div class="flex flex-wrap items-center justify-center gap-2">
                 <a href="/api/admin/sample-excel" download
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold bg-green-50 text-green-700 border border-green-200 hover:bg-green-100 px-3 py-2 rounded-lg transition">
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3.5 py-2 rounded-xl transition">
                   <i class="fa-solid fa-file-arrow-down"></i> Sample Excel
                 </a>
                 <a href="/api/admin/sample-csv" download
-                  class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 px-3 py-2 rounded-lg transition">
+                  class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 px-3.5 py-2 rounded-xl transition">
                   <i class="fa-solid fa-download"></i> Sample CSV
                 </a>
                 <button type="submit" id="btnUploadExcel"
-                  class="btn-primary text-white text-xs font-bold px-5 py-2 rounded-lg flex items-center gap-1.5">
+                  class="btn-primary text-white text-xs font-bold px-5 py-2 rounded-xl flex items-center gap-1.5">
                   <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Update
                 </button>
               </div>
@@ -757,28 +766,28 @@
 
         <!-- Tab 4: Change Password -->
         <div id="tabPassword" class="hidden flex-grow overflow-y-auto p-5">
-          <div class="max-w-sm mx-auto bg-slate-50 border border-slate-200 rounded-xl p-5">
+          <div class="max-w-sm mx-auto bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-sm">
             <div class="text-center mb-5">
-              <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mx-auto mb-2 text-lg">
+              <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-2 text-xl shadow-sm">
                 <i class="fa-solid fa-key"></i>
               </div>
               <h4 class="font-bold text-slate-800 text-sm">Change Password</h4>
             </div>
-            <form id="changePasswordForm" class="space-y-3 text-xs">
+            <form id="changePasswordForm" class="space-y-3.5 text-xs">
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Current Password</label>
-                <input type="password" id="currentPassInput" required class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="password" id="currentPassInput" required class="w-full p-2.5 border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">New Password</label>
-                <input type="password" id="newPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="password" id="newPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
               <div>
                 <label class="block font-semibold mb-1 text-slate-700">Confirm Password</label>
-                <input type="password" id="confirmPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="password" id="confirmPassInput" required minlength="6" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white focus:ring-2 focus:ring-blue-500 outline-none">
               </div>
-              <div id="passwordChangeAlert" class="hidden text-xs p-2.5 rounded-lg"></div>
-              <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-2.5 rounded-lg text-xs transition">
+              <div id="passwordChangeAlert" class="hidden text-xs p-2.5 rounded-xl"></div>
+              <button type="submit" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl text-xs transition">
                 Update Password
               </button>
             </form>
