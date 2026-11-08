@@ -54,13 +54,61 @@ function writeJson(filePath, data) {
   }
 }
 
-// Multi-layer safe database saver (Prevents data loss)
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'srujal844/satpada-school-portal';
+
+// Background Cloud Sync to GitHub (Ensures 24/7 persistence across restarts)
+let isSyncing = false;
+async function syncDatabaseToCloud(students) {
+  if (!GITHUB_TOKEN || !GITHUB_REPO || isSyncing) return;
+  isSyncing = true;
+  try {
+    const content = Buffer.from(JSON.stringify(students, null, 2), 'utf-8').toString('base64');
+    const headers = {
+      'Authorization': 'Bearer ' + GITHUB_TOKEN,
+      'User-Agent': 'Satpada-Portal-CloudSync',
+      'Accept': 'application/vnd.github.v3+json'
+    };
+
+    const getRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/students.json`, { headers });
+    let sha = undefined;
+    if (getRes.status === 200) {
+      const getData = await getRes.json();
+      sha = getData.sha;
+    }
+
+    const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/students.json`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        message: `Cloud Database Auto-Sync (${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })})`,
+        content,
+        sha
+      })
+    });
+
+    if (putRes.status === 200 || putRes.status === 201) {
+      console.log(`☁️ Cloud Sync: Successfully synced ${students.length} students to GitHub database!`);
+    } else {
+      console.error('Cloud Sync warning:', putRes.status);
+    }
+  } catch (err) {
+    console.error('Cloud Sync error:', err.message);
+  } finally {
+    isSyncing = false;
+  }
+}
+
+// Multi-layer safe database saver (Local + Permanent DB + Backups + Automatic Cloud Sync)
 function saveStudentsDatabase(students) {
   try {
     writeJson(STUDENTS_FILE, students);
     writeJson(PERMANENT_DB, students);
     const backupPath = path.join(BACKUPS_DIR, `backup_${Date.now()}.json`);
     fs.writeFileSync(backupPath, JSON.stringify(students, null, 2), 'utf-8');
+    
+    // Asynchronously sync to GitHub cloud
+    syncDatabaseToCloud(students).catch(() => {});
     return true;
   } catch (e) {
     console.error('Database save error:', e);
@@ -68,14 +116,40 @@ function saveStudentsDatabase(students) {
   }
 }
 
-// Auto-recovery on startup
-function initDatabase() {
-  const current = readJson(STUDENTS_FILE, []);
+// Auto-recovery on startup (Checks local files, permanent DB, and GitHub Cloud)
+async function initDatabase() {
+  let current = readJson(STUDENTS_FILE, []);
   if (current.length === 0 && fs.existsSync(PERMANENT_DB)) {
     const backup = readJson(PERMANENT_DB, []);
     if (backup.length > 0) {
       console.log(`🔄 Database Auto-Recovery: ${backup.length} વિદ્યાર્થીઓનો ડેટા સફળતાપૂર્વક પુનઃસ્થાપિત થયો.`);
       writeJson(STUDENTS_FILE, backup);
+      current = backup;
+    }
+  }
+
+  // Also check GitHub cloud for latest data
+  if (GITHUB_TOKEN && GITHUB_REPO) {
+    try {
+      const headers = {
+        'Authorization': 'Bearer ' + GITHUB_TOKEN,
+        'User-Agent': 'Satpada-Portal',
+        'Accept': 'application/vnd.github.v3+json'
+      };
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/students.json`, { headers });
+      if (res.status === 200) {
+        const data = await res.json();
+        const cloudStudents = JSON.parse(Buffer.from(data.content, 'base64').toString('utf-8'));
+        if (Array.isArray(cloudStudents) && cloudStudents.length > 0) {
+          if (cloudStudents.length >= current.length) {
+            writeJson(STUDENTS_FILE, cloudStudents);
+            writeJson(PERMANENT_DB, cloudStudents);
+            console.log(`☁️ Cloud Sync on startup: ${cloudStudents.length} વિદ્યાર્થીઓ GitHub પરથી સિંક થયા.`);
+          }
+        }
+      }
+    } catch (e) {
+      console.log('Cloud startup check skipped:', e.message);
     }
   }
 }
@@ -646,6 +720,29 @@ const handleExcelUpload = (req, res) => {
             delete studentObj.overallGrade;
             delete studentObj.resultStatus;
           }
+          // Preserve existing student profile details if new upload has blank/default
+          if (students[existingIdx].studentName && (studentObj.studentName === 'Student' || !studentObj.studentName)) {
+            studentObj.studentName = students[existingIdx].studentName;
+          }
+          if (students[existingIdx].studentNameGu && (studentObj.studentNameGu === 'વિદ્યાર્થી' || !studentObj.studentNameGu)) {
+            studentObj.studentNameGu = students[existingIdx].studentNameGu;
+          }
+          if (students[existingIdx].dob && !studentObj.dob) {
+            studentObj.dob = students[existingIdx].dob;
+          }
+          if (students[existingIdx].gender && !studentObj.gender) {
+            studentObj.gender = students[existingIdx].gender;
+          }
+          if (students[existingIdx].fatherName && !studentObj.fatherName) {
+            studentObj.fatherName = students[existingIdx].fatherName;
+          }
+          if (students[existingIdx].motherName && !studentObj.motherName) {
+            studentObj.motherName = students[existingIdx].motherName;
+          }
+          if (students[existingIdx].rollNo !== null && studentObj.rollNo === null) {
+            studentObj.rollNo = students[existingIdx].rollNo;
+          }
+
           students[existingIdx] = { ...students[existingIdx], ...studentObj };
           updatedCount++;
         } else {
