@@ -28,7 +28,15 @@ async function fetchSchoolInfo() {
 
 function updateSchoolUi(school) {
   const setEl = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+  setEl('headerSchoolNameGu', school.schoolNameGu);
+  setEl('cardSchoolNameGu', school.schoolNameGu);
+  setEl('headerSchoolNameEn', school.schoolNameEn);
+  setEl('cardSchoolNameEn', school.schoolNameEn);
+  setEl('headerUdise', school.udiseCode);
+  setEl('cardUdise', school.udiseCode);
+  setEl('headerAcademicYear', school.academicYear);
   setEl('cardAcademicYear', school.academicYear);
+  setEl('schoolNotice', school.notice);
 }
 
 
@@ -407,14 +415,14 @@ function switchAdminTab(tabName) {
     const pane = document.getElementById(cfg.pane);
     if (t === tabName) {
       if (btn) {
-        btn.classList.add('border-b-2', 'border-blue-600', 'text-blue-700', 'bg-white');
-        btn.classList.remove('border-transparent', 'text-slate-500');
+        btn.classList.add('border-b-2', 'border-emerald-600', 'text-emerald-700', 'bg-white');
+        btn.classList.remove('border-transparent', 'text-slate-600');
       }
       if (pane) pane.classList.remove('hidden');
     } else {
       if (btn) {
-        btn.classList.remove('border-b-2', 'border-blue-600', 'text-blue-700', 'bg-white');
-        btn.classList.add('border-transparent', 'text-slate-500');
+        btn.classList.remove('border-b-2', 'border-emerald-600', 'text-emerald-700', 'bg-white');
+        btn.classList.add('border-transparent', 'text-slate-600');
       }
       if (pane) pane.classList.add('hidden');
     }
