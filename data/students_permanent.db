@@ -9,11 +9,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-25",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 60,
+        "grade": "C1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 79,
+        "grade": "B1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 80,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 69,
+        "grade": "B2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 164,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 75.33,
+    "overallGrade": "B1",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 452,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 10
   },
   {
     "id": "std-5135",
@@ -25,11 +66,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-15",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 73,
+        "grade": "B1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 87,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 86,
+        "grade": "A2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 80,
+        "grade": "B1"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 171,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 82.83,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 497,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 6
   },
   {
     "id": "std-5147",
@@ -41,11 +123,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-14",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 69,
+        "grade": "B2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 56,
+        "grade": "C1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 58,
+        "grade": "C1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 66,
+        "grade": "B2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 157,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 67.67,
+    "overallGrade": "B2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 406,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 13
   },
   {
     "id": "std-5141",
@@ -57,11 +180,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-09-27",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 85,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 90,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 76,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 85,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 167,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 83.83,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 503,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 4
   },
   {
     "id": "std-5223",
@@ -73,11 +237,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-10-11",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 91,
+        "grade": "A1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 89,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 79,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 90,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 161,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 85,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 510,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 2
   },
   {
     "id": "std-5138",
@@ -89,11 +294,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-26",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 44,
+        "grade": "C2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 64,
+        "grade": "B2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 51,
+        "grade": "C1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 51,
+        "grade": "C1"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 144,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 59,
+    "overallGrade": "C1",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 354,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "પાસ થયેલ છે. નિયમિત વાંચન અને મહાવરા પર ધ્યાન આપવું.",
+    "rank": 16
   },
   {
     "id": "std-5143",
@@ -105,11 +351,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-07-24",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 91,
+        "grade": "A1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 96,
+        "grade": "A1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 74,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 91,
+        "grade": "A1"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 178,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 88.33,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 530,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 1
   },
   {
     "id": "std-5139",
@@ -121,11 +408,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-25",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 37,
+        "grade": "D"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 37,
+        "grade": "D"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 35,
+        "grade": "D"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 36,
+        "grade": "D"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 94,
+        "grade": "C2"
+      }
+    ],
+    "percentage": 39.83,
+    "overallGrade": "D",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 239,
+    "personalityTraits": {
+      "cleanliness": "સંતોષકારક",
+      "discipline": "સંતોષકારક",
+      "curiosity": "સંતોષકારક",
+      "sportsmanship": "સંતોષકારક"
+    },
+    "teacherRemarks": "પાસ થયેલ છે. નિયમિત વાંચન અને મહાવરા પર ધ્યાન આપવું.",
+    "rank": 20
   },
   {
     "id": "std-5230",
@@ -137,11 +465,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-07-13",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 58,
+        "grade": "C1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 67,
+        "grade": "B2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 66,
+        "grade": "B2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 63,
+        "grade": "B2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 141,
+        "grade": "B2"
+      }
+    ],
+    "percentage": 65.83,
+    "overallGrade": "B2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 395,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 15
   },
   {
     "id": "std-5232",
@@ -153,11 +522,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-18",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 38,
+        "grade": "D"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 42,
+        "grade": "C2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 39,
+        "grade": "D"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 38,
+        "grade": "D"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 145,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 50.33,
+    "overallGrade": "C2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 302,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "પાસ થયેલ છે. નિયમિત વાંચન અને મહાવરા પર ધ્યાન આપવું.",
+    "rank": 18
   },
   {
     "id": "std-5238",
@@ -169,11 +579,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-03-30",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 63,
+        "grade": "B2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 78,
+        "grade": "B1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 70,
+        "grade": "B2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 68,
+        "grade": "B2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 137,
+        "grade": "B2"
+      }
+    ],
+    "percentage": 69.33,
+    "overallGrade": "B2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 416,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 12
   },
   {
     "id": "std-5194",
@@ -185,11 +636,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-09-06",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 73,
+        "grade": "B1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 71,
+        "grade": "B1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 73,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 75,
+        "grade": "B1"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 157,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 74.83,
+    "overallGrade": "B1",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 449,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 11
   },
   {
     "id": "std-5224",
@@ -201,11 +693,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-06-19",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 84,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 88,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 83,
+        "grade": "A2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 89,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 155,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 83.17,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 499,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 5
   },
   {
     "id": "std-5140",
@@ -217,11 +750,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-08-16",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 57,
+        "grade": "C1"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 62,
+        "grade": "B2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 53,
+        "grade": "C1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 62,
+        "grade": "B2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 167,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 66.83,
+    "overallGrade": "B2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 401,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 14
   },
   {
     "id": "std-5144",
@@ -233,11 +807,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-10-09",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 82,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 84,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 82,
+        "grade": "A2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 87,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 154,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 81.5,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 489,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 8
   },
   {
     "id": "std-5145",
@@ -249,11 +864,51 @@
     "standard": "3",
     "division": "A",
     "dob": "2018-03-28",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 0,
+        "grade": "E"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 0,
+        "grade": "E"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 0,
+        "grade": "E"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 0,
+        "grade": "E"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 0,
+        "grade": "E"
+      }
+    ],
+    "percentage": 0,
+    "overallGrade": "E",
+    "resultStatus": "ગેરહાજર / પરિણામ બાકી",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 0,
+    "personalityTraits": {
+      "cleanliness": "સંતોષકારક",
+      "discipline": "સંતોષકારક",
+      "curiosity": "સંતોષકારક",
+      "sportsmanship": "સંતોષકારક"
+    },
+    "teacherRemarks": "પરીક્ષામાં ગેરહાજર."
   },
   {
     "id": "std-5136",
@@ -265,11 +920,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-01-28",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 43,
+        "grade": "C2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 36,
+        "grade": "D"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 43,
+        "grade": "C2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 46,
+        "grade": "C2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 141,
+        "grade": "B2"
+      }
+    ],
+    "percentage": 51.5,
+    "overallGrade": "C1",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 309,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "પાસ થયેલ છે. નિયમિત વાંચન અને મહાવરા પર ધ્યાન આપવું.",
+    "rank": 17
   },
   {
     "id": "std-5142",
@@ -281,11 +977,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2017-07-06",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 36,
+        "grade": "D"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 39,
+        "grade": "D"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 42,
+        "grade": "C2"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 42,
+        "grade": "C2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 142,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 50.17,
+    "overallGrade": "C2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 301,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "પાસ થયેલ છે. નિયમિત વાંચન અને મહાવરા પર ધ્યાન આપવું.",
+    "rank": 19
   },
   {
     "id": "std-5148",
@@ -297,11 +1034,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2018-01-21",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 86,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 86,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 79,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 82,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 173,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 84.33,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 506,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 3
   },
   {
     "id": "std-5149",
@@ -313,11 +1091,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2018-04-15",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 81,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 81,
+        "grade": "A2"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 72,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 83,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 154,
+        "grade": "B1"
+      }
+    ],
+    "percentage": 78.5,
+    "overallGrade": "B1",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 471,
+    "personalityTraits": {
+      "cleanliness": "ખૂબ સારું",
+      "discipline": "ખૂબ સારું",
+      "curiosity": "ખૂબ સારું",
+      "sportsmanship": "ખૂબ સારું"
+    },
+    "teacherRemarks": "સારી પ્રગતિ છે. વધુ મહેનત અને ઉત્સાહથી આગળ વધી શકાશે.",
+    "rank": 9
   },
   {
     "id": "std-5202",
@@ -329,11 +1148,52 @@
     "standard": "3",
     "division": "A",
     "dob": "2018-02-12",
-    "hasMarks": false,
-    "subjects": [],
-    "percentage": null,
-    "overallGrade": "-",
-    "resultStatus": "હજુ પરિણામ અપલોડ થયેલ નથી (Result Not Uploaded Yet)"
+    "hasMarks": true,
+    "subjects": [
+      {
+        "name": "ગુજરાતી (GUJARATI)",
+        "maxMarks": 100,
+        "obtainedMarks": 89,
+        "grade": "A2"
+      },
+      {
+        "name": "ગણિત (GANIT)",
+        "maxMarks": 100,
+        "obtainedMarks": 79,
+        "grade": "B1"
+      },
+      {
+        "name": "અંગ્રેજી (ANGREJI)",
+        "maxMarks": 100,
+        "obtainedMarks": 78,
+        "grade": "B1"
+      },
+      {
+        "name": "પર્યાવરણ (PARYAVARAN)",
+        "maxMarks": 100,
+        "obtainedMarks": 82,
+        "grade": "A2"
+      },
+      {
+        "name": "વ્યક્તિત્વ વિકાસ (VYAKTITVA VIKAS)",
+        "maxMarks": 200,
+        "obtainedMarks": 162,
+        "grade": "A2"
+      }
+    ],
+    "percentage": 81.67,
+    "overallGrade": "A2",
+    "resultStatus": "પાસ (Passed)",
+    "totalMaxMarks": 600,
+    "totalObtainedMarks": 490,
+    "personalityTraits": {
+      "cleanliness": "ઉત્તમ",
+      "discipline": "ઉત્તમ",
+      "curiosity": "ઉત્તમ",
+      "sportsmanship": "ઉત્તમ"
+    },
+    "teacherRemarks": "ખૂબ સરસ પ્રગતિ! ઉત્કૃષ્ટ પરિણામ, હાર્દિક અભિનંદન!",
+    "rank": 7
   },
   {
     "id": "std-5191",
