@@ -31,6 +31,14 @@ try {
 // Active admin sessions
 const activeAdminTokens = new Set(['satpada-admin-session-token']);
 
+// Bundled data fallbacks for serverless bundling
+let defaultStudents = [];
+try { defaultStudents = require('./data/students.json'); } catch (e) {}
+let defaultSchool = {};
+try { defaultSchool = require('./data/school.json'); } catch (e) {}
+let defaultAdmin = {};
+try { defaultAdmin = require('./data/admin.json'); } catch (e) {}
+
 // Helper to read JSON (safely handles UTF-8 BOM)
 function readJson(filePath, defaultValue) {
   try {
@@ -44,6 +52,9 @@ function readJson(filePath, defaultValue) {
   } catch (err) {
     console.error(`Error reading ${filePath}:`, err);
   }
+  if (filePath === STUDENTS_FILE && defaultStudents && defaultStudents.length) return defaultStudents;
+  if (filePath === SCHOOL_FILE && defaultSchool && Object.keys(defaultSchool).length) return defaultSchool;
+  if (filePath === ADMIN_FILE && defaultAdmin && Object.keys(defaultAdmin).length) return defaultAdmin;
   return defaultValue;
 }
 
