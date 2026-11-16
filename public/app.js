@@ -70,6 +70,12 @@ function setupEventListeners() {
     printBtn.addEventListener('click', () => { window.print(); });
   }
 
+  // Download PDF Marksheet (html2pdf)
+  const downloadBtn = document.getElementById('downloadPdfBtn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', downloadResultPdf);
+  }
+
   // Share WhatsApp
   document.getElementById('shareWhatsappBtn').addEventListener('click', shareOnWhatsApp);
 
@@ -185,6 +191,7 @@ function renderReportCard(student, school) {
   const pendingCard = document.getElementById('resultPendingCard');
   const marksheetCard = document.getElementById('printableReportCard');
   const printBtn = document.getElementById('printMarksheetBtn');
+  const downloadBtn = document.getElementById('downloadPdfBtn');
   const shareBtn = document.getElementById('shareWhatsappBtn');
 
   if (isPending) {
@@ -197,6 +204,7 @@ function renderReportCard(student, school) {
     }
     if (marksheetCard) marksheetCard.classList.add('hidden');
     if (printBtn) printBtn.classList.add('hidden');
+    if (downloadBtn) downloadBtn.classList.add('hidden');
     if (shareBtn) shareBtn.classList.add('hidden');
     return;
   }
@@ -205,6 +213,7 @@ function renderReportCard(student, school) {
   if (pendingCard) pendingCard.classList.add('hidden');
   if (marksheetCard) marksheetCard.classList.remove('hidden');
   if (printBtn) printBtn.classList.remove('hidden');
+  if (downloadBtn) downloadBtn.classList.remove('hidden');
   if (shareBtn) shareBtn.classList.remove('hidden');
 
   // Student Personal Info
@@ -218,11 +227,14 @@ function renderReportCard(student, school) {
   document.getElementById('cardGrNumber').textContent = student.grNumber;
   document.getElementById('cardDob').textContent = student.dob || '-';
 
-  // Attendance
-  if (student.attendance) {
-    document.getElementById('cardAttendance').textContent = `${student.attendance.presentDays}/${student.attendance.totalDays} દિવસ (${student.attendance.percentage}%)`;
-  } else {
-    document.getElementById('cardAttendance').textContent = '૯૪.૫%';
+  // Attendance (if element present)
+  const attEl = document.getElementById('cardAttendance');
+  if (attEl) {
+    if (student.attendance) {
+      attEl.textContent = `${student.attendance.presentDays}/${student.attendance.totalDays} દિવસ (${student.attendance.percentage}%)`;
+    } else {
+      attEl.textContent = '૯૪.૫%';
+    }
   }
 
   // Populate Subjects Table
@@ -324,6 +336,61 @@ function shareOnWhatsApp() {
 
   const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
   window.open(shareUrl, '_blank');
+}
+
+// 5.1 Client-side PDF Generation (html2pdf)
+async function downloadResultPdf() {
+  const cardElement = document.getElementById('printableReportCard') || document.getElementById('studentMarksheetPrintWrap');
+  if (!cardElement) return;
+
+  const studentName = currentStudent ? (currentStudent.studentNameGu || currentStudent.studentName || 'Student_Result') : 'Student_Result';
+  const safeName = studentName.replace(/\s+/g, '_');
+  const filename = `Marksheet_${safeName}.pdf`;
+
+  const downloadBtn = document.getElementById('downloadPdfBtn');
+  const originalHtml = downloadBtn ? downloadBtn.innerHTML : '';
+  if (downloadBtn) {
+    downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-base"></i><span>તૈયાર થઈ રહી છે...</span>';
+    downloadBtn.disabled = true;
+  }
+
+  try {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+
+    const opt = {
+      margin:       [4, 4, 4, 4],
+      filename:     filename,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  {
+        scale: 2.5,
+        useCORS: true,
+        logging: false
+      },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak:    { mode: 'avoid-all' }
+    };
+
+    if (window.html2pdf) {
+      await html2pdf().from(cardElement).set(opt).toPdf().get('pdf').then(function(pdf) {
+        const totalPages = pdf.internal.getNumberOfPages();
+        for (let p = totalPages; p > 1; p--) {
+          pdf.deletePage(p);
+        }
+      }).save();
+    } else {
+      window.print();
+    }
+  } catch (err) {
+    console.error('PDF generation error, fallback to print:', err);
+    window.print();
+  } finally {
+    if (downloadBtn) {
+      downloadBtn.innerHTML = originalHtml;
+      downloadBtn.disabled = false;
+    }
+  }
 }
 
 // 6. Check URL Query Parameters (e.g. ?school=24140805901&s=2362 or ?std=4&roll=5&gr=2362)
