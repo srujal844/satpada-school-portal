@@ -839,5 +839,11 @@ function startServer(port) {
   });
 }
 
-startServer(DEFAULT_PORT);
+// Start standalone server on local/Render, export for Vercel
+if (!process.env.VERCEL) {
+  startServer(DEFAULT_PORT);
+}
+
+module.exports = app;
+
 
