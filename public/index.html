@@ -155,34 +155,21 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <!-- Roll Number (Optional) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-                ૨. રોલ નંબર <span class="text-xs text-emerald-600 font-normal">(વૈકલ્પિક / Optional)</span>
-              </label>
-              <div class="relative">
-                <input type="number" id="inputRollNo" placeholder="જો ખબર હોય તો (દા.ત. 5)" min="1" max="150" value="" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
-                <i class="fa-solid fa-id-badge absolute left-3.5 top-3.5 text-slate-400"></i>
-              </div>
-            </div>
-
-            <!-- GR Number (Required) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-                ૩. જી.આર. નંબર <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(G.R. Number)</span>
-              </label>
-              <div class="relative">
-                <input type="text" id="inputGrNumber" required placeholder="દા.ત. 101, 102..." value="" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
-                <i class="fa-solid fa-hashtag absolute left-3.5 top-3.5 text-slate-400"></i>
-              </div>
+          <!-- Roll Number (Required) -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
+              ૨. રોલ નંબર <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(Roll No - ફરજિયાત)</span>
+            </label>
+            <div class="relative">
+              <input type="number" id="inputRollNo" required placeholder="દા.ત. 1, 2, 3..." min="1" max="150" value="" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+              <i class="fa-solid fa-id-badge absolute left-3.5 top-3.5 text-slate-400"></i>
             </div>
           </div>
 
           <!-- Exam Type -->
           <div>
             <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-              ૪. પરીક્ષા પ્રકાર <span class="text-xs text-slate-400 font-normal">(Exam Type)</span>
+              ૩. પરીક્ષા પ્રકાર <span class="text-xs text-slate-400 font-normal">(Exam Type)</span>
             </label>
             <div class="relative">
               <select id="inputExamType" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
@@ -215,7 +202,7 @@
         <div class="mt-6 pt-5 border-t border-slate-100 flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed">
           <i class="fa-solid fa-shield-halved text-emerald-600 text-sm mt-0.5 shrink-0"></i>
           <p>
-            <b>ગોપનીયતા બાંયધરી:</b> આ સિસ્ટમમાં માત્ર અને માત્ર જે બાળકના સાચા ધોરણ, રોલ નંબર અને જી.આર. નંબર મળશે તેમનું જ પરિણામ દર્શાવાશે. શાળાના અન્ય કોઈપણ વિદ્યાર્થીની અંગત વિગત અહીંથી જોઈ શકાતી નથી.
+            <b>ગોપનીયતા બાંયધરી:</b> આ સિસ્ટમમાં માત્ર અને માત્ર જે બાળકના સાચા ધોરણ અને રોલ નંબર મળશે તેમનું જ પરિણામ દર્શાવાશે. શાળાના અન્ય કોઈપણ વિદ્યાર્થીની અંગત વિગત અહીંથી જોઈ શકાતી નથી.
           </p>
         </div>
       </div>
