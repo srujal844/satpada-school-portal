@@ -20,8 +20,12 @@ const ADMIN_FILE = path.join(DATA_DIR, 'admin.json');
 const PERMANENT_DB = path.join(DATA_DIR, 'students_permanent.db');
 const BACKUPS_DIR = path.join(DATA_DIR, 'backups');
 
-if (!fs.existsSync(BACKUPS_DIR)) {
-  fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(BACKUPS_DIR)) {
+    fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Read-only filesystem in serverless
 }
 
 // Active admin sessions
@@ -104,8 +108,10 @@ function saveStudentsDatabase(students) {
   try {
     writeJson(STUDENTS_FILE, students);
     writeJson(PERMANENT_DB, students);
-    const backupPath = path.join(BACKUPS_DIR, `backup_${Date.now()}.json`);
-    fs.writeFileSync(backupPath, JSON.stringify(students, null, 2), 'utf-8');
+    try {
+      const backupPath = path.join(BACKUPS_DIR, `backup_${Date.now()}.json`);
+      fs.writeFileSync(backupPath, JSON.stringify(students, null, 2), 'utf-8');
+    } catch (e) {}
     
     // Asynchronously sync to GitHub cloud
     syncDatabaseToCloud(students).catch(() => {});
@@ -118,39 +124,45 @@ function saveStudentsDatabase(students) {
 
 // Auto-recovery on startup (Checks local files, permanent DB, and GitHub Cloud)
 async function initDatabase() {
-  let current = readJson(STUDENTS_FILE, []);
-  if (current.length === 0 && fs.existsSync(PERMANENT_DB)) {
-    const backup = readJson(PERMANENT_DB, []);
-    if (backup.length > 0) {
-      console.log(`🔄 Database Auto-Recovery: ${backup.length} વિદ્યાર્થીઓનો ડેટા સફળતાપૂર્વક પુનઃસ્થાપિત થયો.`);
-      writeJson(STUDENTS_FILE, backup);
-      current = backup;
+  try {
+    let current = readJson(STUDENTS_FILE, []);
+    if (current.length === 0 && fs.existsSync(PERMANENT_DB)) {
+      const backup = readJson(PERMANENT_DB, []);
+      if (backup.length > 0) {
+        console.log(`🔄 Database Auto-Recovery: ${backup.length} વિદ્યાર્થીઓનો ડેટા સફળતાપૂર્વક પુનઃસ્થાપિત થયો.`);
+        try { writeJson(STUDENTS_FILE, backup); } catch (e) {}
+        current = backup;
+      }
     }
-  }
 
-  // Also check GitHub cloud for latest data
-  if (GITHUB_TOKEN && GITHUB_REPO) {
-    try {
-      const headers = {
-        'Authorization': 'Bearer ' + GITHUB_TOKEN,
-        'User-Agent': 'Satpada-Portal',
-        'Accept': 'application/vnd.github.v3+json'
-      };
-      const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/students.json`, { headers });
-      if (res.status === 200) {
-        const data = await res.json();
-        const cloudStudents = JSON.parse(Buffer.from(data.content, 'base64').toString('utf-8'));
-        if (Array.isArray(cloudStudents) && cloudStudents.length > 0) {
-          if (cloudStudents.length >= current.length) {
-            writeJson(STUDENTS_FILE, cloudStudents);
-            writeJson(PERMANENT_DB, cloudStudents);
-            console.log(`☁️ Cloud Sync on startup: ${cloudStudents.length} વિદ્યાર્થીઓ GitHub પરથી સિંક થયા.`);
+    // Also check GitHub cloud for latest data
+    if (GITHUB_TOKEN && GITHUB_REPO) {
+      try {
+        const headers = {
+          'Authorization': 'Bearer ' + GITHUB_TOKEN,
+          'User-Agent': 'Satpada-Portal',
+          'Accept': 'application/vnd.github.v3+json'
+        };
+        const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/students.json`, { headers });
+        if (res.status === 200) {
+          const data = await res.json();
+          const cloudStudents = JSON.parse(Buffer.from(data.content, 'base64').toString('utf-8'));
+          if (Array.isArray(cloudStudents) && cloudStudents.length > 0) {
+            if (cloudStudents.length >= current.length) {
+              try {
+                writeJson(STUDENTS_FILE, cloudStudents);
+                writeJson(PERMANENT_DB, cloudStudents);
+              } catch (e) {}
+              console.log(`☁️ Cloud Sync on startup: ${cloudStudents.length} વિદ્યાર્થીઓ GitHub પરથી સિંક થયા.`);
+            }
           }
         }
+      } catch (e) {
+        // console.log('Cloud startup check skipped:', e.message);
       }
-    } catch (e) {
-      console.log('Cloud startup check skipped:', e.message);
     }
+  } catch (err) {
+    // Graceful startup
   }
 }
 
@@ -216,42 +228,38 @@ app.post('/api/school', (req, res) => {
   }
 });
 
-// 3. Search Student Result (Strict Privacy - Roll number is optional!)
+// 3. Search Student Result (By Standard and Roll Number - Roll No is required)
 app.post('/api/result/search', (req, res) => {
-  const { standard, rollNo, grNumber, examType } = req.body;
+  const { standard, rollNo, examType } = req.body;
 
-  if (!standard || !grNumber) {
+  if (!standard || rollNo === undefined || rollNo === null || String(rollNo).trim() === '') {
     return res.status(400).json({
       success: false,
-      message: 'ધોરણ (Class) અને જી.આર. નંબર (GR No) દાખલ કરવા ફરજિયાત છે.'
+      message: 'ધોરણ (Standard) અને રોલ નંબર (Roll No) દાખલ કરવા ફરજિયાત છે.'
     });
   }
 
   const students = readJson(STUDENTS_FILE, []);
+  const reqRoll = parseInt(String(rollNo).trim(), 10);
 
-  // Strict comparison
+  // Match by Standard and Roll Number
   const matchedStudent = students.find(s => {
     const stdMatch = String(s.standard).trim() === String(standard).trim();
-    const grMatch = String(s.grNumber).trim().toLowerCase() === String(grNumber).trim().toLowerCase();
-    
-    // Roll number is optional: if provided, verify it; if left empty, stdMatch and grMatch are sufficient
-    let rollMatch = true;
-    if (rollNo !== undefined && rollNo !== null && String(rollNo).trim() !== '') {
-      rollMatch = parseInt(s.rollNo, 10) === parseInt(rollNo, 10);
-    }
+    const studentRoll = parseInt(s.rollNo, 10);
+    const rollMatch = !isNaN(studentRoll) && studentRoll === reqRoll;
 
     // Optional exam filter
     if (examType && examType !== 'all') {
       const examMatch = !s.examType || s.examType.toLowerCase() === examType.toLowerCase();
-      return stdMatch && grMatch && rollMatch && examMatch;
+      return stdMatch && rollMatch && examMatch;
     }
-    return stdMatch && grMatch && rollMatch;
+    return stdMatch && rollMatch;
   });
 
   if (!matchedStudent) {
     return res.status(404).json({
       success: false,
-      message: 'દાખલ કરેલ વિગતો મુજબ કોઈ પરિણામ મળ્યું નથી. કૃપા કરીને ધોરણ અને જી.આર. નંબર ફરીથી ચકાસો.'
+      message: `ધોરણ ${standard} માં રોલ નંબર ${rollNo} વાળો કોઈ વિદ્યાર્થી મળ્યો નથી. કૃપા કરીને સાચો રોલ નંબર અને ધોરણ ચકાસો.`
     });
   }
 
@@ -809,8 +817,13 @@ app.post('/api/admin/upload-csv', requireAdmin, upload.single('excelFile'), hand
 app.post('/api/admin/upload-excel', requireAdmin, upload.single('excelFile'), handleExcelUpload);
 
 // Create uploads dir if doesn't exist
-if (!fs.existsSync(path.join(__dirname, 'uploads'))) {
-  fs.mkdirSync(path.join(__dirname, 'uploads'));
+try {
+  const uploadsDir = path.join(__dirname, 'uploads');
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+} catch (e) {
+  // Read-only filesystem in serverless
 }
 
 // Fallback to index.html
