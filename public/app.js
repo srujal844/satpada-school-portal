@@ -50,9 +50,8 @@ function setupEventListeners() {
   const demoBtn = document.getElementById('fillDemoBtn');
   if (demoBtn) {
     demoBtn.addEventListener('click', () => {
-      document.getElementById('inputStandard').value = '4';
-      document.getElementById('inputRollNo').value = '5';
-      document.getElementById('inputGrNumber').value = '2362';
+      document.getElementById('inputStandard').value = '3';
+      document.getElementById('inputRollNo').value = '1';
       hideError();
     });
   }
@@ -112,18 +111,17 @@ function setupEventListeners() {
   document.getElementById('adminSearchInput').addEventListener('input', handleAdminStudentFilter);
 }
 
-// 3. Search Student Result (Roll No is optional)
+// 3. Search Student Result (By Standard and Roll Number)
 async function handleSearchSubmit(e) {
   e.preventDefault();
   hideError();
 
   const standard = document.getElementById('inputStandard').value.trim();
   const rollNo = document.getElementById('inputRollNo').value.trim();
-  const grNumber = document.getElementById('inputGrNumber').value.trim();
   const examType = document.getElementById('inputExamType').value;
 
-  if (!standard || !grNumber) {
-    showError('કૃપા કરીને ધોરણ અને જી.આર. નંબર દાખલ કરો.');
+  if (!standard || !rollNo) {
+    showError('કૃપા કરીને ધોરણ અને રોલ નંબર દાખલ કરો.');
     return;
   }
 
@@ -133,7 +131,7 @@ async function handleSearchSubmit(e) {
     const res = await fetch('/api/result/search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ standard, rollNo, grNumber, examType })
+      body: JSON.stringify({ standard, rollNo, examType })
     });
 
     const data = await res.json();
@@ -302,7 +300,7 @@ function generateQrCode(student) {
   const qrContainer = document.getElementById('reportQrCode');
   qrContainer.innerHTML = '';
 
-  const verificationUrl = `${window.location.origin}/?std=${student.standard}&roll=${student.rollNo}&gr=${student.grNumber}`;
+  const verificationUrl = `${window.location.origin}/?std=${student.standard}&roll=${student.rollNo}`;
 
   try {
     if (typeof QRCode !== 'undefined') {
@@ -328,11 +326,11 @@ function shareOnWhatsApp() {
   const msg = `🎓 *પ્રાથમિક શાળા પરિણામ ૨૦૨૫-૨૬*\n` +
     `👤 વિદ્યાર્થી: *${name}*\n` +
     `🏫 ધોરણ: ${s.standard} | વર્ગ: ${s.division || 'A'}\n` +
-    `🔢 રોલ નં: ${s.rollNo} | જી.આર. નં: ${s.grNumber}\n` +
+    `🔢 રોલ નં: ${s.rollNo}\n` +
     `📊 મેળવેલ ગુણ: *${s.totalObtainedMarks}/${s.totalMaxMarks}*\n` +
     `📈 ટકાવારી: *${s.percentage}%* | ગ્રેડ: *${s.overallGrade}*\n` +
     `✨ પરિણામ: *${s.resultStatus}*\n\n` +
-    `🌐 ઓનલાઇન પરિણામ ચકાસો: ${window.location.origin}/?std=${s.standard}&roll=${s.rollNo}&gr=${s.grNumber}`;
+    `🌐 ઓનલાઇન પરિણામ ચકાસો: ${window.location.origin}/?std=${s.standard}&roll=${s.rollNo}`;
 
   const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
   window.open(shareUrl, '_blank');
@@ -393,19 +391,17 @@ async function downloadResultPdf() {
   }
 }
 
-// 6. Check URL Query Parameters (e.g. ?school=24140805901&s=2362 or ?std=4&roll=5&gr=2362)
+// 6. Check URL Query Parameters (e.g. ?std=3&roll=1)
 function checkUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const std = params.get('std') || params.get('standard');
   const roll = params.get('roll') || params.get('rollNo');
-  const gr = params.get('gr') || params.get('grNumber') || params.get('s');
 
   if (std) document.getElementById('inputStandard').value = std;
   if (roll) document.getElementById('inputRollNo').value = roll;
-  if (gr) document.getElementById('inputGrNumber').value = gr;
 
-  // If all 3 are in URL, auto-search
-  if (std && roll && gr) {
+  // If std and roll are in URL, auto-search
+  if (std && roll) {
     handleSearchSubmit(new Event('submit'));
   }
 }
