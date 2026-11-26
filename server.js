@@ -834,9 +834,29 @@ try {
   // Read-only filesystem in serverless
 }
 
-// Fallback to index.html
+// Safe HTML serving for both local server and Vercel serverless
+let cachedHtml = '';
+try {
+  const p1 = path.join(__dirname, 'public', 'index.html');
+  if (fs.existsSync(p1)) cachedHtml = fs.readFileSync(p1, 'utf8');
+} catch (e) {}
+if (!cachedHtml) {
+  try {
+    const p2 = path.join(__dirname, 'index.html');
+    if (fs.existsSync(p2)) cachedHtml = fs.readFileSync(p2, 'utf8');
+  } catch (e) {}
+}
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  if (cachedHtml) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    return res.status(200).send(cachedHtml);
+  }
+  const publicIndex = path.join(__dirname, 'public', 'index.html');
+  if (fs.existsSync(publicIndex)) {
+    return res.sendFile(publicIndex);
+  }
+  return res.status(200).send('Shree Satpada Prathmik Shala Portal is active.');
 });
 
 // Start server with automatic port-fallback if port is in use
