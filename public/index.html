@@ -60,152 +60,161 @@
     </div>
   </div>
 
-  <!-- SCHOOL HEADER -->
-  <header class="bg-white border-b border-slate-200 shadow-sm relative no-print">
-    <div class="max-w-6xl mx-auto px-4 py-4 sm:py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-4 text-center md:text-left">
-        <!-- School Emblem / Logo -->
-        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md ring-4 ring-emerald-50 shrink-0">
-          <i class="fa-solid fa-graduation-cap text-3xl sm:text-4xl"></i>
-        </div>
-        <div>
-          <div class="flex items-center justify-center md:justify-start gap-2">
-            <span class="inline-block px-2 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800 rounded">પ્રાથમિક શાળા પરિણામ પોર્ટલ</span>
-            <span class="text-xs text-slate-500 font-medium">U-DISE: <b id="headerUdise" class="text-slate-700">24140805601</b></span>
-          </div>
-          <h1 id="headerSchoolNameGu" class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mt-0.5 font-gujarati">
-            શ્રી સાતપડા પ્રાથમિક શાળા
-          </h1>
-          <p id="headerSchoolNameEn" class="text-xs sm:text-sm text-slate-500 font-medium">
-            SHREE SATPADA PRATHMIK SHALA
-          </p>
-        </div>
-      </div>
-
-      <!-- Quick School Details Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-        <div class="bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-          <i class="fa-solid fa-calendar-check text-emerald-600"></i>
-          <span>સત્ર: <b id="headerAcademicYear">2025-2026</b></span>
-        </div>
-        <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium">
-          <i class="fa-solid fa-shield-halved text-emerald-600"></i>
-          <span>સુરક્ષિત પરિણામ સિસ્ટમ</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- MAIN CONTAINER -->
-  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+  <!-- UNIFIED PORTAL CARD CONTAINER (Matching DigitalShala Reference Layout) -->
+  <main class="flex-grow w-full max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-8">
 
     <!-- SEARCH VIEW -->
     <div id="searchSection" class="transition-all duration-300">
       
-      <!-- Banner / Welcome card -->
-      <div class="bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-800 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-lg relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
-          <i class="fa-solid fa-award text-9xl"></i>
-        </div>
-        <div class="max-w-2xl relative z-10">
-          <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
-            <i class="fa-solid fa-sparkles text-amber-300"></i> ડિજિટલ પ્રગતિ પત્રક ૨૦૨૫-૨૬
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-bold font-gujarati leading-snug">
-            વિદ્યાર્થીનું પરિણામ મેળવો
-          </h2>
-          <p class="text-emerald-100 text-sm mt-2 leading-relaxed">
-            વિદ્યાર્થીનું પરિણામ જોવા માટે તેમનું <b>ધોરણ</b>, <b>રોલ નંબર</b> અને <b>જી.આર. નંબર (G.R. No.)</b> દાખલ કરો. સુરક્ષા ખાતર ફક્ત આ જ બાળકની માહિતી દર્શાવવામાં આવશે.
-          </p>
-        </div>
+      <!-- Top Action Bar (PC close hint) -->
+      <div class="hidden sm:flex justify-end mb-2 text-xs text-slate-500 font-medium">
+        <span class="inline-flex items-center gap-1 bg-white/80 border border-slate-200 px-3 py-1 rounded-full shadow-xs">
+          <i class="fa-solid fa-xmark text-slate-400"></i> સુરક્ષિત પરિણામ પોર્ટલ
+        </span>
       </div>
 
-      <!-- Result Search Form Card -->
-      <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-8">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
-          <div class="flex items-center gap-2 text-emerald-700 font-bold text-lg font-gujarati">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <span>વિદ્યાર્થી શોધ (Search Student Result)</span>
+      <!-- MAIN UNIFIED PORTAL CARD -->
+      <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden border border-slate-200/90">
+        
+        <!-- CARD HEADER BANNER -->
+        <div class="relative bg-gradient-to-r from-[#0d2847] via-[#10395b] to-[#0c4d4b] text-white px-4 sm:px-8 py-5 sm:py-7">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            
+            <!-- Left: Saraswati Mata Photo Badge -->
+            <div class="flex items-center gap-4 sm:gap-5 text-center sm:text-left">
+              <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/95 p-1.5 shadow-lg ring-2 ring-white/40 shrink-0 flex items-center justify-center overflow-hidden">
+                <img src="/saraswati_logo.png" alt="મા સરસ્વતી" class="w-full h-full object-contain drop-shadow" onerror="this.onerror=null; this.src='saraswati_logo.png';">
+              </div>
+
+              <!-- Center Info -->
+              <div class="flex flex-col items-center sm:items-start">
+                <span class="inline-block px-3 py-0.5 text-[11px] sm:text-xs font-semibold bg-amber-400/20 text-amber-300 border border-amber-300/30 rounded-full mb-1 tracking-wide">
+                  જિલ્લા શિક્ષણ સમિતિ માન્ય
+                </span>
+                <h1 id="headerSchoolNameGu" class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white font-gujarati drop-shadow-sm">
+                  શ્રી સાતપડા પ્રાથમિક શાળા
+                </h1>
+                <p id="headerSchoolNameEn" class="hidden">SHREE SATPADA PRATHMIK SHALA</p>
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-xs sm:text-sm text-slate-200 mt-1">
+                  <span>તા. ગારિયાધાર, જિ. ભાવનગર</span>
+                  <span class="opacity-40">|</span>
+                  <span>UDISE: <b id="headerUdise" class="text-amber-300 font-mono tracking-wider">24140805601</b></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Emblem (Shown on tablet/desktop, hidden on small mobile) -->
+            <div class="hidden sm:flex flex-col items-center justify-center shrink-0">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md p-1 border border-white/20 shadow-inner flex items-center justify-center overflow-hidden">
+                <img src="/right_emblem.png" alt="શિક્ષણ વિભાગ" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='right_emblem.png';">
+              </div>
+            </div>
+
           </div>
-          <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">
-            3 સ્તરીય વેરિફિકેશન
-          </span>
         </div>
 
-        <form id="resultSearchForm" class="space-y-6">
-          <!-- Class / Standard -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-              ૧. ધોરણ પસંદ કરો <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(Select Standard)</span>
-            </label>
-            <div class="relative">
-              <select id="inputStandard" required class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
-                <option value="" selected>-- ધોરણ પસંદ કરો --</option>
-                <option value="1">ધોરણ ૧ (Class 1)</option>
-                <option value="2">ધોરણ ૨ (Class 2)</option>
-                <option value="3">ધોરણ ૩ (Class 3)</option>
-                <option value="4">ધોરણ ૪ (Class 4)</option>
-                <option value="5">ધોરણ ૫ (Class 5)</option>
-                <option value="6">ધોરણ ૬ (Class 6)</option>
-                <option value="7">ધોરણ ૭ (Class 7)</option>
-                <option value="8">ધોરણ ૮ (Class 8)</option>
+        <!-- CARD BODY & SEARCH FORM -->
+        <div class="p-5 sm:p-8 md:p-10">
+          
+          <!-- Section Heading -->
+          <div class="text-center mb-6 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 font-gujarati">
+              વિદ્યાર્થી ઓનલાઇન પરિણામ શોધો
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 font-gujarati">
+              બાળકનું ધોરણ અને રોલ નંબર દાખલ કરો
+            </p>
+          </div>
+
+          <!-- Search Form -->
+          <form id="resultSearchForm" class="space-y-5 sm:space-y-6">
+            
+            <!-- 2-Column Grid on Desktop, 1-Column on Mobile -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              
+              <!-- 1. Standard Selection -->
+              <div>
+                <label for="inputStandard" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
+                  ૧. ધોરણ પસંદ કરો <span class="text-rose-500 font-bold">*</span>
+                </label>
+                <div class="relative">
+                  <select id="inputStandard" required class="w-full pl-3.5 pr-8 py-3 bg-slate-50 hover:bg-white border border-slate-300 rounded-xl text-slate-800 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
+                    <option value="" selected>-- ધોરણ પસંદ કરો --</option>
+                    <option value="3">ધોરણ ૩ (Class 3)</option>
+                    <option value="4">ધોરણ ૪ (Class 4)</option>
+                    <option value="5">ધોરણ ૫ (Class 5)</option>
+                    <option value="6">ધોરણ ૬ (Class 6)</option>
+                    <option value="7">ધોરણ ૭ (Class 7)</option>
+                    <option value="8">ધોરણ ૮ (Class 8)</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- 2. Roll Number (Required) -->
+              <div>
+                <label for="inputRollNo" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 font-gujarati">
+                  ૨. રોલ નંબર <span class="text-rose-500 font-bold">*</span>
+                </label>
+                <div class="relative">
+                  <input type="number" id="inputRollNo" required placeholder="દા.ત. 1, 5, 12..." min="1" max="150" class="w-full px-3.5 py-3 bg-slate-50 hover:bg-white border border-slate-300 rounded-xl text-slate-800 text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 3. Exam Type / Result Status Badge (School Controlled) -->
+            <div class="bg-slate-50/80 border border-slate-200 rounded-xl p-3.5">
+              <label class="block text-xs font-semibold text-slate-600 mb-2 font-gujarati">
+                ૩. પરિણામ પ્રકાર (શાળા નિર્ધારિત)
+              </label>
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2 text-indigo-900 font-semibold text-xs sm:text-sm">
+                  <i class="fa-solid fa-book-open text-indigo-600"></i>
+                  <span>પ્રથમ સત્રાંત પરિણામ (Sem 1)</span>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium bg-emerald-100 text-emerald-800 rounded-md">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  શાળા દ્વારા લાઈવ
+                </span>
+              </div>
+              <!-- Hidden select to preserve JS exam filter logic -->
+              <select id="inputExamType" class="hidden">
+                <option value="all" selected>All</option>
               </select>
-              <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3.5 text-slate-400"></i>
-              <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
+            </div>
+
+            <!-- Error Alert Container -->
+            <div id="searchErrorAlert" class="hidden p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3">
+              <i class="fa-solid fa-circle-exclamation text-rose-500 text-lg mt-0.5 shrink-0"></i>
+              <div id="searchErrorMessage" class="leading-relaxed font-gujarati">
+                કોઈ પરિણામ મળ્યું નથી.
+              </div>
+            </div>
+
+            <!-- Submit Button (Full Width Green) -->
+            <button type="submit" id="submitSearchBtn" class="w-full bg-[#0d6e52] hover:bg-[#0a5841] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-900/20 transition-all duration-150 flex items-center justify-center gap-2 font-gujarati text-sm sm:text-base cursor-pointer">
+              <i id="btnIcon" class="fa-solid fa-magnifying-glass text-white/90"></i>
+              <span id="btnText">પરિણામ જુઓ (View Result)</span>
+              <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
+            </button>
+
+          </form>
+
+          <!-- School Notice Box (Amber / Yellow) -->
+          <div class="mt-6 p-4 rounded-xl bg-amber-50/80 border border-amber-200/80 text-amber-900 text-xs sm:text-sm">
+            <div class="flex items-start gap-2">
+              <span class="text-base shrink-0">📢</span>
+              <div class="font-gujarati leading-relaxed">
+                <b class="text-amber-950">શાળા સંદેશ:</b> શ્રી સાતપડા પ્રાથમિક શાળાનું સત્રાંત / વાર્ષિક પરીક્ષા પરિણામ પોર્ટલ. પરિણામ જોવા માટે ઉપર ધોરણ પસંદ કરી રોલ નંબર દાખલ કરો.
+              </div>
             </div>
           </div>
 
-          <!-- Roll Number (Required) -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-              ૨. રોલ નંબર <span class="text-rose-500">*</span> <span class="text-xs text-slate-400 font-normal">(Roll No - ફરજિયાત)</span>
-            </label>
-            <div class="relative">
-              <input type="number" id="inputRollNo" required placeholder="દા.ત. 1, 2, 3..." min="1" max="150" value="" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
-              <i class="fa-solid fa-id-badge absolute left-3.5 top-3.5 text-slate-400"></i>
-            </div>
-          </div>
-
-          <!-- Exam Type -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2 font-gujarati">
-              ૩. પરીક્ષા પ્રકાર <span class="text-xs text-slate-400 font-normal">(Exam Type)</span>
-            </label>
-            <div class="relative">
-              <select id="inputExamType" class="w-full pl-10 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-medium focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition appearance-none">
-                <option value="Annual">દ્વિતીય સત્રાંત / વાર્ષિક પરીક્ષા (Annual Exam)</option>
-                <option value="Term 1">પ્રથમ સત્રાંત પરીક્ષા (Term 1 / Semester 1)</option>
-                <option value="all">બધા પરિણામ (All Exams)</option>
-              </select>
-              <i class="fa-solid fa-file-lines absolute left-3.5 top-3.5 text-slate-400"></i>
-              <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-xs text-slate-400 pointer-events-none"></i>
-            </div>
-          </div>
-
-          <!-- Error Alert Container -->
-          <div id="searchErrorAlert" class="hidden p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3">
-            <i class="fa-solid fa-circle-exclamation text-rose-500 text-lg mt-0.5 shrink-0"></i>
-            <div id="searchErrorMessage" class="leading-relaxed font-gujarati">
-              કોઈ પરિણામ મળ્યું નથી.
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" id="submitSearchBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/25 transition duration-200 flex items-center justify-center gap-2 font-gujarati text-base group">
-            <span id="btnText">પરિણામ જુઓ (Show Result)</span>
-            <i id="btnIcon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-            <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
-          </button>
-        </form>
-
-        <!-- Privacy & Security Guarantee -->
-        <div class="mt-6 pt-5 border-t border-slate-100 flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed">
-          <i class="fa-solid fa-shield-halved text-emerald-600 text-sm mt-0.5 shrink-0"></i>
-          <p>
-            <b>ગોપનીયતા બાંયધરી:</b> આ સિસ્ટમમાં માત્ર અને માત્ર જે બાળકના સાચા ધોરણ અને રોલ નંબર મળશે તેમનું જ પરિણામ દર્શાવાશે. શાળાના અન્ય કોઈપણ વિદ્યાર્થીની અંગત વિગત અહીંથી જોઈ શકાતી નથી.
-          </p>
         </div>
+
       </div>
+
     </div>
 
     <!-- RESULT REPORT CARD SECTION (Hidden initially) -->
