@@ -63,6 +63,15 @@
     padding-bottom: 6px !important;
   }
 
+  .marksheet-title-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 16px !important;
+    font-size: 8.5pt !important;
+    line-height: 1.35 !important;
+  }
+
   .print-compact-info {
     margin-bottom: 6px !important;
     padding: 6px 10px !important;
