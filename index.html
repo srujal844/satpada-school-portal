@@ -345,43 +345,34 @@
           </div>
         </div>
 
-        <!-- Student Information Grid (Clean, Bold, Single Student Name, DOB restored, No Parent Names) -->
-        <div class="bg-white border-2 border-slate-700 rounded-xl p-3 sm:p-4 mb-4 print:p-2 print:mb-2 print:rounded-lg shadow-sm">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4 text-xs sm:text-sm print:text-[11px]">
-            <!-- Col 1: Student Name & DOB -->
-            <div>
-              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વિદ્યાર્થીનું નામ (Name):</span>
-              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-xs sm:text-sm font-black block mt-0.5"></b>
+        <!-- Student Information Grid (Prominent DOB, Clean, Bold, Single Student Name, No Parent Names) -->
+        <div class="bg-white border-2 border-slate-700 rounded-xl p-3.5 sm:p-5 mb-4 print:p-2.5 print:mb-2 print:rounded-lg shadow-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-y-3 gap-x-4 text-xs sm:text-sm print:text-[11px] items-start">
+            <!-- 1. Student Name (Spans 2 cols for full length names) -->
+            <div class="col-span-2">
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વિદ્યાર્થીનું નામ (Student Name):</span>
+              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-sm sm:text-base font-black block mt-1 tracking-tight"></b>
               <span id="cardStudentNameEn" class="hidden"></span>
-              
-              <div class="mt-2">
-                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જન્મ તારીખ (DOB):</span>
-                <b id="cardDob" class="text-slate-950 text-xs sm:text-sm font-bold block mt-0.5"></b>
-              </div>
             </div>
             
-            <!-- Col 2: Standard & Division -->
+            <!-- 2. Standard & Division -->
             <div>
-              <div>
-                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">ધોરણ (Standard):</span>
-                <b id="cardStandard" class="text-sm sm:text-base text-emerald-900 font-black block mt-0.5"></b>
-              </div>
-              <div class="mt-2">
-                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વર્ગ (Div):</span>
-                <b id="cardDivision" class="text-sm sm:text-base text-slate-950 font-black block mt-0.5"></b>
-              </div>
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">ધોરણ (Standard):</span>
+              <b id="cardStandard" class="text-sm sm:text-base text-emerald-900 font-black block mt-1"></b>
+              <span class="text-[11px] text-slate-700 font-bold mt-0.5 block">વર્ગ: <b id="cardDivision" class="text-slate-950">A</b></span>
             </div>
 
-            <!-- Col 3: Roll No -->
+            <!-- 3. Roll No & GR No -->
             <div>
               <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">રોલ નં (Roll No):</span>
-              <b id="cardRollNo" class="text-sm sm:text-base text-blue-900 font-black block mt-0.5"></b>
+              <b id="cardRollNo" class="text-sm sm:text-base text-blue-900 font-black block mt-1"></b>
+              <span class="text-[11px] text-slate-700 font-bold mt-0.5 block">G.R. નં: <b id="cardGrNumber" class="text-amber-900"></b></span>
             </div>
 
-            <!-- Col 4: GR No -->
+            <!-- 4. Date of Birth (DOB) - Clear & Prominent -->
             <div>
-              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જી.આર. નં (G.R. No):</span>
-              <b id="cardGrNumber" class="text-sm sm:text-base text-amber-900 font-black block mt-0.5"></b>
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જન્મ તારીખ (DOB):</span>
+              <b id="cardDob" class="text-sm sm:text-base text-slate-950 font-black block mt-1"></b>
             </div>
           </div>
           
