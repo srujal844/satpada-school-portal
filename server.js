@@ -205,12 +205,12 @@ function renumberRollsPerStandard(students) {
 
 initDatabase();
 
-// Grade calculation helper (A, B, C, D, E)
+// Grade calculation helper (A, B, C, D, E per school scale: A:80-100, B:65-79, C:50-64, D:35-49, E:0-34)
 function calculateGrade(percentage) {
   if (percentage >= 80) return 'A';
-  if (percentage >= 60) return 'B';
-  if (percentage >= 40) return 'C';
-  if (percentage >= 33) return 'D';
+  if (percentage >= 65) return 'B';
+  if (percentage >= 50) return 'C';
+  if (percentage >= 35) return 'D';
   return 'E';
 }
 
