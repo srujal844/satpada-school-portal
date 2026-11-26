@@ -6,22 +6,24 @@
   <title>શાળા પરિણામ પોર્ટલ | Primary School Result Portal</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts for Gujarati and English -->
+  <!-- Google Fonts for Gujarati and English (Including Noto Sans Gujarati for flawless ligatures) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <!-- html2pdf for single-page client side PDF download -->
+  <!-- Direct html2canvas and jsPDF libraries for ultra-crisp single-page PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            gujarati: ['"Hind Vadodara"', 'sans-serif'],
-            sans: ['"Inter"', '"Hind Vadodara"', 'sans-serif'],
+            gujarati: ['"Hind Vadodara"', '"Noto Sans Gujarati"', 'sans-serif'],
+            sans: ['"Inter"', '"Hind Vadodara"', '"Noto Sans Gujarati"', 'sans-serif'],
           },
           colors: {
             school: {
@@ -50,7 +52,7 @@
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-2 truncate">
         <span class="bg-white/20 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide">સૂચના</span>
-        <span id="schoolNotice" class="truncate font-medium">વાર્ષિક પરીક્ષા પરિણામ ૨૦૨૫-૨૬ જાહેર થયેલ છે.</span>
+        <span id="schoolNotice" class="truncate font-medium">પ્રથમ સત્રાંત પરીક્ષા પરિણામ ૨૦૨૬-૨૭ જાહેર થયેલ છે.</span>
       </div>
       <div class="flex items-center space-x-3 shrink-0 text-xs">
         <button id="adminLoginBtn" class="hover:text-amber-100 flex items-center gap-1 font-medium bg-black/15 px-2.5 py-0.5 rounded transition">
@@ -206,7 +208,7 @@
             <div class="flex items-start gap-2">
               <span class="text-base shrink-0">📢</span>
               <div class="font-gujarati leading-relaxed">
-                <b class="text-amber-950">શાળા સંદેશ:</b> શ્રી સાતપડા પ્રાથમિક શાળાનું સત્રાંત / વાર્ષિક પરીક્ષા પરિણામ પોર્ટલ. પરિણામ જોવા માટે ઉપર ધોરણ પસંદ કરી રોલ નંબર દાખલ કરો.
+                <b class="text-amber-950">શાળા સંદેશ:</b> શ્રી સાતપડા પ્રાથમિક શાળાનું પ્રથમ સત્રાંત પરીક્ષા પરિણામ પોર્ટલ (શૈક્ષણિક વર્ષ: ૨૦૨૬-૨૭). પરિણામ જોવા માટે ઉપર ધોરણ પસંદ કરી રોલ નંબર દાખલ કરો.
               </div>
             </div>
           </div>
@@ -302,11 +304,11 @@
         <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-slate-800 no-print"></div>
 
         <!-- School Official Header -->
-        <div class="border-b-2 border-slate-800 pb-4 mb-4 text-center relative print:pb-2 print:mb-2">
-          <div class="flex items-center justify-between">
-            <!-- Left Emblem -->
-            <div class="w-14 h-14 rounded-full border-2 border-slate-800 flex items-center justify-center p-1 shrink-0 print:w-12 print:h-12">
-              <i class="fa-solid fa-book-open-reader text-2xl text-emerald-700 print:text-xl"></i>
+        <div class="border-b-2 border-slate-800 pb-3 mb-3 text-center relative print:pb-2 print:mb-2">
+          <div class="flex items-center justify-between gap-2">
+            <!-- Left Emblem (Shree Satpada Prathmik Shala Logo - 3rd pic) -->
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-slate-800 flex items-center justify-center p-0.5 shrink-0 overflow-hidden bg-white shadow-sm print:w-14 print:h-14">
+              <img src="/saraswati_logo.png" alt="શ્રી સાતપડા પ્રાથમિક શાળા લોગો" class="w-full h-full object-contain">
             </div>
             
             <!-- School Titles -->
@@ -323,19 +325,22 @@
               </p>
             </div>
 
-            <!-- Right QR Code (Dynamically Generated) -->
-            <div class="w-14 h-14 border border-slate-300 rounded p-1 shrink-0 flex items-center justify-center bg-slate-50 print:w-12 print:h-12" title="વેરિફિકેશન QR કોડ">
-              <div id="reportQrCode" class="w-12 h-12"></div>
+            <!-- Right Emblem (GCERT Gandhinagar Emblem - 4th pic) -->
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-slate-800 flex items-center justify-center p-0.5 shrink-0 overflow-hidden bg-white shadow-sm print:w-14 print:h-14">
+              <img src="/right_emblem.png" alt="GCERT Gandhinagar" class="w-full h-full object-contain">
             </div>
+            
+            <!-- Hidden QR code container for JS compatibility -->
+            <div id="reportQrCode" class="hidden"></div>
           </div>
 
           <!-- Marksheet Badge Title -->
           <div class="mt-2 print:mt-1">
             <span class="inline-block bg-slate-900 text-white font-bold text-xs sm:text-sm px-5 py-0.5 rounded-full uppercase tracking-wider font-gujarati shadow-sm print:text-xs print:py-0.5">
-              પ્રાથમિક શાળા વિદ્યાર્થી વાર્ષિક પ્રગતિ પત્રક (PROGRESS REPORT)
+              પ્રાથમિક શાળા વિદ્યાર્થી સત્રાંત પ્રગતિ પત્રક (SEMESTER PROGRESS REPORT)
             </span>
             <div class="text-[11px] font-semibold text-slate-700 mt-0.5 print:text-[10px]">
-              શૈક્ષણિક વર્ષ: <span id="cardAcademicYear" class="font-bold text-slate-900">2025-2026</span> | પરીક્ષા: <span id="cardExamType" class="font-bold text-slate-900">વાર્ષિક પરીક્ષા (Annual Exam)</span>
+              શૈક્ષણિક વર્ષ: <span id="cardAcademicYear" class="font-bold text-slate-900">2026-2027</span> | પરીક્ષા: <span id="cardExamType" class="font-bold text-slate-900">પ્રથમ સત્રાંત પરીક્ષા (Semester Exam)</span>
             </div>
           </div>
         </div>
