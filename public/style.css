@@ -33,10 +33,11 @@
   }
 
   #printableReportCard {
+    background-color: #faf7ee !important;
     border: 1.5px solid #0f172a !important;
     border-radius: 6px !important;
     box-shadow: none !important;
-    padding: 10px 14px !important;
+    padding: 8px 12px !important;
     margin: 0 auto !important;
     width: 100% !important;
     max-width: 100% !important;
