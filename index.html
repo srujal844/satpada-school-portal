@@ -345,38 +345,43 @@
           </div>
         </div>
 
-        <!-- Student Information Grid (Clean, Bold, Single Student Name, No Parent Names) -->
+        <!-- Student Information Grid (Clean, Bold, Single Student Name, DOB restored, No Parent Names) -->
         <div class="bg-white border-2 border-slate-700 rounded-xl p-3 sm:p-4 mb-4 print:p-2 print:mb-2 print:rounded-lg shadow-sm">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4 text-xs sm:text-sm print:text-[11px]">
-            <!-- Col 1: Student Name (Prominent Single Name) -->
-            <div class="col-span-2">
-              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વિદ્યાર્થીનું નામ (Student Name):</span>
-              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-sm sm:text-base font-black block mt-0.5"></b>
+            <!-- Col 1: Student Name & DOB -->
+            <div>
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વિદ્યાર્થીનું નામ (Name):</span>
+              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-xs sm:text-sm font-black block mt-0.5"></b>
               <span id="cardStudentNameEn" class="hidden"></span>
+              
+              <div class="mt-2">
+                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જન્મ તારીખ (DOB):</span>
+                <b id="cardDob" class="text-slate-950 text-xs sm:text-sm font-bold block mt-0.5"></b>
+              </div>
             </div>
             
             <!-- Col 2: Standard & Division -->
-            <div class="grid grid-cols-2 gap-2">
+            <div>
               <div>
                 <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">ધોરણ (Standard):</span>
                 <b id="cardStandard" class="text-sm sm:text-base text-emerald-900 font-black block mt-0.5"></b>
               </div>
-              <div>
+              <div class="mt-2">
                 <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વર્ગ (Div):</span>
                 <b id="cardDivision" class="text-sm sm:text-base text-slate-950 font-black block mt-0.5"></b>
               </div>
             </div>
 
-            <!-- Col 3: Roll No & GR No -->
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">રોલ નં (Roll No):</span>
-                <b id="cardRollNo" class="text-sm sm:text-base text-blue-900 font-black block mt-0.5"></b>
-              </div>
-              <div>
-                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જી.આર. નં (G.R.):</span>
-                <b id="cardGrNumber" class="text-sm sm:text-base text-amber-900 font-black block mt-0.5"></b>
-              </div>
+            <!-- Col 3: Roll No -->
+            <div>
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">રોલ નં (Roll No):</span>
+              <b id="cardRollNo" class="text-sm sm:text-base text-blue-900 font-black block mt-0.5"></b>
+            </div>
+
+            <!-- Col 4: GR No -->
+            <div>
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જી.આર. નં (G.R. No):</span>
+              <b id="cardGrNumber" class="text-sm sm:text-base text-amber-900 font-black block mt-0.5"></b>
             </div>
           </div>
           
@@ -384,7 +389,6 @@
           <div class="hidden">
             <span id="cardFatherName"></span>
             <span id="cardMotherName"></span>
-            <span id="cardDob"></span>
           </div>
         </div>
 
@@ -406,25 +410,25 @@
             </tbody>
             <tfoot>
               <tr class="bg-amber-100/70 font-bold border-t-2 border-slate-800 text-center">
-                <td colspan="2" class="border border-slate-700 p-2 text-right pr-4 font-gujarati text-sm">
-                  કુલ પરિણામ (GRAND TOTAL):
+                <td colspan="2" class="border border-slate-700 p-2 text-right pr-4 font-gujarati text-sm font-black text-slate-950">
+                  કુલ ગુણ (GRAND TOTAL):
                 </td>
-                <td id="cardTotalMax" class="border border-slate-700 p-2 font-bold">600</td>
+                <td id="cardTotalMax" class="border border-slate-700 p-2 font-black text-slate-950">600</td>
                 <td class="border border-slate-700 p-2 text-slate-950 font-bold">200</td>
-                <td id="cardTotalObtained" class="border border-slate-700 p-2 font-extrabold text-emerald-800 text-base">524</td>
-                <td id="cardOverallGrade" class="border border-slate-700 p-2 font-extrabold text-white bg-emerald-700">A</td>
+                <td id="cardTotalObtained" class="border border-slate-700 p-2 font-black text-emerald-900 text-base">524</td>
+                <td id="cardOverallGrade" class="border border-slate-700 p-2 font-black text-white bg-emerald-700">A</td>
               </tr>
               <tr class="bg-amber-50/80 font-bold border-t border-slate-700 text-center text-xs sm:text-sm">
-                <td colspan="2" class="border border-slate-700 p-2 text-right pr-4 font-gujarati">
+                <td colspan="2" class="border border-slate-700 p-2 text-right pr-4 font-gujarati font-bold text-slate-900">
                   ટકાવારી (PERCENTAGE):
                 </td>
-                <td colspan="2" class="border border-slate-700 p-2 text-emerald-900 font-extrabold text-sm" id="cardPercentage">
+                <td colspan="2" class="border border-slate-700 p-2 text-emerald-950 font-black text-sm" id="cardPercentage">
                   0%
                 </td>
-                <td class="border border-slate-700 p-2 text-slate-700 font-gujarati">
+                <td class="border border-slate-700 p-2 text-slate-900 font-bold font-gujarati">
                   પરિણામ (STATUS):
                 </td>
-                <td class="border border-slate-700 p-2 font-extrabold text-emerald-800" id="cardStatus">
+                <td class="border border-slate-700 p-2 font-black text-emerald-900" id="cardStatus">
                   પાસ
                 </td>
               </tr>
@@ -441,8 +445,8 @@
         </div>
 
         <!-- Grading Scale Legend -->
-        <div class="text-[10px] sm:text-xs text-slate-800 border-t-2 border-slate-700 pt-2 mb-4 print:mb-2 print:text-[9px] font-medium">
-          <b class="text-slate-950 font-bold">ગ્રેડિંગ સ્કેલ:</b> A: 80 to 100 | B: 65 to 79 | C: 50 to 64 | D: 35 to 49 | E: 0 to 34
+        <div class="text-[10px] sm:text-xs text-slate-900 border-t-2 border-slate-700 pt-2 mb-4 print:mb-2 print:text-[9px] font-bold">
+          <b class="text-slate-950 font-black">ગ્રેડિંગ સ્કેલ:</b> A: 80 થી 100 | B: 65 થી 79 | C: 50 થી 64 | D: 35 થી 49 | E: 0 થી 34
         </div>
 
         <!-- Signatures & School Stamp -->
