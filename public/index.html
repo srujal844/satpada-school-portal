@@ -345,48 +345,46 @@
           </div>
         </div>
 
-        <!-- Student Information Grid (High Contrast, Bold Labels & Values) -->
-        <div class="bg-white border-2 border-slate-700 rounded-xl p-3 mb-4 print:p-2 print:mb-2 print:rounded-lg shadow-sm">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-2.5 gap-x-4 text-xs print:text-[10.5px]">
-            <div>
-              <span class="text-slate-800 font-bold block text-[11px]">વિદ્યાર્થીનું નામ (Name):</span>
-              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-xs sm:text-sm font-black block"></b>
-              <span id="cardStudentNameEn" class="text-[10px] text-slate-800 font-semibold block"></span>
+        <!-- Student Information Grid (Clean, Bold, Single Student Name, No Parent Names) -->
+        <div class="bg-white border-2 border-slate-700 rounded-xl p-3 sm:p-4 mb-4 print:p-2 print:mb-2 print:rounded-lg shadow-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4 text-xs sm:text-sm print:text-[11px]">
+            <!-- Col 1: Student Name (Prominent Single Name) -->
+            <div class="col-span-2">
+              <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વિદ્યાર્થીનું નામ (Student Name):</span>
+              <b id="cardStudentNameGu" class="font-gujarati text-slate-950 text-sm sm:text-base font-black block mt-0.5"></b>
+              <span id="cardStudentNameEn" class="hidden"></span>
             </div>
-            <div>
-              <span class="text-slate-800 font-bold block text-[11px]">પિતા/વાલીનું નામ (Father):</span>
-              <b id="cardFatherName" class="text-slate-950 block font-bold"></b>
-              <span class="text-slate-800 font-bold block text-[11px] mt-1">માતાનું નામ (Mother):</span>
-              <span id="cardMotherName" class="text-slate-950 text-[11px] font-bold"></span>
-            </div>
-            <div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <span class="text-slate-800 font-bold block text-[11px]">ધોરણ (Standard):</span>
-                  <b id="cardStandard" class="text-sm text-emerald-900 font-black"></b>
-                </div>
-                <div>
-                  <span class="text-slate-800 font-bold block text-[11px]">વર્ગ (Div):</span>
-                  <b id="cardDivision" class="text-sm text-slate-950 font-black"></b>
-                </div>
+            
+            <!-- Col 2: Standard & Division -->
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">ધોરણ (Standard):</span>
+                <b id="cardStandard" class="text-sm sm:text-base text-emerald-900 font-black block mt-0.5"></b>
               </div>
-              <div class="mt-1">
-                <span class="text-slate-800 font-bold block text-[11px]">જન્મ તારીખ (DOB):</span>
-                <b id="cardDob" class="text-slate-950 text-[11px] font-bold"></b>
+              <div>
+                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">વર્ગ (Div):</span>
+                <b id="cardDivision" class="text-sm sm:text-base text-slate-950 font-black block mt-0.5"></b>
               </div>
             </div>
-            <div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <span class="text-slate-800 font-bold block text-[11px]">રોલ નં (Roll No):</span>
-                  <b id="cardRollNo" class="text-sm text-blue-900 font-black"></b>
-                </div>
-                <div>
-                  <span class="text-slate-800 font-bold block text-[11px]">જી.આર. નં (G.R. No):</span>
-                  <b id="cardGrNumber" class="text-sm text-amber-900 font-black"></b>
-                </div>
+
+            <!-- Col 3: Roll No & GR No -->
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">રોલ નં (Roll No):</span>
+                <b id="cardRollNo" class="text-sm sm:text-base text-blue-900 font-black block mt-0.5"></b>
+              </div>
+              <div>
+                <span class="text-slate-800 font-bold block text-[11px] sm:text-xs">જી.આર. નં (G.R.):</span>
+                <b id="cardGrNumber" class="text-sm sm:text-base text-amber-900 font-black block mt-0.5"></b>
               </div>
             </div>
+          </div>
+          
+          <!-- Hidden elements for JS compatibility -->
+          <div class="hidden">
+            <span id="cardFatherName"></span>
+            <span id="cardMotherName"></span>
+            <span id="cardDob"></span>
           </div>
         </div>
 
