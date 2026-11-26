@@ -2,7 +2,6 @@
   "name": "primary-school-result-portal",
   "version": "1.0.0",
   "description": "Secure Student Result Portal for Primary Schools (DigitalShala style)",
-  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "online": "node tunnel.js"
