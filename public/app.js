@@ -252,19 +252,19 @@ function renderReportCard(student, school) {
   const subjects = student.subjects || [];
   subjects.forEach((sub, idx) => {
     const tr = document.createElement('tr');
-    tr.className = 'border-b border-slate-300 text-center hover:bg-slate-50/50';
+    tr.className = 'border-b border-slate-700 text-center hover:bg-slate-50/50';
 
     const minPass = Math.round(sub.maxMarks * 0.33);
     const isPassing = sub.obtainedMarks >= minPass;
 
     tr.innerHTML = `
-      <td class="border border-slate-300 p-2 text-slate-500 font-medium">${idx + 1}</td>
-      <td class="border border-slate-300 p-2 text-left font-medium text-slate-800">${sub.name}</td>
-      <td class="border border-slate-300 p-2 text-slate-600">${sub.maxMarks}</td>
-      <td class="border border-slate-300 p-2 text-slate-500">${minPass}</td>
-      <td class="border border-slate-300 p-2 font-bold ${isPassing ? 'text-slate-900' : 'text-rose-600'}">${sub.obtainedMarks}</td>
-      <td class="border border-slate-300 p-2">
-        <span class="inline-block px-2 py-0.5 text-xs font-bold rounded ${getGradeColorClass(sub.grade)}">
+      <td class="border border-slate-700 p-2 text-slate-900 font-bold">${idx + 1}</td>
+      <td class="border border-slate-700 p-2 text-left font-bold text-slate-950">${sub.name}</td>
+      <td class="border border-slate-700 p-2 text-slate-950 font-bold">${sub.maxMarks}</td>
+      <td class="border border-slate-700 p-2 text-slate-900 font-bold">${minPass}</td>
+      <td class="border border-slate-700 p-2 font-black ${isPassing ? 'text-slate-950' : 'text-rose-700'}">${sub.obtainedMarks}</td>
+      <td class="border border-slate-700 p-2">
+        <span class="inline-block px-2.5 py-0.5 text-xs font-black rounded ${getGradeColorClass(sub.grade)}">
           ${sub.grade || '-'}
         </span>
       </td>
