@@ -225,6 +225,16 @@ function renderReportCard(student, school) {
   document.getElementById('cardGrNumber').textContent = student.grNumber;
   document.getElementById('cardDob').textContent = student.dob || '-';
 
+  // Academic year and Exam Type
+  const examTypeEl = document.getElementById('cardExamType');
+  if (examTypeEl) {
+    examTypeEl.textContent = student.examType || (school && school.examType) || 'પ્રથમ સત્રાંત પરીક્ષા (Semester Exam)';
+  }
+  const acadYearEl = document.getElementById('cardAcademicYear');
+  if (acadYearEl) {
+    acadYearEl.textContent = student.academicYear || (school && school.academicYear) || '2026-2027';
+  }
+
   // Attendance (if element present)
   const attEl = document.getElementById('cardAttendance');
   if (attEl) {
@@ -338,12 +348,12 @@ function shareOnWhatsApp() {
   window.open(shareUrl, '_blank');
 }
 
-// 5.1 Client-side PDF Generation (html2pdf)
+// 5.1 Client-side PDF Generation (Ultra-clean single page A4 guaranteed)
 async function downloadResultPdf() {
-  const cardElement = document.getElementById('printableReportCard') || document.getElementById('studentMarksheetPrintWrap');
+  const cardElement = document.getElementById('printableReportCard');
   if (!cardElement) return;
 
-  const studentName = currentStudent ? (currentStudent.studentNameGu || currentStudent.studentName || 'Student_Result') : 'Student_Result';
+  const studentName = currentStudent ? (currentStudent.studentNameGu || currentStudent.studentName || 'વિદ્યાર્થી_પરિણામ') : 'વિદ્યાર્થી_પરિણામ';
   const safeName = studentName.replace(/\s+/g, '_');
   const filename = `Marksheet_${safeName}.pdf`;
 
@@ -354,36 +364,86 @@ async function downloadResultPdf() {
     downloadBtn.disabled = true;
   }
 
+  // Backup original inline styles
+  const prevWidth = cardElement.style.width;
+  const prevMinWidth = cardElement.style.minWidth;
+  const prevMaxWidth = cardElement.style.maxWidth;
+  const prevPadding = cardElement.style.padding;
+
   try {
     if (document.fonts && document.fonts.ready) {
       await document.fonts.ready;
     }
 
-    const opt = {
-      margin:       [4, 4, 4, 4],
-      filename:     filename,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  {
-        scale: 2.5,
-        useCORS: true,
-        logging: false
-      },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak:    { mode: 'avoid-all' }
-    };
+    // Temporarily lock element to optimal A4 desktop layout (794px = 210mm at 96 DPI)
+    // This guarantees that mobile rendering doesn't cause cramped or distorted Gujarati text!
+    cardElement.style.width = '794px';
+    cardElement.style.minWidth = '794px';
+    cardElement.style.maxWidth = '794px';
+    cardElement.style.padding = '18px 24px';
 
-    if (window.html2pdf) {
-      await html2pdf().from(cardElement).set(opt).toPdf().get('pdf').then(function(pdf) {
-        const totalPages = pdf.internal.getNumberOfPages();
-        for (let p = totalPages; p > 1; p--) {
-          pdf.deletePage(p);
-        }
+    // Wait 100ms for browser layout recalculation
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    const canvas = await html2canvas(cardElement, {
+      scale: 2.5,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      backgroundColor: '#faf7ee',
+      windowWidth: 800
+    });
+
+    // Restore original element styles immediately
+    cardElement.style.width = prevWidth;
+    cardElement.style.minWidth = prevMinWidth;
+    cardElement.style.maxWidth = prevMaxWidth;
+    cardElement.style.padding = prevPadding;
+
+    // Create single-page PDF with jsPDF
+    const JsPDFClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+    if (JsPDFClass) {
+      const pdf = new JsPDFClass('p', 'mm', 'a4');
+      const pdfWidth = 210;
+      const pdfHeight = 297;
+      const margin = 5; // 5mm margin
+      const availWidth = pdfWidth - (margin * 2); // 200mm
+      const availHeight = pdfHeight - (margin * 2); // 287mm
+
+      let imgWidth = availWidth;
+      let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      // Strictly ensure it never exceeds single A4 page height
+      if (imgHeight > availHeight) {
+        imgHeight = availHeight;
+        imgWidth = (canvas.width * imgHeight) / canvas.height;
+      }
+
+      const x = margin + ((availWidth - imgWidth) / 2);
+      const y = margin;
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+      pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+      pdf.save(filename);
+    } else if (window.html2pdf) {
+      // Fallback
+      await html2pdf().from(cardElement).set({
+        margin: [5, 5, 5, 5],
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2.5, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).save();
     } else {
       window.print();
     }
   } catch (err) {
     console.error('PDF generation error, fallback to print:', err);
+    // Restore element styles on error
+    cardElement.style.width = prevWidth;
+    cardElement.style.minWidth = prevMinWidth;
+    cardElement.style.maxWidth = prevMaxWidth;
+    cardElement.style.padding = prevPadding;
     window.print();
   } finally {
     if (downloadBtn) {
