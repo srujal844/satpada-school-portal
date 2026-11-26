@@ -268,17 +268,19 @@ function renderReportCard(student, school) {
   document.getElementById('cardOverallGrade').textContent = student.overallGrade || '-';
 
   // Summary Metrics
-  document.getElementById('cardPercentage').textContent = `${student.percentage}%`;
-  document.getElementById('cardStatus').textContent = student.resultStatus || 'પાસ (Passed)';
-  document.getElementById('cardRank').textContent = student.rank ? `${student.rank} (Rank ${student.rank})` : 'પ્રથમ વર્ગ';
-  document.getElementById('cardProgressBar').style.width = `${Math.min(student.percentage, 100)}%`;
+  const setEl = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.textContent = val; };
+  setEl('cardPercentage', `${student.percentage}%`);
+  setEl('cardStatus', student.resultStatus || 'પાસ (Passed)');
+  setEl('cardRank', student.rank ? `${student.rank} (Rank ${student.rank})` : 'પ્રથમ વર્ગ');
+  const progEl = document.getElementById('cardProgressBar');
+  if (progEl) progEl.style.width = `${Math.min(student.percentage, 100)}%`;
 
-  // Personality Traits
+  // Personality Traits (if elements present)
   const traits = student.personalityTraits || {};
-  document.getElementById('cardCleanliness').textContent = traits.cleanliness || 'ઉત્તમ';
-  document.getElementById('cardDiscipline').textContent = traits.discipline || 'ઉત્તમ';
-  document.getElementById('cardCuriosity').textContent = traits.curiosity || 'ખૂબ સારું';
-  document.getElementById('cardSports').textContent = traits.sportsmanship || 'ઉત્તમ';
+  setEl('cardCleanliness', traits.cleanliness || 'ઉત્તમ');
+  setEl('cardDiscipline', traits.discipline || 'ઉત્તમ');
+  setEl('cardCuriosity', traits.curiosity || 'ખૂબ સારું');
+  setEl('cardSports', traits.sportsmanship || 'ઉત્તમ');
 
   // Remarks
   document.getElementById('cardTeacherRemarks').textContent = student.teacherRemarks || 'સરસ પ્રગતિ. અભિનંદન!';
