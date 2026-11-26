@@ -214,16 +214,22 @@ function renderReportCard(student, school) {
   if (downloadBtn) downloadBtn.classList.remove('hidden');
   if (shareBtn) shareBtn.classList.remove('hidden');
 
-  // Student Personal Info
+  // Student Personal Info (Single Name, No Duplicate)
   document.getElementById('cardStudentNameGu').textContent = student.studentNameGu || student.studentName;
-  document.getElementById('cardStudentNameEn').textContent = student.studentName ? `(${student.studentName})` : '';
-  document.getElementById('cardFatherName').textContent = student.fatherName || '-';
-  document.getElementById('cardMotherName').textContent = student.motherName || '-';
+  const nameEnEl = document.getElementById('cardStudentNameEn');
+  if (nameEnEl) nameEnEl.textContent = '';
+  
+  const fatherEl = document.getElementById('cardFatherName');
+  if (fatherEl) fatherEl.textContent = student.fatherName || '-';
+  const motherEl = document.getElementById('cardMotherName');
+  if (motherEl) motherEl.textContent = student.motherName || '-';
+  
   document.getElementById('cardStandard').textContent = `ધોરણ ${student.standard}`;
   document.getElementById('cardDivision').textContent = student.division || 'A';
   document.getElementById('cardRollNo').textContent = (student.rollNo !== null && student.rollNo !== undefined && student.rollNo !== '') ? student.rollNo : '-';
   document.getElementById('cardGrNumber').textContent = student.grNumber;
-  document.getElementById('cardDob').textContent = student.dob || '-';
+  const dobEl = document.getElementById('cardDob');
+  if (dobEl) dobEl.textContent = student.dob || '-';
 
   // Academic year and Exam Type
   const examTypeEl = document.getElementById('cardExamType');
